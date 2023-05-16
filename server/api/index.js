@@ -29,7 +29,7 @@ router.get('/health', async (req, res, next) => {
     next(error);
   }
 });
-
-router.use('/users', require('./users'));
+const customerRouter = require("./customer")
+router.use("/customer", customerRouter);
 
 module.exports = router;

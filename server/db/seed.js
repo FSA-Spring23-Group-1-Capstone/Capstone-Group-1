@@ -79,16 +79,31 @@ async function createTables() {
   }
 };
 
-const createInitialUsers = async () => {
-  console.log('Adding initial users to "Users" table...');
-  console.log('Finished adding users!');
-};
+async function createInitialCustomers() {
+  console.log("Starting to create customers...")
+  try {
+    const customersToCreate = [
+      { name: "Zach", email: "znitz23@gmail.com", password: "Gamego", address: "123 boulevard",  admin: true},
+      { name: "Peter", email: "pwlaughlin@gmail.com", password: "Gamego", address: "23 e st",  admin: true},
+      { name: "Evan", email: "ewalker3764@gmail.com", password: "Gamego", address: "5 s. something st.",  admin: true},
+      { name: "Christain", email: "Chris.McNeil7532@gmail.com", password: "Gamego", address: "3rd one on the right",  admin: true}
+    ]
+    const customers = await Promise.all(customersToCreate.map(createCustomer))
+
+    console.log("customers created:")
+    console.log(customers)
+    console.log("Finished creating customers!")
+  } catch (error) {
+    console.error("Error creating customers!")
+    throw error
+  }
+}
 
 const rebuildDB = async () => {
   try {
     await dropTables();
     await createTables();
-    await createInitialUsers();
+    await createInitialCustomers();
   } catch (error) {
     console.error('Error during rebuildDB', error);
     throw error;
