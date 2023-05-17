@@ -1,9 +1,11 @@
+
 const client = require('./client');
 const { createCustomer } = require('./customers');
 
+
 const dropTables = async () => {
   try {
-    console.log('Starting to drop all tables...');
+    console.log("Starting to drop all tables...");
     await client.query(`
     DROP TABLE IF EXISTS genres;
     DROP TABLE IF EXISTS gameGenres;
@@ -13,15 +15,15 @@ const dropTables = async () => {
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS customers;
     `);
-    console.log('Finished droppping all tables successfully!');
+    console.log("Finished droppping all tables successfully!");
   } catch (error) {
-    console.error('Error dropping tables');
+    console.error("Error dropping tables");
     throw error;
   }
 };
 
 async function createTables() {
-  console.log("Starting to build tables...")
+  console.log("Starting to build tables...");
   // create all tables, in the correct order
   try {
     await client.query(`
@@ -72,31 +74,94 @@ async function createTables() {
     )
     `);
     console.log(
-      'Finished creating all tables successfully! Now, to add some data!'
+      "Finished creating all tables successfully! Now, to add some data!"
     );
   } catch (error) {
-    console.error('Error creating tables');
+    console.error("Error creating tables");
     throw error;
   }
-};
+}
 
 async function createInitialCustomers() {
-  console.log("Starting to create customers...")
+  console.log("Starting to create customers...");
   try {
     const customersToCreate = [
-      { name: "Zach", email: "znitz23@gmail.com", password: "Gamego", address: "123 boulevard",  admin: true},
-      { name: "Peter", email: "pwlaughlin@gmail.com", password: "Gamego", address: "23 e st",  admin: true},
-      { name: "Evan", email: "ewalker3764@gmail.com", password: "Gamego", address: "5 s. something st.",  admin: true},
-      { name: "Christain", email: "Chris.McNeil7532@gmail.com", password: "Gamego", address: "3rd one on the right",  admin: true}
-    ]
-    const customers = await Promise.all(customersToCreate.map(createCustomer))
+      {
+        name: "Zach",
+        email: "znitz23@gmail.com",
+        password: "Gamego",
+        address: "123 boulevard",
+        admin: true,
+      },
+      {
+        name: "Peter",
+        email: "pwlaughlin@gmail.com",
+        password: "Gamego",
+        address: "23 e st",
+        admin: true,
+      },
+      {
+        name: "Evan",
+        email: "ewalker3764@gmail.com",
+        password: "Gamego",
+        address: "5 s. something st.",
+        admin: true,
+      },
+      {
+        name: "Christain",
+        email: "Chris.McNeil7532@gmail.com",
+        password: "Gamego",
+        address: "3rd one on the right",
+        admin: true,
+      },
+    ];
+    const customers = await Promise.all(customersToCreate.map(createCustomer));
 
-    console.log("customers created:")
-    console.log(customers)
-    console.log("Finished creating customers!")
+    console.log("customers created:");
+    console.log(customers);
+    console.log("Finished creating customers!");
   } catch (error) {
-    console.error("Error creating customers!")
-    throw error
+    console.error("Error creating customers!");
+    throw error;
+  }
+}
+async function createInitialGames() {
+  console.log("Starting to create games...");
+  try {
+    const gamesToCreate = [
+      {
+        name: "Splinter Cell: Stealth Action Redefined",
+        price: 20.0,
+        description: "Sam Fisher is a secret agent who saves the world.",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/en/d/dd/Tharealsplintercell.jpg",
+        inventory: 20,
+      },
+      {
+        name: "Batman: Arkham Asylum",
+        price: 30.0,
+        description:
+          "Batman has to stop the Joker from unleashing a monster army on the city",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/en/4/42/Batman_Arkham_Asylum_Videogame_Cover.jpg",
+        inventory: 30,
+      },
+      {
+        name: "Assassin's Creed: Unity",
+        price: 45.0,
+        description: "Go and relive the French Revolution",
+        imageUrl:
+          "https://image.api.playstation.com/cdn/UP0001/CUSA00663_00/0JH9uaYLozePLWj3M7QowO3YtHbXnXg1.png",
+        inventory: 45,
+      },
+    ];
+    const games = await Promise.all(gamesToCreate.map(createGame));
+    console.log("games created:");
+    console.log(games);
+    console.log("Finished creating games!");
+  } catch (error) {
+    console.error("Error creating games!");
+    throw error;
   }
 }
 
@@ -105,8 +170,9 @@ const rebuildDB = async () => {
     await dropTables();
     await createTables();
     await createInitialCustomers();
+    await createInitialGames();
   } catch (error) {
-    console.error('Error during rebuildDB', error);
+    console.error("Error during rebuildDB", error);
     throw error;
   } finally {
     await client.end();
