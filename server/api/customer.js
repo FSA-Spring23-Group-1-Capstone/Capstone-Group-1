@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const customerRouter = express.router();
+const express = require("express");
+const customerRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const { getCustomerByCustomerEmail } = require('../db/customers');
 const requireCustomer = require('./utilities');
@@ -14,7 +15,7 @@ customerRouter.get('/', async (req, res, next) => {
 });
 
 customerRouter.post("/register", async (req, res, next) => {
-  const {email, password} = req.body;
+  const {name, email, password, address} = req.body;
   try {
       const _user = await getCustomerByCustomerEmail(email);
       if (_user) {
@@ -37,7 +38,6 @@ customerRouter.post("/register", async (req, res, next) => {
       
       const token = jwt.sign({
           name: customer.name,
-          password: customer.password,
           email: customer.email
       }, process.env.JWT_SECRET, {
           expiresIn: "1yr"
@@ -46,7 +46,7 @@ customerRouter.post("/register", async (req, res, next) => {
       res.send({
           message: "thank you for registering",
           token: token,
-         customer : customer
+          customer : customer
       });
   } catch (error) {
       next(error);
@@ -78,6 +78,7 @@ customerRouter.post("/login", async (req, res, next) => {
   }
 });
 
+// This route will access customer info in order to render orders on the my accouint page
 customerRouter.get("/me", requireCustomer, async (req, res, next) => {
   const {email} = req.body;
   try {

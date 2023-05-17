@@ -22,8 +22,8 @@ async function createCustomer({
     delete customer.password
     return customer;
    } catch (error) {
-    throw (error)
-    console.log(error)
+     console.log(error)
+     throw (error)
    }
 }
 
@@ -41,7 +41,6 @@ try {
   console.log(error) 
 }
 }
-// async function getCustomerById() {}
 
 async function getCustomerByCustomerEmail(email) {
   try {
