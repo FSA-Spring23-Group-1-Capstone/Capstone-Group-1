@@ -1,4 +1,5 @@
 const client = require('./client');
+const { createCustomer } = require('./customers');
 
 const dropTables = async () => {
   try {
