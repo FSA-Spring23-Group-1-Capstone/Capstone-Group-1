@@ -1,19 +1,16 @@
-
-const client = require('./client');
-const { createCustomer } = require('./customers');
-
+const client = require("./client");
+const { createCustomer } = require("./customers");
 
 const dropTables = async () => {
   try {
     console.log("Starting to drop all tables...");
     await client.query(`
-    DROP TABLE IF EXISTS genres;
-    DROP TABLE IF EXISTS gameGenres;
-    DROP TABLE IF EXISTS systems;
-    DROP TABLE IF EXISTS orderItems;
+    DROP TABLE IF EXISTS order_items;
     DROP TABLE IF EXISTS orders;
-    DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS customers;
+    DROP TABLE IF EXISTS system_compatability;
+    DROP TABLE IF EXISTS system;
+    DROP TABLE IF EXISTS products;
     `);
     console.log("Finished droppping all tables successfully!");
   } catch (error) {
@@ -39,7 +36,7 @@ async function createTables() {
     CREATE TABLE orders (
       id SERIAL primary key,
       orderCompleted BOOLEAN DEFAULT false,
-      "customerId" REFERENCES customers(id)
+      "customerId" INTEGER REFERENCES customers(id)
     );
 
     CREATE TABLE products (
@@ -47,8 +44,8 @@ async function createTables() {
       name VARCHAR(255) NOT NULL,
       price MONEY NOT NULL,
       description TEXT,
-      imageUrl TEXT NOT NULL
-      inventory NUM NOT NULL
+      "imageUrl" TEXT NOT NULL,
+      inventory INTEGER NOT NULL
     );
 
     CREATE TABLE system(
@@ -56,22 +53,20 @@ async function createTables() {
       name VARCHAR(20) UNIQUE NOT NULL
     );
 
-    CREATE TABLE genre(
-      id SERIAL primary key,
-      name VARCHAR(20) UNIQUE NOT NULL
+ 
+    CREATE TABLE order_items(
+      "orderItemId" SERIAL PRIMARY KEY,
+      "productId" INTEGER REFERENCES products(id),
+      quantity INTEGER,
+      "purchasePrice" INTEGER NOT NULL
     );
 
-    CREATE TABLE gameGeneres(
-      "productId" REFERNECES products(id),
-      "genreId" REFERNECES genre(id)
-    )
-
-    CREATE TABLE orderItems(
-      orderItemId SERIAL PRIMARY KEY,
-      "productId" REFERENCES products(id),
-      quantity NUM,
-      purchasePrice NUM NOT NULL
-    )
+    
+    CREATE TABLE system_compatability (
+      "productId" INTEGER REFERENCES products(id),
+      "systemId" INTEGER REFERENCES system(id),
+      UNIQUE ("productId", "systemId")
+    );
     `);
     console.log(
       "Finished creating all tables successfully! Now, to add some data!"
