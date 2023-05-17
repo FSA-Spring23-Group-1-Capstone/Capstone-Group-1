@@ -7,7 +7,8 @@
     "start": "node index.js",
     "server:dev": "nodemon server/index.js",
     "start:dev": "(npm run dev --prefix client) & nodemon server/index.js",
-    "seed": "node server/db/seed.js"
+    "seed": "node server/db/seed.js",
+    "seed:dev": "nodemon server/db/seed.js"
   },
   "author": "Christian McNeil, Evan Walker, Peter Laughlin, Zach Nitzkin",
   "license": "ISC",
