@@ -11,21 +11,6 @@ const getAllGames = async () => {
     throw error;
   }
 };
-const getGameByTheirId = async (id) => {
-  try {
-    const result = await client.query(
-      `
-    SELECT * FROM products
-    WHERE id = $1
-    `,
-      [id]
-    );
-    console.log(result);
-    return result;
-  } catch (error) {
-    throw error;
-  }
-};
 
 const getGameByName = async (name) => {
   try {
@@ -70,17 +55,50 @@ const createGame = async ({
   }
 };
 
+const updateGame = async (id, ...fields) => {
+  const [inputs] = fields;
+  const setString = Object.keys(inputs)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+  if (setString.length > 0) {
+    await client.query(
+      `
+    UPDATE products
+    SET ${setString}
+    WHERE id = ${id}
+    RETURNING *
+    `,
+      Object.values(inputs)
+    );
+  }
+};
+
 const attachConsoleToVideoGame = async () => {};
 
-const updateGame = async ({ id, ...fields }) => {};
-const deleteGame = async (id) => {};
+const deleteGame = async (id) => {
+  try {
+    const {
+      rows: [deletedGame],
+    } = await client.query(
+      `
+        DELETE FROM products 
+        WHERE id = $1
+        RETURNING *
+        `,
+      [id]
+    );
+    return deletedGame;
+  } catch (error) {
+    throw error;
+  }
+};
 
 module.exports = {
   getAllGames,
   createGame,
-  getGameByTheirId,
   getGameByName,
   updateGame,
   deleteGame,
   attachConsoleToVideoGame,
+  updateGame,
 };

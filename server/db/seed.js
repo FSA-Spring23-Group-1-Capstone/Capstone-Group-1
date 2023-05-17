@@ -3,7 +3,6 @@ const { createCustomer } = require("./customers");
 const {
   getAllGames,
   createGame,
-  getGameByTheirId,
   getGameByName,
   updateGame,
   deleteGame,
@@ -124,7 +123,7 @@ async function createInitialCustomers() {
     const customers = await Promise.all(customersToCreate.map(createCustomer));
 
     console.log("customers created:");
-    console.log(customers);
+    // console.log(customers);
     console.log("Finished creating customers!");
   } catch (error) {
     console.error("Error creating customers!");
@@ -165,7 +164,7 @@ async function createInitialGames() {
     ];
     const games = await Promise.all(gamesToCreate.map(createGame));
     console.log("games created:");
-    console.log(games);
+    // console.log(games);
     console.log("Finished creating games!");
   } catch (error) {
     console.error("Error creating games!");
@@ -188,12 +187,33 @@ const createInitialConsole = async () => {
 
     const systems = await Promise.all(consoleToCreate.map(createConsole));
     console.log("Console created:");
-    console.log(systems);
+    // console.log(systems);
   } catch (error) {
     console.error("Error creating console");
     throw error;
   }
 };
+// const updateAGame = async () => {
+//   const id = 1;
+//   const fields = {
+//     name: "Splinter Hello",
+//     description: "Testing",
+//   };
+
+//   try {
+//     const result = await updateGame(id, fields);
+//     return result;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+// const deleteAGame = async () => {
+//   try {
+//     await deleteGame(1);
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 const rebuildDB = async () => {
   try {
