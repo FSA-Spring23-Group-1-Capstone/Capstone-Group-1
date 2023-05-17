@@ -1,5 +1,16 @@
 const client = require("./client");
 const { createCustomer } = require("./customers");
+const {
+  getAllGames,
+  createGame,
+  getGameByTheirId,
+  getGameByName,
+  updateGame,
+  deleteGame,
+  attachConsoleToVideoGame,
+} = require("./game");
+
+const { createConsole, getConsoleByName, getAllConsoles } = require("./system");
 
 const dropTables = async () => {
   try {
@@ -50,7 +61,7 @@ async function createTables() {
 
     CREATE TABLE system(
       id SERIAL primary key,
-      name VARCHAR(20) UNIQUE NOT NULL
+      name VARCHAR(75) UNIQUE NOT NULL
     );
 
  
@@ -127,7 +138,8 @@ async function createInitialGames() {
       {
         name: "Splinter Cell: Stealth Action Redefined",
         price: 20.0,
-        description: "Sam Fisher is a secret agent who saves the world.",
+        description:
+          "Infiltrate terrorists' positions, acquire critical intelligence by any means necessary, execute with extreme prejudice, and exit without a trace! You are Sam Fisher, a highly trained secret operative of the NSA's secret arm: Third Echelon.",
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/en/d/dd/Tharealsplintercell.jpg",
         inventory: 20,
@@ -136,7 +148,7 @@ async function createInitialGames() {
         name: "Batman: Arkham Asylum",
         price: 30.0,
         description:
-          "Batman has to stop the Joker from unleashing a monster army on the city",
+          "Experience what it’s like to be Batman and face off against Gotham's greatest villians. Explore every inch of Arkham Asylum and roam freely on the infamous island.",
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/en/4/42/Batman_Arkham_Asylum_Videogame_Cover.jpg",
         inventory: 30,
@@ -144,7 +156,8 @@ async function createInitialGames() {
       {
         name: "Assassin's Creed: Unity",
         price: 45.0,
-        description: "Go and relive the French Revolution",
+        description:
+          "Assassin’s Creed® Unity tells the story of Arno, a young man who embarks upon an extraordinary journey to expose the true powers behind the French Revolution. In the brand new co-op mode, you and your friends will also be thrown in the middle of a ruthless struggle for the fate of a nation.",
         imageUrl:
           "https://image.api.playstation.com/cdn/UP0001/CUSA00663_00/0JH9uaYLozePLWj3M7QowO3YtHbXnXg1.png",
         inventory: 45,
@@ -159,6 +172,28 @@ async function createInitialGames() {
     throw error;
   }
 }
+const createInitialConsole = async () => {
+  try {
+    const consoleToCreate = [
+      {
+        name: "Xbox Series X",
+      },
+      {
+        name: "Playstation 5",
+      },
+      {
+        name: "Nintendo Swith",
+      },
+    ];
+
+    const systems = await Promise.all(consoleToCreate.map(createConsole));
+    console.log("Console created:");
+    console.log(systems);
+  } catch (error) {
+    console.error("Error creating console");
+    throw error;
+  }
+};
 
 const rebuildDB = async () => {
   try {
@@ -166,6 +201,7 @@ const rebuildDB = async () => {
     await createTables();
     await createInitialCustomers();
     await createInitialGames();
+    await createInitialConsole();
   } catch (error) {
     console.error("Error during rebuildDB", error);
     throw error;

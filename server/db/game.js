@@ -11,32 +11,17 @@ const getAllGames = async () => {
     throw error;
   }
 };
-
-const getAllConsoles = async () => {
+const getGameByTheirId = async (id) => {
   try {
-    const { rows } = await client.query(`
-  SELECT *
-  FROM consoles;
-`);
-    return rows;
-  } catch (error) {
-    throw error;
-  }
-};
-
-const getConsoleById = async (id) => {
-  try {
-    const {
-      rows: [console],
-    } = await client.query(
+    const result = await client.query(
       `
-        SELECT *
-        FROM console
-        WHERE id=$1;
-        `,
+    SELECT * FROM products
+    WHERE id = $1
+    `,
       [id]
     );
-    return console;
+    console.log(result);
+    return result;
   } catch (error) {
     throw error;
   }
@@ -59,25 +44,6 @@ const getGameByName = async (name) => {
     throw error;
   }
 };
-
-const getConsoleByName = async (name) => {
-  try {
-    const {
-      rows: [console],
-    } = await client.query(
-      `
-        SELECT *
-        FROM console
-        WHERE name=$1;
-        `,
-      [name]
-    );
-    return console;
-  } catch (error) {
-    throw error;
-  }
-};
-
 const createGame = async ({
   name,
   price,
@@ -90,19 +56,31 @@ const createGame = async ({
       rows: [game],
     } = await client.query(
       `
-        INSERT INTO product( name, price, description, imageUrl, inventory)
+        INSERT INTO products ( name, price, description, "imageUrl", inventory)
         VALUES ($1, $2, $3, $4, $5)
-        ON CONFLICT (name) DO NOTHING
         RETURNING *;
         `,
       [name, price, description, imageUrl, inventory]
     );
+
     return game;
   } catch (error) {
-    throw error;
     console.log(error);
+    throw error;
   }
 };
 
+const attachConsoleToVideoGame = async () => {};
+
 const updateGame = async ({ id, ...fields }) => {};
 const deleteGame = async (id) => {};
+
+module.exports = {
+  getAllGames,
+  createGame,
+  getGameByTheirId,
+  getGameByName,
+  updateGame,
+  deleteGame,
+  attachConsoleToVideoGame,
+};
