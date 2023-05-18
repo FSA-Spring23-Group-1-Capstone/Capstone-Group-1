@@ -4,7 +4,7 @@ const getAllGames = async () => {
   try {
     const { rows } = await client.query(`
   SELECT *
-  FROM games;
+  FROM products;
 `);
     return rows;
   } catch (error) {
@@ -19,7 +19,7 @@ const getGameByName = async (name) => {
     } = await client.query(
       `
         SELECT *
-        FROM games
+        FROM products
         WHERE name=$1;
         `,
       [name]
@@ -37,7 +37,7 @@ const getGameById = async (id) => {
     } = await client.query(
       `
           SELECT *
-          FROM games
+          FROM products
           WHERE name=$1;
           `,
       [id]

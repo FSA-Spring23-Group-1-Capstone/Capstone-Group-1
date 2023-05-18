@@ -6,7 +6,6 @@ const {
   getGameByName,
   updateGame,
   deleteGame,
-  attachConsoleToVideoGame,
   getGameById,
 } = require("./game");
 
@@ -45,7 +44,6 @@ async function createTables() {
       orderCompleted BOOLEAN DEFAULT false,
       "customerId" INTEGER REFERENCES customers(id)
     );
-
     CREATE TABLE products (
       id SERIAL primary key,
       name VARCHAR(255) NOT NULL,
@@ -55,15 +53,14 @@ async function createTables() {
       inventory INTEGER NOT NULL,
       console TEXT NOT NULL
     );
-
-
- 
+    
     CREATE TABLE order_items(
       "orderItemId" SERIAL PRIMARY KEY,
-      "productId" INTEGER REFERENCES products(id),
-      quantity INTEGER,
-      "purchasePrice" INTEGER NOT NULL
+     "productId" INTEGER REFERENCES products(id),
+        quantity INTEGER,
+        "purchasePrice" INTEGER NOT NULL
     ); 
+
     `);
     console.log(
       "Finished creating all tables successfully! Now, to add some data!"
