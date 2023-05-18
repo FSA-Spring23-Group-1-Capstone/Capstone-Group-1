@@ -53,12 +53,15 @@ async function createTables() {
       inventory INTEGER NOT NULL,
       console TEXT NOT NULL
     );
-    
+
+
     CREATE TABLE order_items(
       "orderItemId" SERIAL PRIMARY KEY,
-     "productId" INTEGER REFERENCES products(id),
-        quantity INTEGER,
-        "purchasePrice" INTEGER NOT NULL
+      "orderId" INTEGER REFERNCES orders(id),
+      "productId" INTEGER REFERENCES products(id),
+      quantity INTEGER,
+      "purchasePrice" INTEGER NOT NULL
+
     ); 
 
     `);
