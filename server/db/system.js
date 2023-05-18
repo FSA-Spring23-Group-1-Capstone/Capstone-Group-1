@@ -10,17 +10,17 @@ const getAllConsoles = async () => {
     throw error;
   }
 };
-const createConsole = async ({ name }) => {
+const createConsole = async ({ name, price }) => {
   try {
     const {
       rows: [console],
     } = await client.query(
       `
-      INSERT INTO system(name)
-      VALUES ($1)
+      INSERT INTO system(name, price)
+      VALUES ($1, $2)
       RETURNING *;
       `,
-      [name]
+      [name, price]
     );
     return console;
   } catch (error) {
@@ -44,8 +44,44 @@ const getConsoleByName = async ({ name }) => {
     throw error;
   }
 };
+const updateConsole = async (id, ...fields) => {
+  console.log(fields);
+  const [input] = fields;
+  const setString = Object.keys(input)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+
+  if (setString.length > 0) {
+    await client.query(
+      `
+    UPDATE system
+    SET ${setString}
+    WHERE id = ${id}
+    `,
+      Object.values(input)
+    );
+  }
+};
+const deleteConsole = async (id) => {
+  try {
+    const {
+      rows: [deleteConsole],
+    } = await client.query(
+      `
+    DELETE FROM system
+    WHERE id = $1
+    RETURNING*`,
+      [id]
+    );
+    return deleteConsole;
+  } catch (error) {
+    throw error;
+  }
+};
 module.exports = {
   createConsole,
   getConsoleByName,
   getAllConsoles,
+  deleteConsole,
+  updateConsole,
 };

@@ -7,9 +7,16 @@ const {
   updateGame,
   deleteGame,
   attachConsoleToVideoGame,
+  getGameById,
+  createSystemCompatability,
 } = require("./game");
 
-const { createConsole, getConsoleByName, getAllConsoles } = require("./system");
+const {
+  createConsole,
+  getConsoleByName,
+  getAllConsoles,
+  updateConsole,
+} = require("./system");
 
 const dropTables = async () => {
   try {
@@ -60,7 +67,8 @@ async function createTables() {
 
     CREATE TABLE system(
       id SERIAL primary key,
-      name VARCHAR(75) UNIQUE NOT NULL
+      name VARCHAR(75) UNIQUE NOT NULL,
+      price INTEGER
     );
 
  
@@ -176,23 +184,41 @@ const createInitialConsole = async () => {
     const consoleToCreate = [
       {
         name: "Xbox Series X",
+        price: 499,
       },
       {
         name: "Playstation 5",
+        price: 499,
       },
       {
         name: "Nintendo Swith",
+        price: 299,
       },
     ];
 
     const systems = await Promise.all(consoleToCreate.map(createConsole));
     console.log("Console created:");
-    // console.log(systems);
+    console.log(systems);
   } catch (error) {
     console.error("Error creating console");
     throw error;
   }
 };
+const makeSystemCompatible = async () => {
+  await createSystemCompatability(1, [1, 2, 3]);
+  await createSystemCompatability(3, [1, 3]);
+};
+
+// const updateAConsole = async () => {
+//   try {
+//     const fields = {
+//       purchasePrice: 200,
+//       name: "yoooo",
+//     };
+//     const updatedConsole1 = await updateConsole(1, fields);
+//     console.log(updatedConsole1);
+//   } catch (error) {}
+// };
 // const updateAGame = async () => {
 //   const id = 1;
 //   const fields = {
@@ -222,6 +248,7 @@ const rebuildDB = async () => {
     await createInitialCustomers();
     await createInitialGames();
     await createInitialConsole();
+    await makeSystemCompatible();
   } catch (error) {
     console.error("Error during rebuildDB", error);
     throw error;

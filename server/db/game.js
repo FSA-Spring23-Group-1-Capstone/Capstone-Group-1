@@ -29,6 +29,25 @@ const getGameByName = async (name) => {
     throw error;
   }
 };
+
+const getGameById = async (id) => {
+  try {
+    const {
+      rows: [game],
+    } = await client.query(
+      `
+          SELECT *
+          FROM games
+          WHERE name=$1;
+          `,
+      [id]
+    );
+    return game;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const createGame = async ({
   name,
   price,
@@ -73,8 +92,6 @@ const updateGame = async (id, ...fields) => {
   }
 };
 
-const attachConsoleToVideoGame = async () => {};
-
 const deleteGame = async (id) => {
   try {
     const {
@@ -92,6 +109,23 @@ const deleteGame = async (id) => {
     throw error;
   }
 };
+const createSystemCompatability = async (id, systemIds) => {
+  try {
+    await Promise.all(
+      systemIds.map(async (systemId) => {
+        const { rows } = await client.query(
+          `
+        INSERT INTO system_compatability("productId", "systemId")
+        VALUES ($1, $2)
+        RETURNING *`,
+          [id, systemId]
+        );
+        console.log(rows);
+        return rows;
+      })
+    );
+  } catch (error) {}
+};
 
 module.exports = {
   getAllGames,
@@ -99,6 +133,7 @@ module.exports = {
   getGameByName,
   updateGame,
   deleteGame,
-  attachConsoleToVideoGame,
   updateGame,
+  getGameById,
+  createSystemCompatability,
 };
