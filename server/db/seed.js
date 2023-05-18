@@ -1,5 +1,14 @@
 const client = require("./client");
 const { createCustomer } = require("./customers");
+const {
+  getAllGames,
+  createGame,
+  getGameByName,
+  updateGame,
+  deleteGame,
+  attachConsoleToVideoGame,
+  getGameById,
+} = require("./game");
 
 const dropTables = async () => {
   try {
@@ -8,8 +17,6 @@ const dropTables = async () => {
     DROP TABLE IF EXISTS order_items;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS customers;
-    DROP TABLE IF EXISTS system_compatability;
-    DROP TABLE IF EXISTS system;
     DROP TABLE IF EXISTS products;
     `);
     console.log("Finished droppping all tables successfully!");
@@ -45,13 +52,10 @@ async function createTables() {
       price MONEY NOT NULL,
       description TEXT,
       "imageUrl" TEXT NOT NULL,
-      inventory INTEGER NOT NULL
+      inventory INTEGER NOT NULL,
+      console TEXT NOT NULL
     );
 
-    CREATE TABLE system(
-      id SERIAL primary key,
-      name VARCHAR(20) UNIQUE NOT NULL
-    );
 
  
     CREATE TABLE order_items(
@@ -59,14 +63,7 @@ async function createTables() {
       "productId" INTEGER REFERENCES products(id),
       quantity INTEGER,
       "purchasePrice" INTEGER NOT NULL
-    );
-
-    
-    CREATE TABLE system_compatability (
-      "productId" INTEGER REFERENCES products(id),
-      "systemId" INTEGER REFERENCES system(id),
-      UNIQUE ("productId", "systemId")
-    );
+    ); 
     `);
     console.log(
       "Finished creating all tables successfully! Now, to add some data!"
@@ -113,7 +110,7 @@ async function createInitialCustomers() {
     const customers = await Promise.all(customersToCreate.map(createCustomer));
 
     console.log("customers created:");
-    console.log(customers);
+    // console.log(customers);
     console.log("Finished creating customers!");
   } catch (error) {
     console.error("Error creating customers!");
@@ -127,27 +124,32 @@ async function createInitialGames() {
       {
         name: "Splinter Cell: Stealth Action Redefined",
         price: 20.0,
-        description: "Sam Fisher is a secret agent who saves the world.",
+        description:
+          "Infiltrate terrorists' positions, acquire critical intelligence by any means necessary, execute with extreme prejudice, and exit without a trace! You are Sam Fisher, a highly trained secret operative of the NSA's secret arm: Third Echelon.",
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/en/d/dd/Tharealsplintercell.jpg",
         inventory: 20,
+        console: "Xbox, Playstation",
       },
       {
         name: "Batman: Arkham Asylum",
         price: 30.0,
         description:
-          "Batman has to stop the Joker from unleashing a monster army on the city",
+          "Experience what it’s like to be Batman and face off against Gotham's greatest villians. Explore every inch of Arkham Asylum and roam freely on the infamous island.",
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/en/4/42/Batman_Arkham_Asylum_Videogame_Cover.jpg",
         inventory: 30,
+        console: "Xbox, Playstation",
       },
       {
         name: "Assassin's Creed: Unity",
         price: 45.0,
-        description: "Go and relive the French Revolution",
+        description:
+          "Assassin’s Creed® Unity tells the story of Arno, a young man who embarks upon an extraordinary journey to expose the true powers behind the French Revolution. In the brand new co-op mode, you and your friends will also be thrown in the middle of a ruthless struggle for the fate of a nation.",
         imageUrl:
           "https://image.api.playstation.com/cdn/UP0001/CUSA00663_00/0JH9uaYLozePLWj3M7QowO3YtHbXnXg1.png",
         inventory: 45,
+        console: "Xbox, Playstation",
       },
     ];
     const games = await Promise.all(gamesToCreate.map(createGame));
