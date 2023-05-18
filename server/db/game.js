@@ -54,17 +54,18 @@ const createGame = async ({
   description,
   imageUrl,
   inventory,
+  console,
 }) => {
   try {
     const {
       rows: [game],
     } = await client.query(
       `
-        INSERT INTO products ( name, price, description, "imageUrl", inventory)
-        VALUES ($1, $2, $3, $4, $5)
+        INSERT INTO products ( name, price, description, "imageUrl", inventory, console)
+        VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING *;
         `,
-      [name, price, description, imageUrl, inventory]
+      [name, price, description, imageUrl, inventory, console]
     );
 
     return game;
@@ -109,41 +110,6 @@ const deleteGame = async (id) => {
     throw error;
   }
 };
-const createSystemCompatability = async (id, systemIds) => {
-  try {
-    await Promise.all(
-      systemIds.map(async (systemId) => {
-        const { rows } = await client.query(
-          `
-        INSERT INTO system_compatability("productId", "systemId")
-        VALUES ($1, $2)
-        RETURNING *`,
-          [id, systemId]
-        );
-
-        return rows;
-      })
-    );
-  } catch (error) {}
-};
-
-const getGamesWithConsoles = async () => {
-  try {
-    const { rows } = await client.query(
-      `
-      SELECT products.id,products.name,products.price,products.description, products."imageUrl", system.name
-      FROM products
-      JOIN system_compatability 
-      ON products.id = system_compatability."productId"
-      JOIN system
-      ON system.id = system_compatability."systemId"
-    `
-    );
-    console.log(rows);
-  } catch (error) {
-    throw error;
-  }
-};
 
 module.exports = {
   getAllGames,
@@ -153,6 +119,4 @@ module.exports = {
   deleteGame,
   updateGame,
   getGameById,
-  createSystemCompatability,
-  getGamesWithConsoles,
 };

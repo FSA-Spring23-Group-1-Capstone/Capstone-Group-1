@@ -8,16 +8,7 @@ const {
   deleteGame,
   attachConsoleToVideoGame,
   getGameById,
-  createSystemCompatability,
-  getGamesWithConsoles,
 } = require("./game");
-
-const {
-  createConsole,
-  getConsoleByName,
-  getAllConsoles,
-  updateConsole,
-} = require("./system");
 
 const dropTables = async () => {
   try {
@@ -26,8 +17,6 @@ const dropTables = async () => {
     DROP TABLE IF EXISTS order_items;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS customers;
-    DROP TABLE IF EXISTS system_compatability;
-    DROP TABLE IF EXISTS system;
     DROP TABLE IF EXISTS products;
     `);
     console.log("Finished droppping all tables successfully!");
@@ -63,14 +52,10 @@ async function createTables() {
       price MONEY NOT NULL,
       description TEXT,
       "imageUrl" TEXT NOT NULL,
-      inventory INTEGER NOT NULL
+      inventory INTEGER NOT NULL,
+      console TEXT NOT NULL
     );
 
-    CREATE TABLE system(
-      id SERIAL primary key,
-      name VARCHAR(75) UNIQUE NOT NULL,
-      price INTEGER
-    );
 
  
     CREATE TABLE order_items(
@@ -78,14 +63,7 @@ async function createTables() {
       "productId" INTEGER REFERENCES products(id),
       quantity INTEGER,
       "purchasePrice" INTEGER NOT NULL
-    );
-
-    
-    CREATE TABLE system_compatability (
-      "productId" INTEGER REFERENCES products(id),
-      "systemId" INTEGER REFERENCES system(id),
-      UNIQUE ("productId", "systemId")
-    );
+    ); 
     `);
     console.log(
       "Finished creating all tables successfully! Now, to add some data!"
@@ -151,6 +129,7 @@ async function createInitialGames() {
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/en/d/dd/Tharealsplintercell.jpg",
         inventory: 20,
+        console: "Xbox, Playstation",
       },
       {
         name: "Batman: Arkham Asylum",
@@ -160,6 +139,7 @@ async function createInitialGames() {
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/en/4/42/Batman_Arkham_Asylum_Videogame_Cover.jpg",
         inventory: 30,
+        console: "Xbox, Playstation",
       },
       {
         name: "Assassin's Creed: Unity",
@@ -169,79 +149,18 @@ async function createInitialGames() {
         imageUrl:
           "https://image.api.playstation.com/cdn/UP0001/CUSA00663_00/0JH9uaYLozePLWj3M7QowO3YtHbXnXg1.png",
         inventory: 45,
+        console: "Xbox, Playstation",
       },
     ];
     const games = await Promise.all(gamesToCreate.map(createGame));
     console.log("games created:");
-    // console.log(games);
+    console.log(games);
     console.log("Finished creating games!");
   } catch (error) {
     console.error("Error creating games!");
     throw error;
   }
 }
-const createInitialConsole = async () => {
-  try {
-    const consoleToCreate = [
-      {
-        name: "Xbox Series X",
-        price: 499,
-      },
-      {
-        name: "Playstation 5",
-        price: 499,
-      },
-      {
-        name: "Nintendo Swith",
-        price: 299,
-      },
-    ];
-
-    const systems = await Promise.all(consoleToCreate.map(createConsole));
-    console.log("Console created:");
-    console.log(systems);
-  } catch (error) {
-    console.error("Error creating console");
-    throw error;
-  }
-};
-const makeSystemCompatible = async () => {
-  await createSystemCompatability(1, [1, 2, 3]);
-  await createSystemCompatability(3, [1, 3]);
-  await createSystemCompatability(2, [2]);
-};
-
-// const updateAConsole = async () => {
-//   try {
-//     const fields = {
-//       purchasePrice: 200,
-//       name: "yoooo",
-//     };
-//     const updatedConsole1 = await updateConsole(1, fields);
-//     console.log(updatedConsole1);
-//   } catch (error) {}
-// };
-// const updateAGame = async () => {
-//   const id = 1;
-//   const fields = {
-//     name: "Splinter Hello",
-//     description: "Testing",
-//   };
-
-//   try {
-//     const result = await updateGame(id, fields);
-//     return result;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-// const deleteAGame = async () => {
-//   try {
-//     await deleteGame(1);
-//   } catch (error) {
-//     throw error;
-//   }
-// };
 
 const rebuildDB = async () => {
   try {
@@ -249,9 +168,6 @@ const rebuildDB = async () => {
     await createTables();
     await createInitialCustomers();
     await createInitialGames();
-    await createInitialConsole();
-    await makeSystemCompatible();
-    await getGamesWithConsoles();
   } catch (error) {
     console.error("Error during rebuildDB", error);
     throw error;
