@@ -1,4 +1,4 @@
-const router = require("express").Router();
+const express = require("express");
 const customerRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { getCustomerByCustomerEmail } = require("../db/customers");
