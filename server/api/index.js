@@ -32,4 +32,10 @@ router.get('/health', async (req, res, next) => {
 const customerRouter = require("./customer")
 router.use("/customer", customerRouter);
 
+const ordersRouter = require("./orders")
+router.use("/orders", ordersRouter);
+
+const orderItemsRouter = require("./orderItems")
+router.use("/orderItems", orderItemsRouter);
+
 module.exports = router;

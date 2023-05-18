@@ -56,10 +56,9 @@ async function createTables() {
       console TEXT NOT NULL
     );
 
-
- 
     CREATE TABLE order_items(
       "orderItemId" SERIAL PRIMARY KEY,
+      "orderId" INTEGER REFERNCES orders(id),
       "productId" INTEGER REFERENCES products(id),
       quantity INTEGER,
       "purchasePrice" INTEGER NOT NULL
