@@ -45,7 +45,6 @@ const getConsoleByName = async ({ name }) => {
   }
 };
 const updateConsole = async (id, ...fields) => {
-  console.log(fields);
   const [input] = fields;
   const setString = Object.keys(input)
     .map((key, index) => `"${key}"=$${index + 1}`)

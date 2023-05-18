@@ -120,11 +120,29 @@ const createSystemCompatability = async (id, systemIds) => {
         RETURNING *`,
           [id, systemId]
         );
-        console.log(rows);
+
         return rows;
       })
     );
   } catch (error) {}
+};
+
+const getGamesWithConsoles = async () => {
+  try {
+    const { rows } = await client.query(
+      `
+      SELECT products.id,products.name,products.price,products.description, products."imageUrl", system.name
+      FROM products
+      JOIN system_compatability 
+      ON products.id = system_compatability."productId"
+      JOIN system
+      ON system.id = system_compatability."systemId"
+    `
+    );
+    console.log(rows);
+  } catch (error) {
+    throw error;
+  }
 };
 
 module.exports = {
@@ -136,4 +154,5 @@ module.exports = {
   updateGame,
   getGameById,
   createSystemCompatability,
+  getGamesWithConsoles,
 };

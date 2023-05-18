@@ -9,6 +9,7 @@ const {
   attachConsoleToVideoGame,
   getGameById,
   createSystemCompatability,
+  getGamesWithConsoles,
 } = require("./game");
 
 const {
@@ -207,6 +208,7 @@ const createInitialConsole = async () => {
 const makeSystemCompatible = async () => {
   await createSystemCompatability(1, [1, 2, 3]);
   await createSystemCompatability(3, [1, 3]);
+  await createSystemCompatability(2, [2]);
 };
 
 // const updateAConsole = async () => {
@@ -249,6 +251,7 @@ const rebuildDB = async () => {
     await createInitialGames();
     await createInitialConsole();
     await makeSystemCompatible();
+    await getGamesWithConsoles();
   } catch (error) {
     console.error("Error during rebuildDB", error);
     throw error;
