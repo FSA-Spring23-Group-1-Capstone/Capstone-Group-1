@@ -32,8 +32,8 @@ async function getCustomer({ email, password }) {
     } = await client.query(
       `
   SELECT * FROM customers
-  WHERE email = $1
-  RETURNING *;
+  WHERE email = $1;
+
   `,
       [email]
     );
@@ -52,12 +52,12 @@ async function getCustomerByCustomerEmail(email) {
     } = await client.query(
       `
   SELECT * FROM customers
-  WHERE email = $1
-  RETURNING *;
+  WHERE email = $1;
+ 
   `,
       [email]
     );
-    delete customer.password;
+
     return customer;
   } catch (error) {
     console.log(error);

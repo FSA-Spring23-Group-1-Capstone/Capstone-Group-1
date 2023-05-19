@@ -1,8 +1,9 @@
-const router = require("express").Router();
+const express = require("express");
 const customerRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { getCustomerByCustomerEmail } = require("../db/customers");
 const requireCustomer = require("./utilities");
+const bcrypt = require("bcrypt");
 
 // GET: api/users
 customerRouter.get("/", async (req, res, next) => {
@@ -47,7 +48,7 @@ customerRouter.post("/register", async (req, res, next) => {
     );
 
     res.send({
-      message: "thank you for registering",
+      message: "Thank you for registering!",
       token: token,
       customer: customer,
     });
@@ -58,6 +59,7 @@ customerRouter.post("/register", async (req, res, next) => {
 
 customerRouter.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
+  console.log(email, password);
   if (!email || !password) {
     next({
       error: "Error",
@@ -67,20 +69,24 @@ customerRouter.post("/login", async (req, res, next) => {
   }
   try {
     const customer = await getCustomerByCustomerEmail(email);
-
-    const token = jwt.sign(customer, process.env.JWT_SECRET);
-
-    res.send({
-      message: "you're logged in!",
-      customer,
-      token,
-    });
+    console.log(customer);
+    if (customer) {
+      const match = await bcrypt.compare(password, customer.password);
+      if (match) {
+        const token = jwt.sign(customer, process.env.JWT_SECRET);
+        res.send({ token, customer, message: "You're logged in!" });
+      } else {
+        next({ message: "Invalid Password!" });
+      }
+    } else {
+      next({ message: `Invalid Email! --> ${email}` });
+    }
   } catch (error) {
     next(error);
   }
 });
 
-// This route will access customer info in order to render orders on the my accouint page
+// This route will access customer info in order to render orders on the my account page
 customerRouter.get("/me", requireCustomer, async (req, res, next) => {
   const { email } = req.body;
   try {
