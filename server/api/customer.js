@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { getCustomerByCustomerEmail } = require("../db/customers");
 const requireCustomer = require("./utilities");
 const bcrypt = require("bcrypt");
+const { createOrder } = require("../db/orders");
 
 // GET: api/users
 customerRouter.get("/", async (req, res, next) => {
@@ -35,6 +36,9 @@ customerRouter.post("/register", async (req, res, next) => {
     }
 
     const customer = await createCustomer({ name, email, password, address });
+
+    const {customerId} = customer;
+    const newCart = createOrder(customerId)
 
     const token = jwt.sign(
       {
