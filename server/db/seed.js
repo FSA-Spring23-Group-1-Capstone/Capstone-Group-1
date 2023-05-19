@@ -51,7 +51,7 @@ async function createTables() {
       description TEXT,
       "imageUrl" TEXT NOT NULL,
       inventory INTEGER NOT NULL,
-      console TEXT NOT NULL
+      system TEXT NOT NULL
     );
 
 
@@ -129,7 +129,7 @@ async function createInitialGames() {
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/en/d/dd/Tharealsplintercell.jpg",
         inventory: 20,
-        console: "Xbox, Playstation",
+        system: "Xbox, Playstation",
       },
       {
         name: "Batman: Arkham Asylum",
@@ -139,7 +139,7 @@ async function createInitialGames() {
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/en/4/42/Batman_Arkham_Asylum_Videogame_Cover.jpg",
         inventory: 30,
-        console: "Xbox, Playstation",
+        system: "Xbox, Playstation",
       },
       {
         name: "Assassin's Creed: Unity",
@@ -149,7 +149,7 @@ async function createInitialGames() {
         imageUrl:
           "https://image.api.playstation.com/cdn/UP0001/CUSA00663_00/0JH9uaYLozePLWj3M7QowO3YtHbXnXg1.png",
         inventory: 45,
-        console: "Xbox, Playstation",
+        system: "Xbox, Playstation",
       },
     ];
     const games = await Promise.all(gamesToCreate.map(createGame));

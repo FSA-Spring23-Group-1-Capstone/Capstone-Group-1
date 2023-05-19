@@ -1,6 +1,11 @@
 const express = require("express");
 const gameRouter = express.Router();
-const { getAllGames, getGameById, getGameByName } = require("../db/game");
+const {
+  getAllGames,
+  getGameById,
+  getGameByName,
+  createGame,
+} = require("../db/game");
 const requireCustomer = require("./utilities");
 
 gameRouter.get("/", async (req, res, next) => {
@@ -21,9 +26,34 @@ gameRouter.get("/", async (req, res, next) => {
 });
 
 gameRouter.post("/create", requireCustomer, async (req, res, next) => {
-  const gameName = req.body.name;
-  console.log(gameName);
-  const game = await getGameByName(gameName);
-  console.log(game);
+  const { name, price, description, imageUrl, inventory, system } = req.body;
+
+  try {
+    const gameExist = await getGameByName(name);
+    if (gameExist) {
+      next({
+        message: `Game ${name} already exists`,
+      });
+    } else {
+      const gameCreated = await createGame({
+        name,
+        price,
+        description,
+        imageUrl,
+        inventory,
+        system,
+      });
+      console.log("able to hit the request statement");
+
+      res
+        .send({
+          message: "Game was succesfully created",
+          gameCreated,
+        })
+        .status(201);
+    }
+  } catch (error) {
+    next(error);
+  }
 });
 module.exports = gameRouter;
