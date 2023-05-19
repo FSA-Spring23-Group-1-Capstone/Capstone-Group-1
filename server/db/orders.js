@@ -17,31 +17,19 @@ const getAllOrdersByCustomer = async (email) =>{
     }
 }
 
-const addOrderItemToOrder = async ({email, productId, quantity, purcahsePrice}) => {
-    const userOrders = await getAllOrdersByCustomer(email)
-    const {customerId} = await getCustomerByCustomerEmail(email)
-    let orderId = null;
-    for (let i = 0; i < userOrders.length -1; i++) {
-        if (userOrders[i].orderCompleted === false){
-          orderId = userOrders[i].id    
-        } 
-        return orderId
-    }
-    if (orderId){
-        createOrderItem(orderId, productId, quantity, purcahsePrice)   
-    } else{ 
-        orderId = createOrder(customerId)
-        createOrderItem(orderId, productId, quantity, purcahsePrice)
-    }
-}
 
-const createOrderItem = async ({orderId, productId, quantity, purcahsePrice}) => {
+const createOrderItem = async ({customerId, productId, quantity, purchasePrice}) => {
     try {
+        const {rows: [orderId] } = await client.query(`
+        SELECT * FROM orders
+        WHERE "customerId" = $1
+        AND "orderCompleted" = $2
+        `, [customerId, false]);
         const {rows: [orderItem] } = await client.query(`
-        INSERT INTO order_items(productId, quantity, purchasePrice)
+        INSERT INTO order_items("orderId", "productId", quantity, "purchasePrice")
         VALUES ($1, $2, $3, $4)
         RETURNING *
-        `, [orderId, productId, quantity, purcahsePrice])
+        `, [orderId, productId, quantity, purchasePrice])
         return orderItem
     } catch (error) {
         console.error(error);
@@ -65,7 +53,6 @@ const createOrder = async (customerId) => {
 
 module.exports = {
     getAllOrdersByCustomer,
-    addOrderItemToOrder,
     createOrderItem,
     createOrder
 }
