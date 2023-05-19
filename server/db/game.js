@@ -13,6 +13,7 @@ const getAllGames = async () => {
 };
 
 const getGameByName = async (name) => {
+  console.log(name);
   try {
     const {
       rows: [games],
@@ -38,7 +39,7 @@ const getGameById = async (id) => {
       `
           SELECT *
           FROM products
-          WHERE name=$1;
+          WHERE id=$1;
           `,
       [id]
     );
@@ -86,7 +87,7 @@ const updateGame = async (id, ...fields) => {
     UPDATE products
     SET ${setString}
     WHERE id = ${id}
-    RETURNING *
+    RETURNING *;
     `,
       Object.values(inputs)
     );
@@ -101,7 +102,7 @@ const deleteGame = async (id) => {
       `
         DELETE FROM products 
         WHERE id = $1
-        RETURNING *
+        RETURNING *;
         `,
       [id]
     );
