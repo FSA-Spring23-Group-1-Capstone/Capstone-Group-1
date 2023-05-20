@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import NavBar from './components/NavBar'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [token, setToken] = useState("")
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [customer, setCustomer] = useState([])
 
   return (
     <div className="App">
-   <p>Hello World</p>
+      <NavBar token={token} setToken={setToken} setIsLoggedIn={setIsLoggedIn} setCustomer={setCustomer}/>
     </div>
   )
 }
