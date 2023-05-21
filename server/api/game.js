@@ -5,8 +5,9 @@ const {
   getGameById,
   getGameByName,
   createGame,
+  deleteGame,
 } = require("../db/game");
-const requireCustomer = require("./utilities");
+const requireAdmin = require("./utilities");
 
 gameRouter.get("/", async (req, res, next) => {
   try {
@@ -25,12 +26,13 @@ gameRouter.get("/", async (req, res, next) => {
   }
 });
 
-gameRouter.post("/create", requireCustomer, async (req, res, next) => {
+gameRouter.post("/create", requireAdmin, async (req, res, next) => {
   const { name, price, description, imageUrl, inventory, system } = req.body;
 
   try {
     const gameExist = await getGameByName(name);
     if (gameExist) {
+      console.log("Game already exist");
       next({
         message: `Game ${name} already exists`,
       });
@@ -54,6 +56,27 @@ gameRouter.post("/create", requireCustomer, async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+  }
+});
+
+gameRouter.delete("/:id/delete", requireAdmin, async (req, res, next) => {
+  const gameId = req.params.id;
+  try {
+    const gameExist = await getGameById(+gameId);
+
+    if (gameExist) {
+      const deletedGame = await deleteGame(gameId);
+      res.send({
+        deletedGame,
+        message: "Game was deleted",
+      });
+    } else {
+      next({
+        message: "Game does not exist",
+      });
+    }
+  } catch (error) {
+    throw error;
   }
 });
 module.exports = gameRouter;

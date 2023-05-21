@@ -6,5 +6,13 @@ const requireCustomer = async (req, res, next) => {
     next();
   }
 };
-
+const requireAdmin = async (req, res, next) => {
+  if (!req.customer.admin) {
+    res.status(401);
+    next({ message: "Not an admin" });
+  } else {
+    next();
+  }
+};
 module.exports = requireCustomer;
+module.exports = requireAdmin;
