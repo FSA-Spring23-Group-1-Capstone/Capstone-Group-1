@@ -82,7 +82,9 @@ const updateGame = async (id, ...fields) => {
     .map((key, index) => `"${key}"=$${index + 1}`)
     .join(", ");
   if (setString.length > 0) {
-    await client.query(
+    const {
+      rows: [game],
+    } = await client.query(
       `
     UPDATE products
     SET ${setString}
@@ -91,6 +93,7 @@ const updateGame = async (id, ...fields) => {
     `,
       Object.values(inputs)
     );
+    return game;
   }
 };
 

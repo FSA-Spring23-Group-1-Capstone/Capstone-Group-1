@@ -6,6 +6,7 @@ const {
   getGameByName,
   createGame,
   deleteGame,
+  updateGame,
 } = require("../db/game");
 const requireAdmin = require("./utilities");
 
@@ -76,7 +77,51 @@ gameRouter.delete("/:id/delete", requireAdmin, async (req, res, next) => {
       });
     }
   } catch (error) {
+    next(error);
     throw error;
+  }
+});
+
+gameRouter.patch("/:id/update", requireAdmin, async (req, res, next) => {
+  const { id } = req.params;
+  const { name, price, description, imageUrl, inventory, system } = req.body;
+  const fields = {
+    name,
+    price,
+    description,
+    imageUrl,
+    inventory,
+    system,
+  };
+  const gameExist = await getGameById(id);
+  if (gameExist) {
+    if (!name) {
+      fields.name = gameExist.name;
+    }
+    if (!description) {
+      fields.description = gameExist.description;
+    }
+    if (!price) {
+      fields.price = gameExist.price;
+    }
+    if (!imageUrl) {
+      fields.imageUrl = gameExist.imageUrl;
+    }
+    if (!inventory) {
+      fields.inventory = gameExist.inventory;
+    }
+    if (!system) {
+      fields.system = gameExist.system;
+    }
+    const updatedGame = await updateGame(id, fields);
+    res.send({
+      updatedGame,
+      message: "Game was updated",
+    });
+  } else {
+    next({
+      message: "Game does not exist",
+    });
   }
 });
 module.exports = gameRouter;
