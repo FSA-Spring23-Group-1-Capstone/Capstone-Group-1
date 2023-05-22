@@ -1,6 +1,7 @@
-const APIURL = 'http:\\localhost:8080/api'
+const APIURL = 'http://localhost:8080/api'
 
 export const authenticateNewCustomer = async ({name, email, password, address}) => {
+    console.log('RRRRR', email, password)
     try {
         const response  = await fetch(`${APIURL}/customer/register`, {
             method: "POST",
@@ -11,10 +12,11 @@ export const authenticateNewCustomer = async ({name, email, password, address}) 
         })
 
         const result = await response.json();
-        const {token, email, message} = result;
+        console.log('*****', result)
+        const {token, customer, message} = result;
         if(token){
             localStorage.setItem('token', token)
-            return {email, token, message}
+            return {customer, token, message}
         }
         if(!token){
             return {message}
@@ -25,7 +27,7 @@ export const authenticateNewCustomer = async ({name, email, password, address}) 
     }
 }
 
-export const authenticateCustomer = async ({email, password}) => {
+export const authenticateCustomer = async (email, password) => {
     try {
         const response  = await fetch(`${APIURL}/customer/login`, {
             method: "POST",
@@ -36,10 +38,10 @@ export const authenticateCustomer = async ({email, password}) => {
         })
 
         const result = await response.json();
-        const {token, email, message} = result;
+        const {token, customer, message} = result;
         if(token){
             localStorage.setItem('token', token)
-            return {email, token, message}
+            return {customer, token, message}
         }
         if(!token){
             return {message}

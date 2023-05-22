@@ -7,7 +7,9 @@ const [password, setPassword] = useState("");
 
 const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('kkkkkk', email, password)
     const data = await authenticateCustomer(email, password);
+    console.log('This is data:', data)
     if(data.token){
         setToken(data.token);
         setIsLoggedIn(true);

@@ -9,6 +9,7 @@ const [address, setAddress] = useState("");
 
 const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('#####', name, email, password, address)
     const data = await authenticateNewCustomer({name, email, password, address});
     if(data.token){
         setToken(data.token);
