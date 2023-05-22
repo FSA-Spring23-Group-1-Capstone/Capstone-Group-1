@@ -129,7 +129,7 @@ async function createInitialGames() {
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/en/d/dd/Tharealsplintercell.jpg",
         inventory: 20,
-        system: "Xbox, Playstation",
+        system: "Xbox",
       },
       {
         name: "Batman: Arkham Asylum",
@@ -139,7 +139,7 @@ async function createInitialGames() {
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/en/4/42/Batman_Arkham_Asylum_Videogame_Cover.jpg",
         inventory: 30,
-        system: "Xbox, Playstation",
+        system: "Playstation",
       },
       {
         name: "Assassin's Creed: Unity",
@@ -150,6 +150,15 @@ async function createInitialGames() {
           "https://image.api.playstation.com/cdn/UP0001/CUSA00663_00/0JH9uaYLozePLWj3M7QowO3YtHbXnXg1.png",
         inventory: 45,
         system: "Xbox, Playstation",
+      },
+      {
+        name: "Luigi's Mansion",
+        price: 15.0,
+        description:
+          "Luigi receives a letter informing him he has won a mansion as the grand prize in a contest. Luigi is puzzled; he never entered a contest. When he arrives at his mansion, he discovers that it is haunted with ghosts and Mario trapped inside.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/en/5/5e/Lmbox.jpg",
+        inventory: 15,
+        system: "Nintendo",
       },
     ];
     const games = await Promise.all(gamesToCreate.map(createGame));
