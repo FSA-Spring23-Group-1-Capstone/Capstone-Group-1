@@ -1,13 +1,28 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import NavBar from './components/NavBar'
+import { getMe } from './api/customers'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [token, setToken] = useState("")
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [customer, setCustomer] = useState([])
+
+  useEffect(() => {
+    const getInitialData = async () => {
+        if(token) {
+            const me = await getMe(token);
+            setUser(me);
+            setIsLoggedIn(true)
+        }
+    }
+    getInitialData();
+}, [])
 
   return (
     <div className="App">
-   <p>Hello World</p>
+      <NavBar token={token} setToken={setToken} setIsLoggedIn={setIsLoggedIn} setCustomer={setCustomer}/>
     </div>
   )
 }
