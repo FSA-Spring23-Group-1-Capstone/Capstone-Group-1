@@ -41,7 +41,7 @@ async function createTables() {
 
     CREATE TABLE orders (
       id SERIAL primary key,
-      orderCompleted BOOLEAN DEFAULT false,
+      "orderCompleted" BOOLEAN DEFAULT false,
       "customerId" INTEGER REFERENCES customers(id)
     );
     CREATE TABLE products (
