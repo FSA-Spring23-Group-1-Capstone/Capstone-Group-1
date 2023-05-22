@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { NavBar, Login, Register, Home } from "./components";
+import {
+  NavBar,
+  Login,
+  Register,
+  Home,
+  Xbox,
+  Playstation,
+  Nintendo,
+  All,
+} from "./components";
 
 import { getMe } from "./api/customers";
 import { getAllGames } from "./api/games";
@@ -38,27 +47,16 @@ function App() {
         setCustomer={setCustomer}
       />
       <Routes>
-        <Route path="/home" element={<Home allGames={allGames} />} />
+        <Route path="/home" element={<Home />} />
+        {/* <Route path="/account" element={<Account />} />
+        <Route path="/checkout" element={<Checkout />} /> */}
+        <Route path="/Xbox" element={<Xbox allGames={allGames} />} />
         <Route
-          path="/login"
-          element={
-            <Login
-              setToken={setToken}
-              setIsLoggedIn={setIsLoggedIn}
-              setCustomer={setCustomer}
-            />
-          }
+          path="/Playstation"
+          element={<Playstation allGames={allGames} />}
         />
-        <Route
-          path="/register"
-          element={
-            <Register
-              setToken={setToken}
-              setIsLoggedIn={setIsLoggedIn}
-              setCustomer={setCustomer}
-            />
-          }
-        />
+        <Route path="/Nintendo" element={<Nintendo allGames={allGames} />} />
+        <Route path="/All" element={<All allGames={allGames} />} />
       </Routes>
     </div>
   );
