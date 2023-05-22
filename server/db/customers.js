@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const SALT_COUNT = 10;
 
 async function createCustomer({ name, email, password, address, admin }) {
+  console.log('PPPPPP', name, email, password, address, admin)
   const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
   try {
     const {
@@ -18,6 +19,7 @@ async function createCustomer({ name, email, password, address, admin }) {
       [name, email, hashedPassword, address, admin]
     );
     delete customer.password;
+    console.log('PPPPPP', customer)
     return customer;
   } catch (error) {
     console.log(error);

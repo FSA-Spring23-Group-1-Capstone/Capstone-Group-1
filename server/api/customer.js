@@ -1,10 +1,9 @@
 const express = require("express");
 const customerRouter = express.Router();
 const jwt = require("jsonwebtoken");
-const {
-  getCustomerByCustomerEmail,
-  createCustomer,
-} = require("../db/customers");
+
+const { getCustomerByCustomerEmail, createCustomer } = require("../db/customers");
+
 const requireCustomer = require("./utilities");
 const bcrypt = require("bcrypt");
 const { createOrder } = require("../db/orders");
@@ -19,7 +18,7 @@ customerRouter.get("/", async (req, res, next) => {
 });
 
 customerRouter.post("/register", async (req, res, next) => {
-  const { name, email, password, address } = req.body;
+  const { name, email, password, address, admin } = req.body;
   try {
     const _user = await getCustomerByCustomerEmail(email);
     if (_user) {
@@ -38,10 +37,11 @@ customerRouter.post("/register", async (req, res, next) => {
       });
     }
 
-    const customer = await createCustomer({ name, email, password, address });
+    const customer = await createCustomer({ name, email, password, address, admin });
 
-    const {customerId} = customer;
-    const newCart = createOrder(customerId)
+    console.log('@@@@', customer)
+    const {id} = customer;
+    const newCart = createOrder(id)
 
     const token = jwt.sign(
       {
@@ -66,7 +66,7 @@ customerRouter.post("/register", async (req, res, next) => {
 
 customerRouter.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(email, password);
+  console.log('$$$$$$', email, password);
   if (!email || !password) {
     next({
       error: "Error",

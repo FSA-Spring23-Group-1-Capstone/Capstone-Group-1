@@ -1,11 +1,13 @@
-const express = require("express");
-const cors = require("cors");
-const path = require("path");
-const client = require("./db/client");
+
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const client = require('./db/client');
 require("dotenv").config();
 client.connect();
 const app = express();
-const morgan = require("morgan");
+const morgan = require('morgan');
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
