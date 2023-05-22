@@ -1,6 +1,27 @@
 const client = require("../db/client");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = process.env;
+const { getCustomerByCustomerEmail } = require("../db/customers");
 
 const router = require("express").Router();
+router.use(async (req, res, next) => {
+  const prefix = "Bearer ";
+  const auth = req.header("Authorization");
+  if (!auth) {
+    next();
+  } else if (auth.startsWith(prefix)) {
+    const token = auth.slice(prefix.length);
+
+    const { email } = jwt.verify(token, JWT_SECRET);
+    if (email) {
+      req.customer = await getCustomerByCustomerEmail(email);
+      // console.log('YYYYYYY', req.user)
+      next();
+    }
+  } else {
+    next({ message: "Authorization error" });
+  }
+});
 
 router.get("/health", async (req, res, next) => {
   try {
@@ -32,13 +53,12 @@ router.get("/health", async (req, res, next) => {
 const customerRouter = require("./customer");
 router.use("/customer", customerRouter);
 
-const ordersRouter = require("./orders");
-router.use("/orders", ordersRouter);
-
-const orderItemsRouter = require("./orderItems");
-router.use("/orderItems", orderItemsRouter);
-
 const gameRouter = require("./game");
 router.use("/game", gameRouter);
+// const ordersRouter = require("./orders");
+// router.use("/orders", ordersRouter);
+
+// const orderItemsRouter = require("./orderItems");
+// router.use("/orderItems", orderItemsRouter);
 
 module.exports = router;

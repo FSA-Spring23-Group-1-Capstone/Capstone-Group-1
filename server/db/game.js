@@ -55,18 +55,18 @@ const createGame = async ({
   description,
   imageUrl,
   inventory,
-  console,
+  system,
 }) => {
   try {
     const {
       rows: [game],
     } = await client.query(
       `
-        INSERT INTO products ( name, price, description, "imageUrl", inventory, console)
+        INSERT INTO products ( name, price, description, "imageUrl", inventory, system)
         VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING *;
         `,
-      [name, price, description, imageUrl, inventory, console]
+      [name, price, description, imageUrl, inventory, system]
     );
 
     return game;
@@ -82,7 +82,9 @@ const updateGame = async (id, ...fields) => {
     .map((key, index) => `"${key}"=$${index + 1}`)
     .join(", ");
   if (setString.length > 0) {
-    await client.query(
+    const {
+      rows: [game],
+    } = await client.query(
       `
     UPDATE products
     SET ${setString}
@@ -91,6 +93,7 @@ const updateGame = async (id, ...fields) => {
     `,
       Object.values(inputs)
     );
+    return game;
   }
 };
 

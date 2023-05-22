@@ -1,7 +1,9 @@
 const express = require("express");
 const customerRouter = express.Router();
 const jwt = require("jsonwebtoken");
+
 const { getCustomerByCustomerEmail, createCustomer } = require("../db/customers");
+
 const requireCustomer = require("./utilities");
 const bcrypt = require("bcrypt");
 const { createOrder } = require("../db/orders");
