@@ -101,7 +101,7 @@ async function createInitialCustomers() {
       },
       {
         name: "Christian",
-        email: "Chris.McNeil7532@gmail.com",
+        email: "chris.mcneil7532@gmail.com",
         password: "Gamego",
         address: "3rd one on the right",
         admin: true,

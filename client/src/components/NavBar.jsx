@@ -1,15 +1,29 @@
 import React from "react";
-import Login from "./Login";
-import Register from "./Register";
+import { NavLink } from "react-router-dom";
 
-const NavBar = ({setToken, setIsLoggedIn, setCustomer}) => {
-    return(
-        <>
+const NavBar = ({ isLoggedIn }) => {
+  return (
+    <div>
+      <div>
         <h1>Gamego</h1>
-        <Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} setCustomer={setCustomer}/>
-        <Register setToken={setToken} setIsLoggedIn={setIsLoggedIn} setCustomer={setCustomer}/>
-        </>
-    )
-}
+      </div>
+      <nav>
+        <NavLink to="/home">Home</NavLink>
+        {isLoggedIn ? (
+          <>
+            <NavLink to="/logout">Logout</NavLink>
+            <NavLink to="/account">Account</NavLink>
+            <NavLink to="/cart">Cart</NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink to="/register">Register</NavLink>{" "}
+            <NavLink to="/login">Login</NavLink>
+          </>
+        )}
+      </nav>
+    </div>
+  );
+};
 
-export default NavBar
+export default NavBar;
