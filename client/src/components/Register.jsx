@@ -9,7 +9,6 @@ const Register = ({ setToken, setIsLoggedIn, setCustomer }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("#####", name, email, password, address);
     const data = await authenticateNewCustomer({
       name,
       email,
