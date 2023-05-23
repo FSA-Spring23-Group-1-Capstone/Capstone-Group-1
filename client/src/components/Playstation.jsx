@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import DeleteGame from "./DeleteGame";
 
-const Playstation = ({ allGames }) => {
-  console.log(allGames);
+const Playstation = ({ allGames, token, setAllGames }) => {
+
   const playstationGames = allGames.filter((game) =>
     game.system.includes("Playstation")
   );
-  console.log(playstationGames);
+
   return (
     <section>
       <h1 id="pgame">Playstation Games</h1>
@@ -17,6 +18,7 @@ const Playstation = ({ allGames }) => {
               <img src={game.imageUrl} alt={game.name} />
               <p>{game.description}</p>
               <p>{game.price}</p>
+              <DeleteGame gameId={game.id} token={token} setAllGames={setAllGames} allGames={allGames}/>
             </article>
           );
         })

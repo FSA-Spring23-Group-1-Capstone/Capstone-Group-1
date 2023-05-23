@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { createGame } from "../api/games";
+import { createGame, getAllGames } from "../api/games";
 
-const CreateGameForm = ({token}) => {
+const CreateGameForm = ({token, setAllGames}) => {
     console.log('this is token:' , token)
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -14,7 +14,9 @@ const CreateGameForm = ({token}) => {
         event.preventDefault();
         console.log('this is sytem: ', system)
         const newGame = await createGame(name, price, description, imageUrl, inventory, system, token);
+        const allGamesNew = await getAllGames();
         console.log('newgame:', newGame)
+            setAllGames(allGamesNew)
             setName("")
             setDescription("")
             setImageUrl("")
