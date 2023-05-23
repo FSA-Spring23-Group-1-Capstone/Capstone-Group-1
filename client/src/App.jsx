@@ -25,7 +25,7 @@ function App() {
     const getInitialData = async () => {
       if (token) {
         const me = await getMe(token);
-        setUser(me);
+        setCustomer(me);
         setIsLoggedIn(true);
       }
     };
@@ -45,6 +45,7 @@ function App() {
         setToken={setToken}
         setIsLoggedIn={setIsLoggedIn}
         setCustomer={setCustomer}
+        isLoggedIn={isLoggedIn}
       />
       <Routes>
         <Route path="/home" element={<Home />} />
