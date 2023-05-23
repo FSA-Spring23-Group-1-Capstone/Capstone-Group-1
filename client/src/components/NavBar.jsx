@@ -7,7 +7,7 @@ const NavBar = ({ isLoggedIn, setToken, setIsLoggedIn, setCustomer }) => {
   return (
     <div>
       <div>
-        <h1>Gamego</h1>
+        <h1 id="title">GameGo</h1>
       </div>
       <Login
         setToken={setToken}
