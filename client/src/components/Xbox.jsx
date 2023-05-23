@@ -6,12 +6,13 @@ const Xbox = ({ allGames }) => {
   console.log(xboxGames);
   return (
     <section>
-      <h1>Xbox Games</h1>
+      <h1 id="xgame">Xbox Games</h1>
       {xboxGames.length ? (
         xboxGames.map((game) => {
           return (
             <article key={game.id}>
               <h2>{game.name}</h2>
+              <img src={game.imageUrl} alt={game.name} />
               <p>{game.description}</p>
               <p>{game.price}</p>
             </article>

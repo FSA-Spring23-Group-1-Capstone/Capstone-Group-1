@@ -13,7 +13,7 @@ const NavBar = ({ isLoggedIn, setToken, setIsLoggedIn, setCustomer }) => {
   return (
     <header className="header-container">
       <div>
-        <h1>Gamego</h1>
+        <h1 id="title">GameGo</h1>
       </div>
       <nav>
         <NavLink to="/home">Home</NavLink>
