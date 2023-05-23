@@ -7,7 +7,7 @@ const {
   createCustomer,
 } = require("../db/customers");
 
-const requireCustomer = require("./utilities");
+const { requireCustomer } = require("./utilities");
 const bcrypt = require("bcrypt");
 const { createOrder } = require("../db/orders");
 

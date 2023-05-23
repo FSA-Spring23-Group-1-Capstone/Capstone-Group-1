@@ -8,7 +8,7 @@ const {
   deleteGame,
   updateGame,
 } = require("../db/game");
-const requireAdmin = require("./utilities");
+const { requireAdmin } = require("./utilities");
 
 gameRouter.get("/", async (req, res, next) => {
   try {
