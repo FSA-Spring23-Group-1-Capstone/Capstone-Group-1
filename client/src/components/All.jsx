@@ -1,13 +1,13 @@
 import React from "react";
 import CreateGameForm from "./CreateGameForm";
 
-const All = ({ allGames, token }) => {
+const All = ({ allGames, token, setAllGames }) => {
   console.log(allGames);
   const Games = allGames;
   console.log(Games);
   return (
     <>
-      <CreateGameForm token={token} />
+      <CreateGameForm token={token} setAllGames={setAllGames}/>
       <section>
         <h1 id="agame">All Games</h1>
         {Games.length ? (

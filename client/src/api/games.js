@@ -4,7 +4,6 @@ export const getAllGames = async () => {
   try {
     const response = await fetch(`${APIURL}/game`);
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     throw error;
@@ -28,4 +27,24 @@ export const createGame = async (name, price, description, imageUrl, inventory, 
   } catch (error) {
     console.error(error);
   }
+}
+
+export const deleteGame = async (gameId, token) => {
+  console.log('kkkkk', gameId, token)
+  try {
+    const response = await fetch(`${APIURL}/game/${gameId}/delete`, {
+      method: "DELETE",
+      headers:{
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+
+    })
+    
+    const result = await response.json();
+ 
+    return  result
+  } catch (error) {
+    console.error(error);
+}
 }

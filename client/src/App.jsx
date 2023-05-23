@@ -20,7 +20,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [customer, setCustomer] = useState([]);
   const [allGames, setAllGames] = useState([]);
-  console.log("this is token: ", token);
 
   useEffect(() => {
     const getInitialData = async () => {
@@ -39,6 +38,7 @@ function App() {
     getAllProducts();
     getInitialData();
   }, []);
+
 
   return (
     <div className="App">
@@ -61,12 +61,12 @@ function App() {
         />
         <Route
           path="/Playstation"
-          element={<Playstation allGames={allGames} />}
+          element={<Playstation allGames={allGames} token={token} setAllGames={setAllGames}/>}
         />
         <Route path="/Nintendo" element={<Nintendo allGames={allGames} />} />
         <Route
           path="/All"
-          element={<All allGames={allGames} token={token} />}
+          element={<All allGames={allGames} token={token} setAllGames={setAllGames} />}
         />
       </Routes>
     </div>

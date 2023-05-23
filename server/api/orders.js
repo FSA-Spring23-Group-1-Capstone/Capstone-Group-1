@@ -1,5 +1,4 @@
 const express = require("express");
-const { get, post } = require(".");
 const {
   getAllOrdersByCustomer,
   updateOrderItemQuantity,
