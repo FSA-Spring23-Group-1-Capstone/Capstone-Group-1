@@ -1,10 +1,14 @@
 import React from "react";
+import CreateGameForm from "./CreateGameForm";
+
 
 const All = ({ allGames }) => {
   console.log(allGames);
   const Games = allGames;
   console.log(Games);
   return (
+    <>
+          <CreateGameForm token={token}/>
     <section>
       <h1 id="agame">All Games</h1>
       {Games.length ? (
@@ -22,7 +26,9 @@ const All = ({ allGames }) => {
         <h1>No Games to display</h1>
       )}
     </section>
+</>
   );
+
 };
 
 export default All;
