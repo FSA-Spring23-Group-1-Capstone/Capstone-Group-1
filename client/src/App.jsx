@@ -16,16 +16,17 @@ import { getMe } from "./api/customers";
 import { getAllGames } from "./api/games";
 
 function App() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [customer, setCustomer] = useState([]);
   const [allGames, setAllGames] = useState([]);
+  console.log('this is token: ', token)
 
   useEffect(() => {
     const getInitialData = async () => {
       if (token) {
         const me = await getMe(token);
-        setUser(me);
+        setCustomer(me);
         setIsLoggedIn(true);
       }
     };
@@ -56,7 +57,7 @@ function App() {
           element={<Playstation allGames={allGames} />}
         />
         <Route path="/Nintendo" element={<Nintendo allGames={allGames} />} />
-        <Route path="/All" element={<All allGames={allGames} />} />
+        <Route path="/All" element={<All allGames={allGames} token={token} />} />
       </Routes>
     </div>
   );

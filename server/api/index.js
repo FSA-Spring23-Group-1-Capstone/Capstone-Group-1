@@ -7,7 +7,9 @@ const router = require("express").Router();
 router.use(async (req, res, next) => {
   const prefix = "Bearer ";
   const auth = req.header("Authorization");
+  console.log('this is auth: ', auth)
   if (!auth) {
+    console.log('no auth')
     next();
   } else if (auth.startsWith(prefix)) {
     const token = auth.slice(prefix.length);
@@ -55,10 +57,9 @@ router.use("/customer", customerRouter);
 
 const gameRouter = require("./game");
 router.use("/game", gameRouter);
-// const ordersRouter = require("./orders");
-// router.use("/orders", ordersRouter);
 
-// const orderItemsRouter = require("./orderItems");
-// router.use("/orderItems", orderItemsRouter);
+const ordersRouter = require("./orders");
+router.use("/orders", ordersRouter);
+
 
 module.exports = router;
