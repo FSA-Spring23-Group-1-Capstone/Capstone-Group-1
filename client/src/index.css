@@ -14,22 +14,30 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-
+/* Header/Navbar */
+.header-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.register-body {
+  position: absolute;
+  right: 20rem;
+}
+.register-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+.register-input {
+  height: 25px;
+  margin: 3px 0;
+}
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -51,6 +59,7 @@ button {
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -198,3 +207,4 @@ color: #0ed515;
 .xbox-container:hover a, .playstation-container:hover a, .nintendo-container:hover a, .all-container:hover a {
   color: white; /* white text when hovering */
 }
+
