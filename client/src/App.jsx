@@ -46,6 +46,7 @@ function App() {
         setToken={setToken}
         setIsLoggedIn={setIsLoggedIn}
         setCustomer={setCustomer}
+        isLoggedIn={isLoggedIn}
       />
       <Routes>
         <Route path="/home" element={<Home />} />

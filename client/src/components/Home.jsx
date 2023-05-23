@@ -1,8 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Home = ({ allGames }) => {
-  console.log(allGames);
+const Home = () => {
   return (
     <div>
       <div className="xbox-container">
