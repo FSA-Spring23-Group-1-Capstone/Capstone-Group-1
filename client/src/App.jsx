@@ -20,12 +20,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [customer, setCustomer] = useState([]);
   const [allGames, setAllGames] = useState([]);
-  console.log('this is token: ', token)
+  console.log("this is token: ", token);
 
   useEffect(() => {
     const getInitialData = async () => {
       if (token) {
         const me = await getMe(token);
+        console.log("HHHHHHHH", me);
         setCustomer(me);
         setIsLoggedIn(true);
       }
@@ -52,13 +53,21 @@ function App() {
         <Route path="/home" element={<Home />} />
         {/* <Route path="/account" element={<Account />} />
         <Route path="/checkout" element={<Checkout />} /> */}
-        <Route path="/Xbox" element={<Xbox allGames={allGames} />} />
+        <Route
+          path="/Xbox"
+          element={
+            <Xbox allGames={allGames} customer={customer} token={token} />
+          }
+        />
         <Route
           path="/Playstation"
           element={<Playstation allGames={allGames} />}
         />
         <Route path="/Nintendo" element={<Nintendo allGames={allGames} />} />
-        <Route path="/All" element={<All allGames={allGames} token={token} />} />
+        <Route
+          path="/All"
+          element={<All allGames={allGames} token={token} />}
+        />
       </Routes>
     </div>
   );

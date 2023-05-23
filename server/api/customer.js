@@ -2,7 +2,10 @@ const express = require("express");
 const customerRouter = express.Router();
 const jwt = require("jsonwebtoken");
 
-const { getCustomerByCustomerEmail, createCustomer } = require("../db/customers");
+const {
+  getCustomerByCustomerEmail,
+  createCustomer,
+} = require("../db/customers");
 
 const requireCustomer = require("./utilities");
 const bcrypt = require("bcrypt");
@@ -37,11 +40,17 @@ customerRouter.post("/register", async (req, res, next) => {
       });
     }
 
-    const customer = await createCustomer({ name, email, password, address, admin });
+    const customer = await createCustomer({
+      name,
+      email,
+      password,
+      address,
+      admin,
+    });
 
-    console.log('@@@@', customer)
-    const {id} = customer;
-    const newCart = createOrder(id)
+    console.log("@@@@", customer);
+    const { id } = customer;
+    const newCart = createOrder(id);
 
     const token = jwt.sign(
       {
@@ -66,7 +75,7 @@ customerRouter.post("/register", async (req, res, next) => {
 
 customerRouter.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
-  console.log('$$$$$$', email, password);
+  console.log("$$$$$$", email, password);
   if (!email || !password) {
     next({
       error: "Error",
@@ -95,15 +104,12 @@ customerRouter.post("/login", async (req, res, next) => {
 
 // This route will access customer info in order to render orders on the my account page
 customerRouter.get("/me", requireCustomer, async (req, res, next) => {
-  const { email } = req.body;
   try {
-    if (req.customer) {
-      const { email } = req.customer;
-      const customer = await getCustomerByCustomerEmail(email);
-      res.send(customer);
-    } else res.status(401);
+    const { email } = req.customer;
+    const customer = await getCustomerByCustomerEmail(email);
+    res.send(customer);
   } catch (error) {
-    next(error);
+    throw error;
   }
 });
 module.exports = customerRouter;

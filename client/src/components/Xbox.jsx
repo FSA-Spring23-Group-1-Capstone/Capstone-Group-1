@@ -1,9 +1,25 @@
 import React from "react";
+import { useState } from "react";
+import { fetchItem } from "../api/orderItems";
 
-const Xbox = ({ allGames }) => {
-  console.log(allGames);
+const Xbox = ({ allGames, customer, token }) => {
   const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
-  console.log(xboxGames);
+
+  const [currentPrice, setCurrentPrice] = useState("");
+  let originalPrice = 0;
+
+  const handleSubmit = async (productId) => {
+    const quantity = 1;
+    const addedItem = await fetchItem(
+      customer.id,
+      productId,
+      quantity,
+      originalPrice,
+      token
+    );
+    console.log(addedItem);
+  };
+
   return (
     <section>
       <h1 id="xgame">Xbox Games</h1>
@@ -15,6 +31,14 @@ const Xbox = ({ allGames }) => {
               <img src={game.imageUrl} alt={game.name} />
               <p>{game.description}</p>
               <p>{game.price}</p>
+              <button
+                onClick={() => {
+                  originalPrice = Number(game.price.substring(1));
+                  handleSubmit(game.id);
+                }}
+              >
+                Add To Cart
+              </button>
             </article>
           );
         })
