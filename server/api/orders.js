@@ -1,4 +1,5 @@
 const express = require("express");
+
 const {
   getAllOrdersByCustomer,
   updateOrderItemQuantity,
@@ -6,14 +7,6 @@ const {
   deleteOrdeItem,
 } = require("../db/orders");
 const ordersRouter = express.Router();
-
-// ordersRouter.get("/", async (req, res, next) => {
-//     try {
-//       res.send("Hit the orders api!");
-//     } catch (error) {
-//       throw error;
-//     }
-//   });
 
 ordersRouter.get("/", async (req, res, next) => {
   console.log("we hit the GET router");

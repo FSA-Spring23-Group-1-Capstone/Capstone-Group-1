@@ -18,26 +18,32 @@ import { getAllGames } from "./api/games";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [customer, setCustomer] = useState([]);
+  const [customer, setCustomer] = useState({});
   const [allGames, setAllGames] = useState([]);
 
-  useEffect(() => {
-    const getInitialData = async () => {
-      if (token) {
-        const me = await getMe(token);
-        console.log("HHHHHHHH", me);
-        setCustomer(me);
-        setIsLoggedIn(true);
-      }
-    };
+  console.log("this is customer: ", customer);
 
+  useEffect(() => {
     const getAllProducts = async () => {
       const data = await getAllGames();
       setAllGames(data);
     };
     getAllProducts();
-    getInitialData();
   }, []);
+
+
+  useEffect(() => {
+    const getInitialData = async () => {
+      console.log("this is token: ", token);
+      if (token) {
+        const me = await getMe(token);
+        console.log("Customer obj", me);
+        setCustomer(me);
+        setIsLoggedIn(true);
+      }
+    };
+    getInitialData();
+  }, [token]);
 
 
   return (

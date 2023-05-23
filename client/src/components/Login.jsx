@@ -7,8 +7,8 @@ const Login = ({ setToken, setIsLoggedIn, setCustomer }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const data = await authenticateCustomer(email, password);
+    console.log(data);
 
     if (data.token) {
       setToken(data.token);
