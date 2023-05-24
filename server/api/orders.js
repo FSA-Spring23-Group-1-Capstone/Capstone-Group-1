@@ -21,7 +21,7 @@ ordersRouter.post("/", async (req, res, next) => {
   }
 });
 
-ordersRouter.get("/:customerId", async (req, res, next) => {
+ordersRouter.get("/:customerid", async (req, res, next) => {
   console.log("PARAMMMS", req.params);
   const { customerId } = req.params;
   try {

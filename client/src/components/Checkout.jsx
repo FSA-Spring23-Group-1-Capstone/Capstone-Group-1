@@ -1,14 +1,15 @@
 import React from "react";
 import { getAllOrderItemsByOrderId } from "../api/orderItems";
+import { currentOrderIdByCustomerId } from "../api/orders";
 
 const Checkout = ({ customer, token }) => {
   console.log("BLUEEEE", customer);
   const { id } = customer;
-
+  console.log("IDIDIDIDIDID", id);
   const getOrder = async () => {
-    const customerOrders = await orderByCustomerId(id);
+    const customerOrders = await currentOrderIdByCustomerId(id);
 
-    return cartId;
+    return customerOrders;
   };
 
   const orderId = getOrder();
