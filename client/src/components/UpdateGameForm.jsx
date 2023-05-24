@@ -1,21 +1,20 @@
 import React, { useState } from "react";
-import { createGame, getAllGames } from "../api/games";
+import { getAllGames, updateGame } from "../api/games";
 
-const CreateGameForm = ({token, setAllGames}) => {
-    console.log('this is token:' , token)
+const UpdateGameForm = ({token, setAllGames, gameId}) => {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [imageUrl, setImageUrl] = useState("")
     const [price, setPrice] = useState("")
     const [inventory, setInventory] = useState("")
-    const [system, setSystem] = useState("")
+    const [system, setSystem] = useState("") 
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
         console.log('this is sytem: ', system)
-        const newGame = await createGame(name, price, description, imageUrl, inventory, system, token);
+        const updatedGame = await updateGame(name, price, description, imageUrl, inventory, system, gameId, token);
         const allGamesNew = await getAllGames();
-        console.log('newgame:', newGame)
+        console.log('updated game:', updatedGame)
             setAllGames(allGamesNew)
             setName("")
             setDescription("")
@@ -45,4 +44,4 @@ const CreateGameForm = ({token, setAllGames}) => {
     )
 }
 
-export default CreateGameForm
+export default UpdateGameForm
