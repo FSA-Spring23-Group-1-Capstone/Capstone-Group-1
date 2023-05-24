@@ -34,14 +34,14 @@ function App() {
     const getInitialData = async () => {
       if (token) {
         const me = await getMe(token);
-
+        console.log("YOOOOO", me);
         setCustomer(me);
         setIsLoggedIn(true);
       }
     };
     getInitialData();
   }, [token]);
-
+  console.log("HEYYYYYY", customer);
   return (
     <div className="App">
       <NavBar
@@ -55,7 +55,10 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         {/* <Route path="/account" element={<Account />} />*/}
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={<Checkout customer={customer} token={token} />}
+        />
         <Route
           path="/Xbox"
           element={

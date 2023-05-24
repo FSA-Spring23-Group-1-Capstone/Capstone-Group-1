@@ -5,6 +5,7 @@ const {
   updateOrderItemQuantity,
   createOrderItem,
   deleteOrdeItem,
+  getOrderIdByCustomerId,
 } = require("../db/orders");
 const ordersRouter = express.Router();
 
@@ -20,6 +21,17 @@ ordersRouter.post("/", async (req, res, next) => {
   }
 });
 
+ordersRouter.get("/:customerId", async (req, res, next) => {
+  console.log("PARAMMMS", req.params);
+  const { customerId } = req.params;
+  try {
+    const currentOrderId = await getOrderIdByCustomerId(customerId);
+
+    res.send(currentOrderId);
+  } catch (error) {
+    next(error);
+  }
+});
 // need a create route
 
 ordersRouter.post("/addtocart", async (req, res, next) => {

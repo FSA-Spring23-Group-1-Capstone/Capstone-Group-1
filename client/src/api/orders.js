@@ -12,3 +12,13 @@ export const ordersByCustomerEmail = async (email) => {
   const result = await response.json();
   return result;
 };
+
+export const currentOrderIdByCustomerId = async (customerId) => {
+  const response = await fetch(`${APIURL}/orders/${customerId}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const result = await response.json();
+  return result;
+};
