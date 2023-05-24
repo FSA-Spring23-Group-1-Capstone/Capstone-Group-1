@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import DeleteGame from "./DeleteGame";
+import { fetchItem } from "../api/orderItems";
 
-const Nintendo = ({ allGames }) => {
-  console.log(allGames);
+const Nintendo = ({ allGames, setAllGames, token, customer }) => {
   const nintendoGames = allGames.filter((game) =>
     game.system.includes("Nintendo")
   );
-  console.log(nintendoGames);
+
+  const [currentPrice, setCurrentPrice] = useState("");
+  let originalPrice = 0;
+
+  const handleSubmit = async (productId) => {
+    const quantity = 1;
+    const addedItem = await fetchItem(
+      customer.id,
+      productId,
+      quantity,
+      originalPrice,
+      token
+    );
+    console.log(addedItem);
+  };
+
   return (
     <section>
       <h1 id="ngame">Nintendo Games</h1>
@@ -17,6 +33,15 @@ const Nintendo = ({ allGames }) => {
               <img src={game.imageUrl} alt={game.name} />
               <p>{game.description}</p>
               <p>{game.price}</p>
+              <button
+                onClick={() => {
+                  originalPrice = Number(game.price.substring(1));
+                  handleSubmit(game.id);
+                }}
+              >
+                Add To Cart
+              </button>
+              <DeleteGame gameId={game.id} token={token} setAllGames={setAllGames} allGames={allGames}/>
             </article>
           );
         })
