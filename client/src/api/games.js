@@ -29,6 +29,24 @@ export const createGame = async (name, price, description, imageUrl, inventory, 
   }
 }
 
+export const updateGame = async (name, price, description, imageUrl, inventory, system, gameId, token) => {
+  console.log('here are props: ', name, price, description, imageUrl, inventory, system, token)
+  try {
+    const response = await fetch(`${APIURL}/game/${gameId}/update`, {
+      method: "PATCH",
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({name, price, description, imageUrl, inventory, system})
+  })
+    const result = await response.json();
+    return result
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export const deleteGame = async (gameId, token) => {
   console.log('kkkkk', gameId, token)
   try {

@@ -62,17 +62,19 @@ function App() {
         <Route
           path="/Xbox"
           element={
-            <Xbox allGames={allGames} customer={customer} token={token} />
+            <Xbox allGames={allGames} customer={customer} token={token} setAllGames={setAllGames}/>
           }
         />
         <Route
           path="/Playstation"
-          element={<Playstation allGames={allGames} token={token} setAllGames={setAllGames}/>}
+          element={<Playstation allGames={allGames} token={token} setAllGames={setAllGames} customer={customer}/>}
         />
-        <Route path="/Nintendo" element={<Nintendo allGames={allGames} />} />
+        <Route 
+          path="/Nintendo" 
+          element={<Nintendo allGames={allGames}  token={token} setAllGames={setAllGames} customer={customer}/>} />
         <Route
           path="/All"
-          element={<All allGames={allGames} token={token} setAllGames={setAllGames} />}
+          element={<All allGames={allGames} token={token} setAllGames={setAllGames} customer={customer}/>}
         />
       </Routes>
     </div>
