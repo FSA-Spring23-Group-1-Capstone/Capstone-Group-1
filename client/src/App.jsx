@@ -29,7 +29,6 @@ function App() {
     getAllProducts();
   }, []);
 
-
   useEffect(() => {
     const getInitialData = async () => {
       if (token) {
@@ -42,7 +41,6 @@ function App() {
     getInitialData();
   }, [token]);
 
-
   return (
     <div className="App">
       <NavBar
@@ -52,6 +50,7 @@ function App() {
         setCustomer={setCustomer}
         isLoggedIn={isLoggedIn}
         customer={customer}
+        allGames={allGames}
       />
       <Routes>
         <Route path="/home" element={<Home />} />
@@ -60,19 +59,46 @@ function App() {
         <Route
           path="/Xbox"
           element={
-            <Xbox allGames={allGames} customer={customer} token={token} setAllGames={setAllGames}/>
+            <Xbox
+              allGames={allGames}
+              customer={customer}
+              token={token}
+              setAllGames={setAllGames}
+            />
           }
         />
         <Route
           path="/Playstation"
-          element={<Playstation allGames={allGames} token={token} setAllGames={setAllGames} customer={customer}/>}
+          element={
+            <Playstation
+              allGames={allGames}
+              token={token}
+              setAllGames={setAllGames}
+              customer={customer}
+            />
+          }
         />
-        <Route 
-          path="/Nintendo" 
-          element={<Nintendo allGames={allGames}  token={token} setAllGames={setAllGames} customer={customer}/>} />
+        <Route
+          path="/Nintendo"
+          element={
+            <Nintendo
+              allGames={allGames}
+              token={token}
+              setAllGames={setAllGames}
+              customer={customer}
+            />
+          }
+        />
         <Route
           path="/All"
-          element={<All allGames={allGames} token={token} setAllGames={setAllGames} customer={customer}/>}
+          element={
+            <All
+              allGames={allGames}
+              token={token}
+              setAllGames={setAllGames}
+              customer={customer}
+            />
+          }
         />
       </Routes>
     </div>

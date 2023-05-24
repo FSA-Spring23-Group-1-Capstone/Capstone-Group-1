@@ -3,7 +3,7 @@ const { getCustomerByCustomerEmail } = require("./customers");
 
 const getAllOrdersByCustomer = async (email) => {
   const { id } = await getCustomerByCustomerEmail(email);
-  console.log(id);
+
   try {
     const {
       rows: [orders],
@@ -19,7 +19,6 @@ const getAllOrdersByCustomer = async (email) => {
 };
 
 const getOrderIdByCustomerId = async (customerId) => {
-  console.log("uuuuu", customerId);
   try {
     const {
       rows: [id],
@@ -31,7 +30,7 @@ const getOrderIdByCustomerId = async (customerId) => {
         `,
       [customerId]
     );
-    console.log("ppp", id);
+
     return id;
   } catch (error) {
     console.error(error);
@@ -45,17 +44,27 @@ const createOrderItem = async (
   quantity,
   purchasePrice
 ) => {
+  const orderItemExist = await getOrderItemByProductId(productId);
+  // console.log("this is the order item quantity", orderItemExist.quantity);
   try {
+    if (orderItemExist) {
+      const updatedOrderItem = await updateOrderItemQuantity(
+        orderItemExist.orderItemId,
+        orderItemExist.quantity + 1
+      );
+
+      return updatedOrderItem;
+    }
     const order = await getOrderIdByCustomerId(customerId);
     const orderId = order.id;
     const {
       rows: [orderItem],
     } = await client.query(
       `
-        INSERT INTO order_items("orderId", "productId", quantity, "purchasePrice")
-        VALUES ($1, $2, $3, $4)
-        RETURNING *
-        `,
+          INSERT INTO order_items("orderId", "productId", quantity, "purchasePrice")
+          VALUES ($1, $2, $3, $4)
+          RETURNING *;
+          `,
       [orderId, productId, quantity, purchasePrice]
     );
     return orderItem;
@@ -93,7 +102,8 @@ const updateOrderItemQuantity = async (orderItemId, quantity) => {
       `
         UPDATE order_items
         SET quantity = $1
-        WHERE "orderItemId" = $2;
+        WHERE "orderItemId" = $2
+        RETURNING *;
         `,
       [quantity, orderItemId]
     );
@@ -135,6 +145,23 @@ const getAllOrderItemsByOrderId = async (orderId) => {
     throw error;
   }
 };
+
+async function getOrderItemByProductId(productId) {
+  try {
+    const {
+      rows: [orderItems],
+    } = await client.query(
+      `
+  SELECT * FROM order_items
+  WHERE "productId" = $1
+  `,
+      [productId]
+    );
+    return orderItems;
+  } catch (error) {
+    throw error;
+  }
+}
 
 module.exports = {
   getAllOrdersByCustomer,

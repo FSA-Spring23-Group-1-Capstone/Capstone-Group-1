@@ -24,7 +24,6 @@ export const fetchItem = async (
       body: JSON.stringify({ customerId, productId, quantity, purchasePrice }),
     });
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.error(error);
