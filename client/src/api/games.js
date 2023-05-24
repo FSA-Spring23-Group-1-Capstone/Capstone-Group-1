@@ -10,27 +10,49 @@ export const getAllGames = async () => {
   }
 };
 
-
-export const createGame = async (name, price, description, imageUrl, inventory, system, token) => {
-  console.log('here are props: ', name, price, description, imageUrl, inventory, system, token)
+export const createGame = async (
+  name,
+  price,
+  description,
+  imageUrl,
+  inventory,
+  system,
+  token
+) => {
+  console.log(
+    "here are props: ",
+    name,
+    price,
+    description,
+    imageUrl,
+    inventory,
+    system,
+    token
+  );
   try {
     const response = await fetch(`${APIURL}/game/create`, {
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({name: name, price: price, description: description, imageUrl: imageUrl, inventory: inventory, system: system})
-  })
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: name,
+        price: price,
+        description: description,
+        imageUrl: imageUrl,
+        inventory: inventory,
+        system: system,
+      }),
+    });
     const result = await response.json();
-    return result
+    return result;
   } catch (error) {
     console.error(error);
   }
 }
 
 export const updateGame = async (name, price, description, imageUrl, inventory, system, gameId, token) => {
-  console.log('here are props: ', name, price, description, imageUrl, inventory, system, token)
   try {
     const response = await fetch(`${APIURL}/game/${gameId}/update`, {
       method: "PATCH",
@@ -48,7 +70,6 @@ export const updateGame = async (name, price, description, imageUrl, inventory, 
 }
 
 export const deleteGame = async (gameId, token) => {
-  console.log('kkkkk', gameId, token)
   try {
     const response = await fetch(`${APIURL}/game/${gameId}/delete`, {
       method: "DELETE",
@@ -66,3 +87,4 @@ export const deleteGame = async (gameId, token) => {
     console.error(error);
 }
 }
+

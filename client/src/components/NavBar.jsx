@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
+import HoverCart from "./HoverCart";
 
-const NavBar = ({ isLoggedIn, setToken, setIsLoggedIn, setCustomer }) => {
+const NavBar = ({
+  isLoggedIn,
+  setToken,
+  setIsLoggedIn,
+  setCustomer,
+  customer,
+  token,
+}) => {
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const navigate = useNavigate();
@@ -25,11 +33,19 @@ const NavBar = ({ isLoggedIn, setToken, setIsLoggedIn, setCustomer }) => {
         </select>
         {isLoggedIn ? (
           <>
-            <NavLink to="/logout">Logout</NavLink>
-            <NavLink to="/account">Account</NavLink>
-            <button>
-              <i className="fa-solid fa-cart-shopping"></i>
+            <button
+              onClick={() => {
+                setIsLoggedIn(false);
+                setCustomer("");
+                setToken("");
+                navigate("/home");
+                localStorage.removeItem("token");
+              }}
+            >
+              Logout
             </button>
+            <NavLink to="/account">Account</NavLink>
+            <HoverCart customer={customer} token={token} />
           </>
         ) : (
           <>
