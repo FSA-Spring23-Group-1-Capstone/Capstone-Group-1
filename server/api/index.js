@@ -62,4 +62,7 @@ router.use("/game", gameRouter);
 const ordersRouter = require("./orders");
 router.use("/orders", ordersRouter);
 
+const orderItemsRouter = require("./orderItems");
+router.use("/orderitems", orderItemsRouter);
+
 module.exports = router;

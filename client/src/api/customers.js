@@ -9,9 +9,7 @@ export const getMe = async (token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
     const result = await response.json();
-    console.log("BLAHHHHHHHHH", result);
     return result;
   } catch (err) {
     console.error(err);

@@ -1,13 +1,15 @@
 const express = require("express");
 const orderItemsRouter = express.Router();
-const jwt = require("jsonwebtoken");
-const { getCustomerByCustomerEmail } = require("../db/customers");
-const requireCustomer = require("./utilities");
+const { getAllOrderItemsByOrderId } = require("../db/orders");
 
-// GET: api/users
-orderItemsRouter.get("/", async (req, res, next) => {
+const { requireCustomer } = require("./utilities");
+
+orderItemsRouter.get("/:orderid", requireCustomer, async (req, res, next) => {
+  const { orderid } = req.params;
+
   try {
-    res.send("Hit the customer api!");
+    const result = await getAllOrderItemsByOrderId(orderid);
+    res.send(result);
   } catch (error) {
     throw error;
   }

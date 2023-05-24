@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { fetchItem } from "../api/orderItems";
+import DeleteGame from "./DeleteGame";
 
-const Xbox = ({ allGames, customer, token }) => {
+const Xbox = ({ allGames, customer, token, setAllGames }) => {
   const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
 
   const [currentPrice, setCurrentPrice] = useState("");
@@ -39,6 +40,7 @@ const Xbox = ({ allGames, customer, token }) => {
               >
                 Add To Cart
               </button>
+              <DeleteGame gameId={game.id} token={token} setAllGames={setAllGames} allGames={allGames} />
             </article>
           );
         })

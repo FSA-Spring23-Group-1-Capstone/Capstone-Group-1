@@ -21,7 +21,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [customer, setCustomer] = useState({});
   const [allGames, setAllGames] = useState([]);
-  console.log("this is customer: ", customer);
 
   useEffect(() => {
     const getAllProducts = async () => {
@@ -33,10 +32,9 @@ function App() {
 
   useEffect(() => {
     const getInitialData = async () => {
-      console.log("this is token: ", token);
       if (token) {
         const me = await getMe(token);
-        console.log("Customer obj", me);
+
         setCustomer(me);
         setIsLoggedIn(true);
       }
@@ -52,6 +50,7 @@ function App() {
         setIsLoggedIn={setIsLoggedIn}
         setCustomer={setCustomer}
         isLoggedIn={isLoggedIn}
+        customer={customer}
       />
       <Routes>
         <Route path="/home" element={<Home />} />
@@ -60,17 +59,46 @@ function App() {
         <Route
           path="/Xbox"
           element={
-            <Xbox allGames={allGames} customer={customer} token={token} />
+            <Xbox
+              allGames={allGames}
+              customer={customer}
+              token={token}
+              setAllGames={setAllGames}
+            />
           }
         />
         <Route
           path="/Playstation"
-          element={<Playstation allGames={allGames} />}
+          element={
+            <Playstation
+              allGames={allGames}
+              token={token}
+              setAllGames={setAllGames}
+              customer={customer}
+            />
+          }
         />
-        <Route path="/Nintendo" element={<Nintendo allGames={allGames} />} />
+        <Route
+          path="/Nintendo"
+          element={
+            <Nintendo
+              allGames={allGames}
+              token={token}
+              setAllGames={setAllGames}
+              customer={customer}
+            />
+          }
+        />
         <Route
           path="/All"
-          element={<All allGames={allGames} token={token} />}
+          element={
+            <All
+              allGames={allGames}
+              token={token}
+              setAllGames={setAllGames}
+              customer={customer}
+            />
+          }
         />
       </Routes>
     </div>
