@@ -39,6 +39,7 @@ const NavBar = ({
                 setCustomer("");
                 setToken("");
                 navigate("/home");
+                localStorage.removeItem("token");
               }}
             >
               Logout
