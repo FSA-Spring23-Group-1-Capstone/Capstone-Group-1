@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
+import logo from "../../public/assets/GameGo-1.png";
 
 const NavBar = ({ isLoggedIn, setToken, setIsLoggedIn, setCustomer }) => {
   const [showRegister, setShowRegister] = useState(false);
@@ -12,8 +13,8 @@ const NavBar = ({ isLoggedIn, setToken, setIsLoggedIn, setCustomer }) => {
   };
   return (
     <header className="header-container">
-      <div>
-        <h1 id="title">GameGo</h1>
+      <div id="logo">
+        <img src={logo} alt="Logo" />
       </div>
       <nav>
         <NavLink to="/home">Home</NavLink>
@@ -27,9 +28,9 @@ const NavBar = ({ isLoggedIn, setToken, setIsLoggedIn, setCustomer }) => {
           <>
             <NavLink to="/logout">Logout</NavLink>
             <NavLink to="/account">Account</NavLink>
-            <button>
+            <NavLink to="/checkout">
               <i className="fa-solid fa-cart-shopping"></i>
-            </button>
+            </NavLink>
           </>
         ) : (
           <>

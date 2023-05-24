@@ -185,7 +185,7 @@ color: #0ed515;
 }
 
 .all-container a {
-  color: black; /* black text for the "All Games" link, as its background is light */
+  color: black; 
 }
 
 .xbox-container:hover {
@@ -197,14 +197,20 @@ color: #0ed515;
 }
 
 .nintendo-container:hover {
-  background-color: #b90202; /* Lighter Nintendo red */
+  background-color: #b90202; 
 }
 
 .all-container:hover {
-  background-color: #dcdcdc; /* Lighter gray */
+  background-color: #dcdcdc; 
 }
 
 .xbox-container:hover a, .playstation-container:hover a, .nintendo-container:hover a, .all-container:hover a {
   color: white; /* white text when hovering */
 }
 
+#logo img {
+  width: 300px;
+  height:auto;
+
+  
+}
