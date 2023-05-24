@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { getAllOrderItemsByOrderId } from "../api/orderItems";
 import { ordersByCustomerEmail } from "../api/orders";
+import { getGameByGameId } from "../api/games";
+
+
 const HoverCart = ({ customer, token, allGames }) => {
   const [allItemsOrders, setAllItemsOrders] = useState([]);
   const [showCart, setShowCart] = useState(false);
@@ -20,20 +23,14 @@ const HoverCart = ({ customer, token, allGames }) => {
   };
 
   console.log("All items order: ", allItemsOrders);
-  const customersCart = [];
-  if (!allItemsOrders.length) {
-    console.log("no cart");
-  } else {
-    for (let i = 0; i < allGames.length; i++) {
-      if (allGames[i].id === allItemsOrders[i].productId) {
-        customersCart.push(allGames[i]);
-      }
-    }
-  }
-  console.log("All games", allGames);
-  console.log("Customer add games", allItemsOrders);
-  console.log("customers cart", customersCart);
+ 
+  const customerCart = allItemsOrders.forEach( async (order)=> {
+    await getGameByGameId(order.productId)
+    
+  })
+  console.log(customerCart)
 
+  
   return (
     <div>
       <button
@@ -44,16 +41,7 @@ const HoverCart = ({ customer, token, allGames }) => {
       >
         <i className="fa-solid fa-cart-shopping"></i>
       </button>
-      {showCart
-        ? customersCart.map((game) => {
-            return (
-              <div key={game.id}>
-                <h3>{game.name}</h3>
-                <h5>{game.price}</h5>
-              </div>
-            );
-          })
-        : ""}
+      
     </div>
   );
 };

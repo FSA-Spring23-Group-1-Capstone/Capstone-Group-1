@@ -8,7 +8,7 @@ const {
   deleteGame,
   updateGame,
 } = require("../db/game");
-const { requireAdmin } = require("./utilities");
+const { requireAdmin, requireCustomer } = require("./utilities");
 
 gameRouter.get("/", async (req, res, next) => {
   try {
@@ -124,4 +124,25 @@ gameRouter.patch("/:id/update", requireAdmin, async (req, res, next) => {
     });
   }
 });
+ gameRouter.get("/:gameid/getgame", requireCustomer, async (req, res, next) => {
+  const {gameid} = req.params;
+  try {
+  const game = await getGameById(gameid)
+   if (game) {
+    res.send({
+      game,
+      message: "game was retrieved by Id"
+    })
+   } else {
+    next({
+      message: "Game was not retrieved by Id"
+    })
+   }
+} catch (error) {
+  next (error);
+  throw (error);
+}
+  
+ }) 
+
 module.exports = gameRouter;

@@ -87,4 +87,19 @@ export const deleteGame = async (gameId, token) => {
     console.error(error);
 }
 }
+ export const getGameByGameId = async (gameId, token) => {
+  try {
+    const response = await fetch (`${APIURL}/game/${gameId}/getgame`, {
+      method: "GET",
+      headers:{
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    })
+    const result = await response.json();
 
+    return result
+  } catch (error) {
+    console.error(error);
+  }
+ }
