@@ -20,7 +20,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [customer, setCustomer] = useState({});
   const [allGames, setAllGames] = useState([]);
-  console.log("this is customer: ", customer);
 
   useEffect(() => {
     const getAllProducts = async () => {
@@ -32,10 +31,9 @@ function App() {
 
   useEffect(() => {
     const getInitialData = async () => {
-      console.log("this is token: ", token);
       if (token) {
         const me = await getMe(token);
-        console.log("Customer obj", me);
+
         setCustomer(me);
         setIsLoggedIn(true);
       }
@@ -51,11 +49,12 @@ function App() {
         setIsLoggedIn={setIsLoggedIn}
         setCustomer={setCustomer}
         isLoggedIn={isLoggedIn}
+        customer={customer}
       />
       <Routes>
         <Route path="/home" element={<Home />} />
-        {/* <Route path="/account" element={<Account />} />
-        <Route path="/checkout" element={<Checkout />} /> */}
+        {/*<Route path="/account" element={<Account />} />*/}
+        <Route path="/checkout" />
         <Route
           path="/Xbox"
           element={
