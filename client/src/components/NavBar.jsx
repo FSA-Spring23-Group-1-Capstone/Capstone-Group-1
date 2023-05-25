@@ -25,9 +25,11 @@ const NavBar = ({
         <h1 id="title">GameGo</h1>
       </div>
       <nav>
-        <NavLink to="/home">Home</NavLink>
-        <select onChange={handleChange}>
-          <option value="/home">Select a brand</option>
+        <NavLink to="/home" id="home">
+          Home
+        </NavLink>
+        <select onChange={handleChange} id="drop">
+          <option value="/home">Select</option>
           <option value="/Xbox">Xbox</option>
           <option value="/Playstation">Playstation</option>
           <option value="/Nintendo">Nintendo</option>
@@ -45,7 +47,9 @@ const NavBar = ({
             >
               Logout
             </button>
-            <NavLink to="/account">Account</NavLink>
+            <NavLink to="/account" id="account">
+              Account
+            </NavLink>
             <HoverCart customer={customer} token={token} allGames={allGames} />
           </>
         ) : (

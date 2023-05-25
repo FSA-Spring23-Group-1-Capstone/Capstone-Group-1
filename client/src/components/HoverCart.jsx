@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getAllOrderItemsByOrderId } from "../api/orderItems";
 import { ordersByCustomerEmail } from "../api/orders";
 import { getGameByGameId } from "../api/games";
@@ -7,6 +8,7 @@ const HoverCart = ({ customer, token, allGames }) => {
   const [allItemsOrders, setAllItemsOrders] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
   const orderIdByCustomerEmail = async () => {
     const result = await ordersByCustomerEmail(customer.email);
 
@@ -58,6 +60,13 @@ const HoverCart = ({ customer, token, allGames }) => {
               </div>
             );
           })}
+          <button
+            onClick={() => {
+              navigate("/checkout");
+            }}
+          >
+            Checkout
+          </button>
         </div>
       ) : (
         ""
