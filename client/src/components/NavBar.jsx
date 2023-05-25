@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import HoverCart from "./HoverCart";
+import logo from "../../public/assets/GameGo-1.png";
 
 const NavBar = ({
   isLoggedIn,
@@ -21,8 +22,8 @@ const NavBar = ({
   };
   return (
     <header className="header-container">
-      <div>
-        <h1 id="title">GameGo</h1>
+      <div id="logo">
+        <img src={logo} alt="Logo" />
       </div>
       <nav>
         <NavLink to="/home" id="home">
@@ -33,6 +34,10 @@ const NavBar = ({
           <option value="/Xbox">Xbox</option>
           <option value="/Playstation">Playstation</option>
           <option value="/Nintendo">Nintendo</option>
+
+          <option value="/All">All</option>
+
+          <option value="/Checkout">Checkout</option>
         </select>
         {isLoggedIn ? (
           <>

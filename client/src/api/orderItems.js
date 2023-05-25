@@ -33,7 +33,6 @@ export const fetchItem = async (
 export const getAllOrderItemsByOrderId = async (orderId, token) => {
   try {
     const response = await fetch(`${APIURL}/orderitems/${orderId}`, {
-      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

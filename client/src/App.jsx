@@ -34,7 +34,7 @@ function App() {
     const getInitialData = async () => {
       if (token) {
         const me = await getMe(token);
-
+        console.log("YOOOOO", me);
         setCustomer(me);
         setIsLoggedIn(true);
       }
@@ -56,8 +56,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+
         {/*<Route path="/account" element={<Account />} />*/}
-        <Route path="/checkout" element={<Checkout />} />
+
+        <Route 
+        path="/checkout" 
+        element={<Checkout token={token} customer={customer} allGames={allGames}/>}
+
+        />
+
         <Route
           path="/Xbox"
           element={
