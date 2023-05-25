@@ -54,10 +54,12 @@ function App() {
       />
       <Routes>
         <Route path="/home" element={<Home />} />
-        {/* <Route path="/account" element={<Account />} />*/}
-        <Route
-          path="/checkout"
-          element={<Checkout customer={customer} token={token} />}
+
+        {/*<Route path="/account" element={<Account />} />*/}
+        <Route 
+        path="/checkout" 
+        element={<Checkout token={token} customer={customer} allGames={allGames}/>}
+
         />
         <Route
           path="/Xbox"

@@ -220,6 +220,20 @@ article p:last-child {
   color: white; /* white text when hovering */
 }
 
+
+.userCheckoutInfo {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(131, 187, 237);
+  color: #000000;
+}
+
+.checkoutItems {
+  display: flex;
+  flex-direction: column;
+}
+
+
 #logo img {
   width: 300px;
   height:auto;
@@ -268,4 +282,5 @@ article p:last-child {
 }
 #account:hover {
   border-color: #646cff
+
 }
