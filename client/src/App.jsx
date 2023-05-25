@@ -41,7 +41,7 @@ function App() {
     };
     getInitialData();
   }, [token]);
-  console.log("HEYYYYYY", customer);
+
   return (
     <div className="App">
       <NavBar
@@ -51,16 +51,20 @@ function App() {
         setCustomer={setCustomer}
         isLoggedIn={isLoggedIn}
         customer={customer}
+        allGames={allGames}
       />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
 
         {/*<Route path="/account" element={<Account />} />*/}
+
         <Route 
         path="/checkout" 
         element={<Checkout token={token} customer={customer} allGames={allGames}/>}
 
         />
+
         <Route
           path="/Xbox"
           element={

@@ -12,6 +12,7 @@ const NavBar = ({
   setCustomer,
   customer,
   token,
+  allGames,
 }) => {
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
@@ -25,9 +26,11 @@ const NavBar = ({
         <img src={logo} alt="Logo" />
       </div>
       <nav>
-        <NavLink to="/home">Home</NavLink>
-        <select onChange={handleChange}>
-          <option value="/home">Select a brand</option>
+        <NavLink to="/home" id="home">
+          Home
+        </NavLink>
+        <select onChange={handleChange} id="drop">
+          <option value="/home">Select</option>
           <option value="/Xbox">Xbox</option>
           <option value="/Playstation">Playstation</option>
           <option value="/Nintendo">Nintendo</option>
@@ -49,8 +52,10 @@ const NavBar = ({
             >
               Logout
             </button>
-            <NavLink to="/account">Account</NavLink>
-            <HoverCart customer={customer} token={token} />
+            <NavLink to="/account" id="account">
+              Account
+            </NavLink>
+            <HoverCart customer={customer} token={token} allGames={allGames} />
           </>
         ) : (
           <>

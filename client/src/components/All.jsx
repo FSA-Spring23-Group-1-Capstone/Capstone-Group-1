@@ -5,7 +5,7 @@ import { fetchItem } from "../api/orderItems";
 import UpdateGameForm from "./UpdateGameForm";
 
 const All = ({ allGames, token, setAllGames, customer }) => {
-  const [showCreate, setShowCreate] = useState(false)
+  const [showCreate, setShowCreate] = useState(false);
   const [currentPrice, setCurrentPrice] = useState("");
   const Games = allGames;
   let originalPrice = 0;
@@ -23,32 +23,33 @@ const All = ({ allGames, token, setAllGames, customer }) => {
   };
 
   const toggleCreateForm = () => {
-    if(showCreate){
-      setShowCreate(false)
+    if (showCreate) {
+      setShowCreate(false);
     } else {
-      setShowCreate(true)
+      setShowCreate(true);
     }
-    }
+  };
 
-    if(customer.admin){
-      return (
-        <>
+  if (customer.admin) {
+    return (
+      <>
         <button onClick={toggleCreateForm}>Toggle Create Game Form</button>
-        {showCreate ? 
-           <CreateGameForm token={token} setAllGames={setAllGames}/> 
-          : <></>
-          }
-          <section>
-            <h1 id="agame">All Games</h1>
-            {Games.length ? (
-              Games.map((game) => {
-                return (
-                  <article key={game.id}>
-                    <h2>{game.name}</h2>
-                    <img src={game.imageUrl} alt={game.name} />
-                    <p>{game.description}</p>
-                    <p>{game.price}</p>
-                    <button
+        {showCreate ? (
+          <CreateGameForm token={token} setAllGames={setAllGames} />
+        ) : (
+          <></>
+        )}
+        <section>
+          <h1 id="agame">All Games</h1>
+          {Games.length ? (
+            Games.map((game) => {
+              return (
+                <article key={game.id}>
+                  <h2>{game.name}</h2>
+                  <img src={game.imageUrl} alt={game.name} />
+                  <p>{game.description}</p>
+                  <p>{game.price}</p>
+                  <button
                     onClick={() => {
                       originalPrice = Number(game.price.substring(1));
                       handleSubmit(game.id);
@@ -56,31 +57,40 @@ const All = ({ allGames, token, setAllGames, customer }) => {
                   >
                     Add To Cart
                   </button>
-                    <UpdateGameForm token={token} setAllGames={setAllGames} gameId={game.id}/>
-                    <DeleteGame gameId={game.id} token={token} setAllGames={setAllGames} allGames={allGames}/>
-                  </article>
-                );
-              })
-            ) : (
-              <h1>No Games to display</h1>
-            )}
-          </section>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <section>
-            <h1 id="agame">All Games</h1>
-            {Games.length ? (
-              Games.map((game) => {
-                return (
-                  <article key={game.id}>
-                    <h2>{game.name}</h2>
-                    <img src={game.imageUrl} alt={game.name} />
-                    <p>{game.description}</p>
-                    <p>{game.price}</p>
-                    <button
+                  <UpdateGameForm
+                    token={token}
+                    setAllGames={setAllGames}
+                    gameId={game.id}
+                  />
+                  <DeleteGame
+                    gameId={game.id}
+                    token={token}
+                    setAllGames={setAllGames}
+                    allGames={allGames}
+                  />
+                </article>
+              );
+            })
+          ) : (
+            <h1>No Games to display</h1>
+          )}
+        </section>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <section>
+          <h1 id="agame">All Games</h1>
+          {Games.length ? (
+            Games.map((game) => {
+              return (
+                <article key={game.id}>
+                  <h2>{game.name}</h2>
+                  <img src={game.imageUrl} alt={game.name} />
+                  <p>{game.description}</p>
+                  <p>{game.price}</p>
+                  <button
                     onClick={() => {
                       originalPrice = Number(game.price.substring(1));
                       handleSubmit(game.id);
@@ -88,16 +98,16 @@ const All = ({ allGames, token, setAllGames, customer }) => {
                   >
                     Add To Cart
                   </button>
-                  </article>
-                );
-              })
-            ) : (
-              <h1>No Games to display</h1>
-            )}
-          </section>
-        </>
-      );
-    }
+                </article>
+              );
+            })
+          ) : (
+            <h1>No Games to display</h1>
+          )}
+        </section>
+      </>
+    );
+  }
 };
 
 export default All;

@@ -36,6 +36,7 @@ ordersRouter.get("/:customerid", async (req, res, next) => {
 
 ordersRouter.post("/addtocart", async (req, res, next) => {
   const { customerId, productId, quantity, purchasePrice } = req.body;
+  console.log(customerId, productId, quantity, purchasePrice);
   try {
     const orderItem = await createOrderItem(
       customerId,
@@ -43,7 +44,6 @@ ordersRouter.post("/addtocart", async (req, res, next) => {
       quantity,
       purchasePrice
     );
-
     res.send(orderItem);
   } catch (error) {
     next(error);
