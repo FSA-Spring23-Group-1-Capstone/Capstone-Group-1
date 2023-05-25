@@ -41,7 +41,6 @@ const Nintendo = ({ allGames, setAllGames, token, customer }) => {
               >
                 Add To Cart
               </button>
-              <DeleteGame gameId={game.id} token={token} setAllGames={setAllGames} allGames={allGames}/>
             </article>
           );
         })

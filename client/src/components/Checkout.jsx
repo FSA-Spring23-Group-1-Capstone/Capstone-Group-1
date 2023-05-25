@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Cart from "./Cart";
 import { ordersByCustomerEmail } from "../api/orders";
 import { getAllOrderItemsByOrderId } from "../api/orderItems";
+import CheckoutForm from "./CheckoutForm";
 
 const Checkout = ({ customer, token, allGames }) => {
   const [orderItems, setOrderItems] = useState([]);
+  const [displayForm, setDisplayForm] = useState(false)
 
   useEffect(() => {
     const getCustomerOrder = async () => {
@@ -65,10 +67,15 @@ const Checkout = ({ customer, token, allGames }) => {
           <h3>Order Summary</h3>
           <h4>Subtotal: ${total}</h4>
           <h2>Shipping & Handling FREE</h2>
-          <button
-          //Show payment form
-          //Set isCompleted to true
-          //Create new order for customer
+          {displayForm ? (
+              <CheckoutForm customer={customer}/>
+          ) : (
+            <></>
+          )
+          }
+          <button onClick={() => {
+            setDisplayForm(!displayForm)
+          }}
           >
             Purchase Form
           </button>
@@ -77,5 +84,8 @@ const Checkout = ({ customer, token, allGames }) => {
     </>
   );
 };
+//Show payment form
+//Set isCompleted to true
+//Create new order for customer
 
 export default Checkout;

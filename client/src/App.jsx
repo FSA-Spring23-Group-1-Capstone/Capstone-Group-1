@@ -34,7 +34,6 @@ function App() {
     const getInitialData = async () => {
       if (token) {
         const me = await getMe(token);
-        console.log("YOOOOO", me);
         setCustomer(me);
         setIsLoggedIn(true);
       }

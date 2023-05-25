@@ -7,22 +7,26 @@ import { getGameByGameId } from "../api/games";
 const HoverCart = ({ customer, token, allGames }) => {
   const [allItemsOrders, setAllItemsOrders] = useState([]);
   const [showCart, setShowCart] = useState(false);
-
+  console.log("before", allItemsOrders)
+  
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const getCustomerOrder = async () => {
       const customerOrder = await ordersByCustomerEmail(customer.email);
+      console.log("customerOrder: ", customerOrder)
       const fetchedOrderItems = await getAllOrderItemsByOrderId(
         customerOrder.id,
         token
-      );
+        );
+        console.log("fetchedOrderItems: ", fetchedOrderItems)
       setAllItemsOrders(fetchedOrderItems);
     };
-
+    
     getCustomerOrder();
   }, [showCart]);
-
+  
+  console.log("after", allItemsOrders)
   return (
     <div>
       <button

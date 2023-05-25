@@ -24,3 +24,27 @@ export const currentOrderIdByCustomerId = async (customerId) => {
   const result = await response.json();
   return result;
 };
+
+export const createNewCustomerOrder = async (customerId) => {
+  const response = await fetch(`${APIURL}/orders/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({customerId: customerId})
+  });
+  const result = await response.json();
+  return result;
+};
+
+export const setOrderCompleted = async (orderId) => {
+  const response = await fetch(`${APIURL}/orders/complete`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({orderId: orderId})
+  });
+  const result = await response.json();
+  return result;
+};

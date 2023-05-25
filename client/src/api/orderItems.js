@@ -31,6 +31,7 @@ export const fetchItem = async (
 };
 
 export const getAllOrderItemsByOrderId = async (orderId, token) => {
+  console.log("^^^^", orderId, token)
   try {
     const response = await fetch(`${APIURL}/orderitems/${orderId}`, {
       headers: {
