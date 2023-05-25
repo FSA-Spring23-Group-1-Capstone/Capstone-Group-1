@@ -3,6 +3,7 @@ import CreateGameForm from "./CreateGameForm";
 import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
 import UpdateGameForm from "./UpdateGameForm";
+import ToggleDescription from "./ToggleDescription";
 
 const All = ({ allGames, token, setAllGames, customer }) => {
   const [showCreate, setShowCreate] = useState(false);
@@ -40,14 +41,14 @@ const All = ({ allGames, token, setAllGames, customer }) => {
           <></>
         )}
         <section>
-          <h1 id="agame">All Games</h1>
+        <img id="agame" src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"></img>
           {Games.length ? (
             Games.map((game) => {
               return (
                 <article key={game.id}>
-                  <h2>{game.name}</h2>
                   <img src={game.imageUrl} alt={game.name} />
-                  <p>{game.description}</p>
+                  <h2>{game.name}</h2>
+                  <ToggleDescription initialDescription={game.description} />
                   <p>{game.price}</p>
                   <button
                     onClick={() => {
@@ -81,14 +82,14 @@ const All = ({ allGames, token, setAllGames, customer }) => {
     return (
       <>
         <section>
-          <h1 id="agame">All Games</h1>
+          <img id="agame" src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"></img>
           {Games.length ? (
             Games.map((game) => {
               return (
                 <article key={game.id}>
-                  <h2>{game.name}</h2>
                   <img src={game.imageUrl} alt={game.name} />
-                  <p>{game.description}</p>
+                  <h2>{game.name}</h2>
+                  <ToggleDescription initialDescription={game.description} />
                   <p>{game.price}</p>
                   <button
                     onClick={() => {
