@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Cart from "./Cart";
 import { ordersByCustomerEmail } from "../api/orders";
@@ -15,8 +16,7 @@ const Checkout = ({customer, token, allGames}) => {
   
     getCustomerOrder()
   },[])
-  console.log("kkkk", orderItems)
-  console.log("gggggg", allGames)
+
 
   return (
   <>
@@ -52,6 +52,7 @@ const Checkout = ({customer, token, allGames}) => {
   
   </>
   )
+
 };
 
 export default Checkout;

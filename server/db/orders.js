@@ -27,9 +27,9 @@ const getOrderIdByCustomerId = async (customerId) => {
       `
         SELECT *
         FROM orders
-        WHERE "customerId"=$1;
+        WHERE "customerId"=$1 AND "orderCompleted"=$2;
         `,
-      [customerId]
+      [customerId, false]
     );
     console.log("ppp", id);
     return id;
@@ -143,4 +143,5 @@ module.exports = {
   updateOrderItemQuantity,
   deleteOrdeItem,
   getAllOrderItemsByOrderId,
+  getOrderIdByCustomerId,
 };

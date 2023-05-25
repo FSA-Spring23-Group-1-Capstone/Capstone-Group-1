@@ -160,6 +160,45 @@ async function createInitialGames() {
         inventory: 15,
         system: "Nintendo",
       },
+      {
+        name: "Alan Wake",
+        price: 25.0,
+        description:
+          "When the wife of the best-selling writer Alan Wake disappears on their vacation, his search turns up pages from a thriller he doesn’t even remember writing. A Dark Presence stalks the small town of Bright Falls, pushing Wake to the brink of sanity in his fight to unravel the mystery and save his love.",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Alan_Wake_Game_Cover.jpg/220px-Alan_Wake_Game_Cover.jpg",
+        inventory: 25,
+        system: "Xbox",
+      },
+      {
+        name: "Red Dead Redemption",
+        price: 35.0,
+        description:
+          "America, 1911. The Wild West is dying. When federal agents threaten his family, former outlaw John Marston is forced to pick up his guns again and hunt down the gang of criminals he once called friends. Experience an epic fight for survival across the sprawling expanses of the American West and Mexico, as John Marston struggles to bury his blood-stained past, one man at a time.",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Red_Dead_Redemption.jpg/220px-Red_Dead_Redemption.jpg",
+        inventory: 35,
+        system: "Xbox, Playstation",
+      },
+      {
+        name: "Super Mario Sunshine",
+        price: 20.0,
+        description:
+          "When Mario, Peach, and an entourage of Peach's loyal Toad friends set out for a tropical vacation on lovely Isle Delfino, they're in store for much more than a relaxing holiday. A mustachioed maniac has mucked up the entire island, and Mario is accused of committing the crime. Armed with a hi-tech water cannon called FLUDD (Flash Liquidizer Ultra Dousing Device), Mario sets out to clean the island, clear his name, and solve the mystery of the villainous vandal.",
+        imageUrl: "https://i.ebayimg.com/images/g/--kAAOSw625hIW4Q/s-l1600.jpg",
+        inventory: 20,
+        system: "Nintendo",
+      },
+      {
+        name: "Mario Kart 8",
+        price: 40.0,
+        description:
+          "Hit the road with the definitive version of Mario Kart 8 and play anytime, any-where! Race your friends or battle them in a revised battle mode on new and returning battle courses. Play locally in up to 4-player multiplayer in 1080p while playing in TV Mode. Every track from the Wii U version, including DLC, makes a glorious return. Plus, the Inklings appear as all-new guest characters, along with returning favorites, such as King Boo, Dry Bones, and Bowser Jr.!",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/MarioKart8Boxart.jpg/220px-MarioKart8Boxart.jpg",
+        inventory: 40,
+        system: "Nintendo",
+      },
     ];
     const games = await Promise.all(gamesToCreate.map(createGame));
     console.log("games created:");
