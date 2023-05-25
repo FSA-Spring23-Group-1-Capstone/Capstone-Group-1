@@ -30,6 +30,8 @@ const NavBar = ({
           <option value="/Xbox">Xbox</option>
           <option value="/Playstation">Playstation</option>
           <option value="/Nintendo">Nintendo</option>
+          <option value="/All">All</option>
+          <option value="/Checkout">Checkout</option>
         </select>
         {isLoggedIn ? (
           <>

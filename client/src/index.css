@@ -208,3 +208,18 @@ color: #0ed515;
   color: white; /* white text when hovering */
 }
 
+.userCheckoutInfo {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(131, 187, 237);
+  color: #000000;
+}
+
+.checkoutItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkoutItem {
+
+}

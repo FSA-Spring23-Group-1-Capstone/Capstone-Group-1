@@ -10,6 +10,7 @@ import {
   Playstation,
   Nintendo,
   All,
+  Checkout,
 } from "./components";
 
 import { getMe } from "./api/customers";
@@ -56,7 +57,10 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         {/*<Route path="/account" element={<Account />} />*/}
-        <Route path="/checkout" />
+        <Route 
+        path="/checkout" 
+        element={<Checkout token={token} customer={customer} allGames={allGames}/>}
+        />
         <Route
           path="/Xbox"
           element={
