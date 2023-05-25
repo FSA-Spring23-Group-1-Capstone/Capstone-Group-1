@@ -4,7 +4,6 @@
   line-height: 24px;
   font-weight: 400;
   background-color: #242424;
-  
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -98,7 +97,7 @@ h1 {
 }
 
 article {
-  background-color:rgb(255, 247, 236);
+  background-color: rgb(255, 247, 236);
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
@@ -131,18 +130,17 @@ article p:last-child {
   color: #0ed515;
 }
 #xgame {
-  color:green
+  color: green;
 }
 #pgame {
   color: blue;
 }
 #ngame {
-  color:crimson
+  color: crimson;
 }
 #agame {
   color: goldenrod;
 }
-
 
 .container {
   display: flex;
@@ -151,7 +149,10 @@ article p:last-child {
   padding: 1%;
 }
 
-.xbox-container, .playstation-container, .nintendo-container, .all-container {
+.xbox-container,
+.playstation-container,
+.nintendo-container,
+.all-container {
   flex: 0 0 calc(50% - 2%);
   height: 200px;
   margin: 1%;
@@ -168,27 +169,27 @@ article p:last-child {
   background-color: #28c628; /* Lighter Xbox green */
 }
 
-
 .playstation-container {
   background-color: #0051bd; /* Lighter PlayStation blue */
 }
 
 .nintendo-container {
-  background-color: #E60012; /* Nintendo red */
-  
+  background-color: #e60012; /* Nintendo red */
 }
 .nintendo-container img {
   border-radius: 10px;
-  
 }
 
 .all-container {
   background-color: #f4f4f4; /* generic gray */
 }
-.all-container img{
+.all-container img {
   border-radius: 10px;
 }
-.xbox-container a, .playstation-container a, .nintendo-container a, .all-container a {
+.xbox-container a,
+.playstation-container a,
+.nintendo-container a,
+.all-container a {
   text-decoration: none;
   color: white;
   font-size: 20px;
@@ -197,7 +198,7 @@ article p:last-child {
 }
 
 .all-container a {
-  color: black; 
+  color: black;
 }
 
 .xbox-container:hover {
@@ -209,17 +210,19 @@ article p:last-child {
 }
 
 .nintendo-container:hover {
-  background-color: #b90202; 
+  background-color: #b90202;
 }
 
 .all-container:hover {
-  background-color: goldenrod; 
+  background-color: goldenrod;
 }
 
-.xbox-container:hover a, .playstation-container:hover a, .nintendo-container:hover a, .all-container:hover a {
+.xbox-container:hover a,
+.playstation-container:hover a,
+.nintendo-container:hover a,
+.all-container:hover a {
   color: white; /* white text when hovering */
 }
-
 
 .userCheckoutInfo {
   display: flex;
@@ -233,16 +236,15 @@ article p:last-child {
   flex-direction: column;
 }
 
-
 #logo img {
   width: 300px;
-  height:auto;
+  height: auto;
 }
 
 .register-body {
-  color:midnightblue;
+  color: midnightblue;
   font-weight: bolder;
-  background-color:rgb(255, 247, 236);
+  background-color: rgb(255, 247, 236);
   padding: 10px;
   border: 5px rgb(29, 29, 191) solid;
   border-radius: 10px;
@@ -257,7 +259,7 @@ article p:last-child {
   font-size: 15px;
 }
 #drop:hover {
-  border-color: #646cff
+  border-color: #646cff;
 }
 #home {
   width: 115px;
@@ -269,7 +271,7 @@ article p:last-child {
   font-size: 15px;
 }
 #home:hover {
-  border-color: #646cff
+  border-color: #646cff;
 }
 #account {
   width: 115px;
@@ -281,6 +283,5 @@ article p:last-child {
   font-size: 15px;
 }
 #account:hover {
-  border-color: #646cff
-
+  border-color: #646cff;
 }

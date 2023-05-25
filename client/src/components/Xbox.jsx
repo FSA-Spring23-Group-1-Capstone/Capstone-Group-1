@@ -40,7 +40,12 @@ const Xbox = ({ allGames, customer, token, setAllGames }) => {
               >
                 Add To Cart
               </button>
-              <DeleteGame gameId={game.id} token={token} setAllGames={setAllGames} allGames={allGames} />
+              <DeleteGame
+                gameId={game.id}
+                token={token}
+                setAllGames={setAllGames}
+                allGames={allGames}
+              />
             </article>
           );
         })
