@@ -18,6 +18,18 @@ const Checkout = ({ customer, token, allGames }) => {
 
     getCustomerOrder();
   }, []);
+  const purchaseArr = orderItems.map(
+    (order) => order.purchasePrice * order.quantity
+  );
+  const sumItems = (arr) => {
+    let total = 0;
+    for (let index = 0; index < arr.length; index++) {
+      total = total + arr[index];
+    }
+
+    return total;
+  };
+  let total = sumItems(purchaseArr);
 
   return (
     <>
@@ -48,6 +60,18 @@ const Checkout = ({ customer, token, allGames }) => {
               </article>
             );
           })}
+        </section>
+        <section>
+          <h3>Order Summary</h3>
+          <h4>Subtotal: ${total}</h4>
+          <h2>Shipping & Handling FREE</h2>
+          <button
+          //Show payment form
+          //Set isCompleted to true
+          //Create new order for customer
+          >
+            Purchase Form
+          </button>
         </section>
       </div>
     </>
