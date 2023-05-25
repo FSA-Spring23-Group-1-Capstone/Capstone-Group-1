@@ -1,8 +1,10 @@
-:root {
+#root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
+  background-color: #242424;
+  
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -14,12 +16,16 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+html {
+  background-color: #242424;
+}
 /* Header/Navbar */
 .header-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
+
 .register-body {
   position: absolute;
   right: 20rem;
@@ -47,7 +53,7 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #ccc;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -136,9 +142,7 @@ article p:last-child {
 #agame {
   color: goldenrod;
 }
-#title {
-color: #0ed515;
-}
+
 
 .container {
   display: flex;
@@ -161,21 +165,29 @@ color: #0ed515;
 }
 
 .xbox-container {
-  background-color: #107C10; /* Xbox green */
+  background-color: #28c628; /* Lighter Xbox green */
 }
 
+
 .playstation-container {
-  background-color: #003087; /* PlayStation blue */
+  background-color: #0051bd; /* Lighter PlayStation blue */
 }
 
 .nintendo-container {
   background-color: #E60012; /* Nintendo red */
+  
+}
+.nintendo-container img {
+  border-radius: 10px;
+  
 }
 
 .all-container {
   background-color: #f4f4f4; /* generic gray */
 }
-
+.all-container img{
+  border-radius: 10px;
+}
 .xbox-container a, .playstation-container a, .nintendo-container a, .all-container a {
   text-decoration: none;
   color: white;
@@ -185,26 +197,75 @@ color: #0ed515;
 }
 
 .all-container a {
-  color: black; /* black text for the "All Games" link, as its background is light */
+  color: black; 
 }
 
 .xbox-container:hover {
-  background-color: #189a18; /* Lighter Xbox green */
+  background-color: #179b17; /* Xbox green */
 }
 
 .playstation-container:hover {
-  background-color: #0051bd; /* Lighter PlayStation blue */
+  background-color: #003087; /* PlayStation blue */
 }
 
 .nintendo-container:hover {
-  background-color: #b90202; /* Lighter Nintendo red */
+  background-color: #b90202; 
 }
 
 .all-container:hover {
-  background-color: #dcdcdc; /* Lighter gray */
+  background-color: goldenrod; 
 }
 
 .xbox-container:hover a, .playstation-container:hover a, .nintendo-container:hover a, .all-container:hover a {
   color: white; /* white text when hovering */
 }
 
+#logo img {
+  width: 300px;
+  height:auto;
+}
+
+.register-body {
+  color:midnightblue;
+  font-weight: bolder;
+  background-color:rgb(255, 247, 236);
+  padding: 10px;
+  border: 5px rgb(29, 29, 191) solid;
+  border-radius: 10px;
+}
+#drop {
+  width: 115px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: #f9f9f9;
+  font-size: 15px;
+}
+#drop:hover {
+  border-color: #646cff
+}
+#home {
+  width: 115px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: #f9f9f9;
+  font-size: 15px;
+}
+#home:hover {
+  border-color: #646cff
+}
+#account {
+  width: 115px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: #f9f9f9;
+  font-size: 15px;
+}
+#account:hover {
+  border-color: #646cff
+}

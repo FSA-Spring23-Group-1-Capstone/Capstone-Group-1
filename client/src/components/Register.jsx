@@ -15,6 +15,8 @@ const Register = ({ setToken, setIsLoggedIn, setCustomer }) => {
       password,
       address,
     });
+    console.log("tttttt", data);
+
     if (data.token) {
       setToken(data.token);
       setIsLoggedIn(true);

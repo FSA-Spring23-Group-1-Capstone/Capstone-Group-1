@@ -6,3 +6,4 @@ export { default as Playstation } from "./Playstation";
 export { default as Nintendo } from "./Nintendo";
 export { default as All } from "./All";
 export { default as NavBar } from "./NavBar";
+export { default as Checkout } from "./Checkout";
