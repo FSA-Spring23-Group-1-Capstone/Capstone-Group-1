@@ -30,14 +30,12 @@ const NavBar = ({
           Home
         </NavLink>
         <select onChange={handleChange} id="drop">
-          <option value="/home">Select</option>
+          <option value="/home">System</option>
           <option value="/Xbox">Xbox</option>
           <option value="/Playstation">Playstation</option>
           <option value="/Nintendo">Nintendo</option>
 
           <option value="/All">All</option>
-
-          <option value="/Checkout">Checkout</option>
         </select>
         {isLoggedIn ? (
           <>

@@ -4,7 +4,16 @@ import { fetchItem } from "../api/orderItems";
 import DeleteGame from "./DeleteGame";
 
 const Xbox = ({ allGames, customer, token, setAllGames }) => {
-  const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
+  let xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
+
+  // Sort games alphabetically
+  xboxGames.sort((a, b) => {
+    if (a.name > b.name) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 
   const [currentPrice, setCurrentPrice] = useState("");
   let originalPrice = 0;
