@@ -280,6 +280,8 @@ article p {
   background-color: #1a1a1a;
   color: #f9f9f9;
   font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 #drop:hover {
   border-color: #646cff;
@@ -292,6 +294,8 @@ article p {
   background-color: #1a1a1a;
   color: #f9f9f9;
   font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 #home:hover {
   border-color: #646cff;
@@ -304,6 +308,8 @@ article p {
   background-color: #1a1a1a;
   color: #f9f9f9;
   font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 #account:hover {
   border-color: #646cff;

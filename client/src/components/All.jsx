@@ -11,6 +11,15 @@ const All = ({ allGames, token, setAllGames, customer }) => {
   const Games = allGames;
   let originalPrice = 0;
 
+  // Sort games alphabetically
+  allGames.sort((a, b) => {
+    if (a.name > b.name) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+
   const handleSubmit = async (productId) => {
     const quantity = 1;
     const addedItem = await fetchItem(

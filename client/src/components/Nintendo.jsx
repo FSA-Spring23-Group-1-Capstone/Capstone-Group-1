@@ -7,6 +7,14 @@ const Nintendo = ({ allGames, setAllGames, token, customer }) => {
   const nintendoGames = allGames.filter((game) =>
     game.system.includes("Nintendo")
   );
+  // Sort games alphabetically
+  nintendoGames.sort((a, b) => {
+    if (a.name > b.name) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 
   const [currentPrice, setCurrentPrice] = useState("");
   let originalPrice = 0;
@@ -43,7 +51,12 @@ const Nintendo = ({ allGames, setAllGames, token, customer }) => {
               >
                 Add To Cart
               </button>
-              <DeleteGame gameId={game.id} token={token} setAllGames={setAllGames} allGames={allGames}/>
+              <DeleteGame
+                gameId={game.id}
+                token={token}
+                setAllGames={setAllGames}
+                allGames={allGames}
+              />
             </article>
           );
         })

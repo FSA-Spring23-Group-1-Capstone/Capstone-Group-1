@@ -4,7 +4,16 @@ import DeleteGame from "./DeleteGame";
 import ToggleDescription from "./ToggleDescription";
 
 const Xbox = ({ allGames, customer, token, setAllGames }) => {
-  const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
+  let xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
+
+  // Sort games alphabetically
+  xboxGames.sort((a, b) => {
+    if (a.name > b.name) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 
   const handleSubmit = async (productId, originalPrice) => {
     const quantity = 1;
