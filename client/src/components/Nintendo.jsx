@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
+import ToggleDescription from "./ToggleDescription"; 
 
 const Nintendo = ({ allGames, setAllGames, token, customer, addedItem, setAddedItem }) => {
   const nintendoGames = allGames.filter((game) =>
     game.system.includes("Nintendo")
   );
+  // Sort games alphabetically
+  nintendoGames.sort((a, b) => {
+    if (a.name > b.name) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 
   const [currentPrice, setCurrentPrice] = useState("");
   let originalPrice = 0;
@@ -24,14 +33,15 @@ const Nintendo = ({ allGames, setAllGames, token, customer, addedItem, setAddedI
 
   return (
     <section>
-      <h1 id="ngame">Nintendo Games</h1>
+      <img id="ngame" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nintendo.svg/1920px-Nintendo.svg.png" ></img>
       {nintendoGames.length ? (
         nintendoGames.map((game) => {
+          const gameDescription = game.description;
           return (
             <article key={game.id}>
-              <h2>{game.name}</h2>
               <img src={game.imageUrl} alt={game.name} />
-              <p>{game.description}</p>
+              <h2>{game.name}</h2>
+              <ToggleDescription initialDescription={gameDescription} />
               <p>{game.price}</p>
               <button
                 onClick={() => {
@@ -41,6 +51,7 @@ const Nintendo = ({ allGames, setAllGames, token, customer, addedItem, setAddedI
               >
                 Add To Cart
               </button>
+
             </article>
           );
         })
