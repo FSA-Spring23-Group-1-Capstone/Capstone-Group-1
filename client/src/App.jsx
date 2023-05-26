@@ -15,12 +15,17 @@ import {
 
 import { getMe } from "./api/customers";
 import { getAllGames } from "./api/games";
+import { ordersByCustomerEmail } from "./api/orders";
+import { getAllOrderItemsByOrderId } from "./api/orderItems";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [customer, setCustomer] = useState({});
   const [allGames, setAllGames] = useState([]);
+  const [orderId, setOrderId] = useState([]);
+  const [orderItems, setOrderItems] = useState([]);
+  const [addedItem, setAddedItem] = useState(false);
 
   useEffect(() => {
     const getAllProducts = async () => {
@@ -34,13 +39,28 @@ function App() {
     const getInitialData = async () => {
       if (token) {
         const me = await getMe(token);
-        console.log("YOOOOO", me);
         setCustomer(me);
         setIsLoggedIn(true);
       }
     };
     getInitialData();
   }, [token]);
+
+  useEffect(() => {
+    const getCustomerOrder = async () => {
+      const customerOrders = await ordersByCustomerEmail(customer.email);
+      const cartNum = customerOrders.filter((order) => order.orderCompleted === false)
+      setOrderId(cartNum[0].id)
+      const fetchedOrderItems = await getAllOrderItemsByOrderId(
+        cartNum[0].id,
+        token
+      )
+      console.log("JJJJJJJ", fetchedOrderItems)
+      setOrderItems(fetchedOrderItems);
+    };
+
+    getCustomerOrder();
+  }, [addedItem]);
 
   return (
     <div className="App">
@@ -52,6 +72,8 @@ function App() {
         isLoggedIn={isLoggedIn}
         customer={customer}
         allGames={allGames}
+        orderItems={orderItems}
+        orderId={orderId}
       />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -61,8 +83,16 @@ function App() {
 
         <Route 
         path="/checkout" 
-        element={<Checkout token={token} customer={customer} allGames={allGames}/>}
-
+        element={<Checkout 
+          token={token} 
+          customer={customer} 
+          allGames={allGames}
+          orderItems={orderItems}
+          orderId={orderId}
+          setOrderItems={setOrderItems}
+          addedItem={addedItem}
+          setOrderId={setOrderId}
+          />}
         />
 
         <Route
@@ -73,6 +103,8 @@ function App() {
               customer={customer}
               token={token}
               setAllGames={setAllGames}
+              addedItem={addedItem}
+              setAddedItem={setAddedItem}
             />
           }
         />
@@ -84,6 +116,8 @@ function App() {
               token={token}
               setAllGames={setAllGames}
               customer={customer}
+              addedItem={addedItem}
+              setAddedItem={setAddedItem}
             />
           }
         />
@@ -95,6 +129,8 @@ function App() {
               token={token}
               setAllGames={setAllGames}
               customer={customer}
+              addedItem={addedItem}
+              setAddedItem={setAddedItem}
             />
           }
         />
@@ -106,6 +142,8 @@ function App() {
               token={token}
               setAllGames={setAllGames}
               customer={customer}
+              addedItem={addedItem}
+              setAddedItem={setAddedItem}
             />
           }
         />

@@ -13,6 +13,7 @@ const NavBar = ({
   customer,
   token,
   allGames,
+  orderItems
 }) => {
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
@@ -53,7 +54,7 @@ const NavBar = ({
             <NavLink to="/account" id="account">
               Account
             </NavLink>
-            <HoverCart customer={customer} token={token} allGames={allGames} />
+            <HoverCart customer={customer} token={token} allGames={allGames} orderItems={orderItems}/>
           </>
         ) : (
           <>

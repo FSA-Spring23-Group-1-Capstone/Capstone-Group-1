@@ -6,6 +6,8 @@ const {
   createOrderItem,
   deleteOrdeItem,
   getOrderIdByCustomerId,
+  toggleOrderCompelted,
+  createOrder,
 } = require("../db/orders");
 const ordersRouter = express.Router();
 
@@ -28,6 +30,17 @@ ordersRouter.get("/:customerid", async (req, res, next) => {
     const currentOrderId = await getOrderIdByCustomerId(customerId);
 
     res.send(currentOrderId);
+  } catch (error) {
+    next(error);
+  }
+});
+
+ordersRouter.patch("/complete", async (req, res, next) => {
+  const { orderId } = req.body;
+  try {
+    const order = await toggleOrderCompelted(orderId);
+
+    res.send(order);
   } catch (error) {
     next(error);
   }
@@ -56,6 +69,18 @@ ordersRouter.post("/update", async (req, res, next) => {
     const orderItem = await updateOrderItemQuantity(orderItemId, quantity);
 
     res.send(orderItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
+ordersRouter.post("/create", async (req, res, next) => {
+  const { customerId } = req.body;
+  console.log("&&&&", customerId)
+  try {
+    const order = await createOrder(customerId);
+    console.log("this is new order", order)
+    res.send(order);
   } catch (error) {
     next(error);
   }

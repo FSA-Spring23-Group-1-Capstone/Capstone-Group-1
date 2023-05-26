@@ -1,28 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllOrderItemsByOrderId } from "../api/orderItems";
-import { ordersByCustomerEmail } from "../api/orders";
-import { getGameByGameId } from "../api/games";
 
-const HoverCart = ({ customer, token, allGames }) => {
-  const [allItemsOrders, setAllItemsOrders] = useState([]);
+const HoverCart = ({ customer, token, allGames, orderId, orderItems }) => {
   const [showCart, setShowCart] = useState(false);
-
+  console.log("before", orderItems)
+  
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const getCustomerOrder = async () => {
-      const customerOrder = await ordersByCustomerEmail(customer.email);
-      const fetchedOrderItems = await getAllOrderItemsByOrderId(
-        customerOrder.id,
-        token
-      );
-      setAllItemsOrders(fetchedOrderItems);
-    };
-
-    getCustomerOrder();
-  }, [showCart]);
-
+  
   return (
     <div>
       <button
@@ -34,7 +18,7 @@ const HoverCart = ({ customer, token, allGames }) => {
       </button>
       {showCart ? (
         <div>
-          {allItemsOrders.map((order, index) => {
+          {orderItems.map((order, index) => {
             const currentGame = allGames.filter(
               (game) => game.id === order.productId
             );
@@ -42,7 +26,7 @@ const HoverCart = ({ customer, token, allGames }) => {
               <div key={currentGame[0].id}>
                 <h4>Name: {currentGame[0].name}</h4>
                 <h5>Price: {currentGame[0].price}</h5>
-                <p>Quantity: {allItemsOrders[index].quantity}</p>
+                <p>Quantity: {orderItems[index].quantity}</p>
               </div>
             );
           })}

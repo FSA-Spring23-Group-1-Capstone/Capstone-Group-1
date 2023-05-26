@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Cart from "./Cart";
-import { ordersByCustomerEmail } from "../api/orders";
-import { getAllOrderItemsByOrderId } from "../api/orderItems";
+import CheckoutForm from "./CheckoutForm";
 
-const Checkout = ({ customer, token, allGames }) => {
-  const [orderItems, setOrderItems] = useState([]);
+const Checkout = ({ customer, token, allGames, orderItems, orderId, setOrderItems, setOrderId }) => {
+  const [displayForm, setDisplayForm] = useState(false)
 
-  useEffect(() => {
-    const getCustomerOrder = async () => {
-      const customerOrder = await ordersByCustomerEmail(customer.email);
-      const fetchedOrderItems = await getAllOrderItemsByOrderId(
-        customerOrder.id,
-        token
-      );
-      setOrderItems(fetchedOrderItems);
-    };
+  const purchaseArr = orderItems.map(
+    (order) => order.purchasePrice * order.quantity
+  );
+  const sumItems = (arr) => {
+    let total = 0;
+    for (let index = 0; index < arr.length; index++) {
+      total = total + arr[index];
+    }
 
-    getCustomerOrder();
-  }, []);
+    return total;
+  };
+  let total = sumItems(purchaseArr);
 
   return (
     <>
@@ -49,9 +48,29 @@ const Checkout = ({ customer, token, allGames }) => {
             );
           })}
         </section>
+        <section>
+          <h3>Order Summary</h3>
+          <h4>Subtotal: ${total}</h4>
+          <h2>Shipping & Handling FREE</h2>
+          {displayForm ? (
+              <CheckoutForm customer={customer} orderId={orderId} setOrderItems={setOrderItems} setOrderId={setOrderId}/>
+          ) : (
+            <></>
+          )
+          }
+          <button onClick={() => {
+            setDisplayForm(!displayForm)
+          }}
+          >
+            Purchase Form
+          </button>
+        </section>
       </div>
     </>
   );
 };
+//Show payment form
+//Set isCompleted to true
+//Create new order for customer
 
 export default Checkout;

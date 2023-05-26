@@ -3,7 +3,7 @@ import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
 import ToggleDescription from "./ToggleDescription"; 
 
-const Nintendo = ({ allGames, setAllGames, token, customer }) => {
+const Nintendo = ({ allGames, setAllGames, token, customer, addedItem, setAddedItem }) => {
   const nintendoGames = allGames.filter((game) =>
     game.system.includes("Nintendo")
   );
@@ -21,14 +21,14 @@ const Nintendo = ({ allGames, setAllGames, token, customer }) => {
 
   const handleSubmit = async (productId) => {
     const quantity = 1;
-    const addedItem = await fetchItem(
+    const newItem = await fetchItem(
       customer.id,
       productId,
       quantity,
       originalPrice,
       token
     );
-    console.log(addedItem);
+    setAddedItem(!addedItem)
   };
 
   return (
@@ -51,12 +51,7 @@ const Nintendo = ({ allGames, setAllGames, token, customer }) => {
               >
                 Add To Cart
               </button>
-              <DeleteGame
-                gameId={game.id}
-                token={token}
-                setAllGames={setAllGames}
-                allGames={allGames}
-              />
+
             </article>
           );
         })

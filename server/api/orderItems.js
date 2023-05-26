@@ -6,7 +6,7 @@ const { requireCustomer } = require("./utilities");
 
 orderItemsRouter.get("/:orderid", requireCustomer, async (req, res, next) => {
   const { orderid } = req.params;
-
+console.log("$$$$", orderid)
   try {
     const result = await getAllOrderItemsByOrderId(orderid);
     res.send(result);

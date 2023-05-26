@@ -3,8 +3,11 @@ import { fetchItem } from "../api/orderItems";
 import DeleteGame from "./DeleteGame";
 import ToggleDescription from "./ToggleDescription";
 
-const Xbox = ({ allGames, customer, token, setAllGames }) => {
-  let xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
+
+const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem }) => {
+  const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
+  let originalPrice = 0;
+
 
   // Sort games alphabetically
   xboxGames.sort((a, b) => {
@@ -15,16 +18,17 @@ const Xbox = ({ allGames, customer, token, setAllGames }) => {
     }
   });
 
+
   const handleSubmit = async (productId, originalPrice) => {
     const quantity = 1;
-    const addedItem = await fetchItem(
+    const newItem = await fetchItem(
       customer.id,
       productId,
       quantity,
       originalPrice,
       token
     );
-    console.log(addedItem);
+    setAddedItem(!addedItem)
   };
 
   return (
@@ -53,12 +57,6 @@ const Xbox = ({ allGames, customer, token, setAllGames }) => {
               >
                 Add To Cart
               </button>
-              <DeleteGame
-                gameId={game.id}
-                token={token}
-                setAllGames={setAllGames}
-                allGames={allGames}
-              />
             </article>
           );
         })

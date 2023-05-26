@@ -5,9 +5,8 @@ import { fetchItem } from "../api/orderItems";
 import UpdateGameForm from "./UpdateGameForm";
 import ToggleDescription from "./ToggleDescription";
 
-const All = ({ allGames, token, setAllGames, customer }) => {
+const All = ({ allGames, token, setAllGames, customer, addedItem, setAddedItem }) => {
   const [showCreate, setShowCreate] = useState(false);
-  const [currentPrice, setCurrentPrice] = useState("");
   const Games = allGames;
   let originalPrice = 0;
 
@@ -22,14 +21,14 @@ const All = ({ allGames, token, setAllGames, customer }) => {
 
   const handleSubmit = async (productId) => {
     const quantity = 1;
-    const addedItem = await fetchItem(
+    const newItem = await fetchItem(
       customer.id,
       productId,
       quantity,
       originalPrice,
       token
     );
-    console.log(addedItem);
+    setAddedItem(!addedItem)
   };
 
   const toggleCreateForm = () => {
@@ -39,7 +38,7 @@ const All = ({ allGames, token, setAllGames, customer }) => {
       setShowCreate(true);
     }
   };
-
+console.log("GGGGG", customer)
   if (customer.admin) {
     return (
       <>

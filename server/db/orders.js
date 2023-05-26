@@ -6,7 +6,7 @@ const getAllOrdersByCustomer = async (email) => {
 
   try {
     const {
-      rows: [orders],
+      rows
     } = await client.query(
       `
         SELECT * FROM orders
@@ -14,7 +14,7 @@ const getAllOrdersByCustomer = async (email) => {
         `,
       [id]
     );
-    return orders;
+    return rows;
   } catch (error) {}
 };
 
@@ -86,8 +86,27 @@ const createOrder = async (customerId) => {
         `,
       [customerId]
     );
-    const { orderId } = order;
-    return orderId;
+    return order;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const toggleOrderCompelted = async (orderId) => {
+  try {
+    const {
+      rows: [order],
+    } = await client.query(
+      `
+      UPDATE orders
+      SET "orderCompleted" = $1
+      WHERE id = ${orderId}
+      RETURNING *;
+        `,
+      [true]
+    );
+    return order
   } catch (error) {
     console.error(error);
     throw error;
@@ -132,6 +151,7 @@ const deleteOrdeItem = async (orderItemId) => {
   }
 };
 const getAllOrderItemsByOrderId = async (orderId) => {
+  console.log("YYYYYY", orderId)
   try {
     const { rows } = await client.query(
       `
@@ -140,6 +160,7 @@ const getAllOrderItemsByOrderId = async (orderId) => {
   `,
       [orderId]
     );
+    console.log("@@@@", rows)
     return rows;
   } catch (error) {
     throw error;
@@ -171,4 +192,5 @@ module.exports = {
   deleteOrdeItem,
   getAllOrderItemsByOrderId,
   getOrderIdByCustomerId,
+  toggleOrderCompelted
 };
