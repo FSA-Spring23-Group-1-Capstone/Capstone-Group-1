@@ -1,25 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { createNewCustomerOrder, ordersByCustomerEmail, setOrderCompleted } from "../api/orders";
 
-const CheckoutForm = ({customer}) => {
-    const [orderId, setOrderId] = useState("")
-
-    useEffect(() => {
-        const getCustomerOrder = async () => {
-          const customerOrder = await ordersByCustomerEmail(customer.email)
-          setOrderId(customerOrder.id);
-        };
-    
-        getCustomerOrder();
-      }, []);
+const CheckoutForm = ({customer, orderId, setOrderItems, setOrderId}) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const completedOrder = await setOrderCompleted(orderId)
+        setOrderItems([])
         console.log("LLLL", completedOrder)
         if(completedOrder.orderCompleted){
-            const newCart = await createNewCustomerOrder(customer.id)
-            console.log("newCart: ", newCart)
+            const newCart = await createNewCustomerOrder(customer.id);
+            const customerOrders = await ordersByCustomerEmail(customer.email);
+            const cartNum = customerOrders.filter((order) => order.orderCompleted === false)
+            console.log("new cart", cartNum)
+            setOrderId(cartNum[0].id)
+            setOrderItems([])
         }
         return completedOrder
     }

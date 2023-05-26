@@ -79,7 +79,8 @@ ordersRouter.post("/create", async (req, res, next) => {
   console.log("&&&&", customerId)
   try {
     const order = await createOrder(customerId);
-    res.send({order});
+    console.log("this is new order", order)
+    res.send(order);
   } catch (error) {
     next(error);
   }

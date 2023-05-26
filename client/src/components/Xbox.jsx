@@ -3,22 +3,20 @@ import { useState } from "react";
 import { fetchItem } from "../api/orderItems";
 import DeleteGame from "./DeleteGame";
 
-const Xbox = ({ allGames, customer, token, setAllGames }) => {
+const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem }) => {
   const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
-
-  const [currentPrice, setCurrentPrice] = useState("");
   let originalPrice = 0;
 
   const handleSubmit = async (productId) => {
     const quantity = 1;
-    const addedItem = await fetchItem(
+    const newItem = await fetchItem(
       customer.id,
       productId,
       quantity,
       originalPrice,
       token
     );
-    console.log(addedItem);
+    setAddedItem(!addedItem)
   };
 
   return (

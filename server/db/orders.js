@@ -6,7 +6,7 @@ const getAllOrdersByCustomer = async (email) => {
 
   try {
     const {
-      rows: [orders],
+      rows
     } = await client.query(
       `
         SELECT * FROM orders
@@ -14,7 +14,7 @@ const getAllOrdersByCustomer = async (email) => {
         `,
       [id]
     );
-    return orders;
+    return rows;
   } catch (error) {}
 };
 
@@ -86,8 +86,7 @@ const createOrder = async (customerId) => {
         `,
       [customerId]
     );
-    const { orderId } = order;
-    return orderId;
+    return order;
   } catch (error) {
     console.error(error);
     throw error;

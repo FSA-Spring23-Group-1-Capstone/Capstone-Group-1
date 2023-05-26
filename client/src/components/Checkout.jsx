@@ -1,25 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Cart from "./Cart";
-import { ordersByCustomerEmail } from "../api/orders";
-import { getAllOrderItemsByOrderId } from "../api/orderItems";
 import CheckoutForm from "./CheckoutForm";
 
-const Checkout = ({ customer, token, allGames }) => {
-  const [orderItems, setOrderItems] = useState([]);
+const Checkout = ({ customer, token, allGames, orderItems, orderId, setOrderItems, setOrderId }) => {
   const [displayForm, setDisplayForm] = useState(false)
 
-  useEffect(() => {
-    const getCustomerOrder = async () => {
-      const customerOrder = await ordersByCustomerEmail(customer.email);
-      const fetchedOrderItems = await getAllOrderItemsByOrderId(
-        customerOrder.id,
-        token
-      );
-      setOrderItems(fetchedOrderItems);
-    };
-
-    getCustomerOrder();
-  }, []);
   const purchaseArr = orderItems.map(
     (order) => order.purchasePrice * order.quantity
   );
@@ -68,7 +53,7 @@ const Checkout = ({ customer, token, allGames }) => {
           <h4>Subtotal: ${total}</h4>
           <h2>Shipping & Handling FREE</h2>
           {displayForm ? (
-              <CheckoutForm customer={customer}/>
+              <CheckoutForm customer={customer} orderId={orderId} setOrderItems={setOrderItems} setOrderId={setOrderId}/>
           ) : (
             <></>
           )

@@ -29,7 +29,7 @@ export const createNewCustomerOrder = async (customerId) => {
   const response = await fetch(`${APIURL}/orders/create`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({customerId: customerId})
   });
