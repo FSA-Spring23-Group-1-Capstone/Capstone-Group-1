@@ -1,15 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { fetchItem } from "../api/orderItems";
 import DeleteGame from "./DeleteGame";
+import ToggleDescription from "./ToggleDescription";
 
 const Xbox = ({ allGames, customer, token, setAllGames }) => {
   const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
 
-  const [currentPrice, setCurrentPrice] = useState("");
-  let originalPrice = 0;
-
-  const handleSubmit = async (productId) => {
+  const handleSubmit = async (productId, originalPrice) => {
     const quantity = 1;
     const addedItem = await fetchItem(
       customer.id,
@@ -23,19 +20,26 @@ const Xbox = ({ allGames, customer, token, setAllGames }) => {
 
   return (
     <section>
-      <h1 id="xgame">Xbox Games</h1>
+      <img
+        id="xgame"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/XBOX_logo_2012.svg/1920px-XBOX_logo_2012.svg.png"
+        alt="Xbox Logo"
+      />
       {xboxGames.length ? (
         xboxGames.map((game) => {
+          const gameDescription = game.description;
+
           return (
-            <article key={game.id}>
-              <h2>{game.name}</h2>
+            <article className="card" key={game.id}>
               <img src={game.imageUrl} alt={game.name} />
-              <p>{game.description}</p>
+              <h2>{game.name}</h2>
+              <ToggleDescription initialDescription={gameDescription} />
               <p>{game.price}</p>
               <button
+                className="addCart-button"
                 onClick={() => {
-                  originalPrice = Number(game.price.substring(1));
-                  handleSubmit(game.id);
+                  const originalPrice = Number(game.price.substring(1));
+                  handleSubmit(game.id, originalPrice);
                 }}
               >
                 Add To Cart
