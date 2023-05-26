@@ -1,9 +1,33 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { authenticateNewCustomer } from "../api/authentication";
 
-const Home = () => {
+const Home = ({ setCustomer, setIsLoggedIn, setToken }) => {
+  const handleClick = () => {
+    const registerDemo = async () => {
+      const demoUser = {
+        name: "John Doe",
+        email: "john@gmail.com",
+        password: "12345",
+        address: "123 Lane",
+      };
+      const registered = await authenticateNewCustomer(demoUser);
+      console.log(registered);
+      if (registered.token) {
+        setIsLoggedIn(true);
+        setCustomer(registered.customer);
+        setToken(registered.token);
+      }
+    };
+    registerDemo();
+  };
   return (
     <div className="container">
+      <div className="demo-container">
+        <button className="demo-button" onClick={handleClick}>
+          Demo
+        </button>
+      </div>
       <NavLink to="/Xbox" className="xbox-container">
         <div>
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/XBOX_logo_2012.svg/220px-XBOX_logo_2012.svg.png" />
