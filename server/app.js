@@ -12,9 +12,18 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-app.use(express.static(path.join(__dirname, "./client", "dist")));
+app.use(express.static(path.join(__dirname, "../client", "dist")));
 
 app.use("/api", require("./api"));
+
+app.get("/", (req, res, next) => {
+  try {
+    res.sendFile(path.join(__dirname, "../client", "dist"));
+  } catch (error) {
+    console.errror(error);
+    throw error;
+  }
+});
 
 app.use((req, res, next) => {
   try {
@@ -24,6 +33,8 @@ app.use((req, res, next) => {
     throw error;
   }
 });
+
+
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message);

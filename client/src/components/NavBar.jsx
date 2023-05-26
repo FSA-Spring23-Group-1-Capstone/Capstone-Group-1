@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import HoverCart from "./HoverCart";
-import logo from "../../public/assets/GameGo-1.png";
+import logo from "../assets/GameGo-1.png";
 
 const NavBar = ({
   isLoggedIn,
