@@ -20,19 +20,18 @@ const Checkout = ({ customer, token, allGames, orderItems, orderId, setOrderItem
 
   return (
     <>
-      <div>
+      <div className="checkoutTitle">
         <h2>Checkout</h2>
       </div>
       <div>
         <section className="userCheckoutInfo">
-          <h3>Account Details</h3>
-          <p>Name: {customer.name}</p>
-          <p>Name: {customer.email}</p>
+          <h3>Ready to check out {customer.name}?</h3>
+          <p>Username: {customer.email}</p>
           <p>Address: {customer.address}</p>
         </section>
       </div>
       <div>
-        <h3>Cart Items</h3>
+        <h3 className="cartItems">Cart Items</h3>
         <section className="checkoutItems">
           {orderItems.map((item, index) => {
             const currentGame = allGames.filter(
@@ -49,6 +48,7 @@ const Checkout = ({ customer, token, allGames, orderItems, orderId, setOrderItem
           })}
         </section>
         <section>
+          <div className="orderup">
           <h3>Order Summary</h3>
           <h4>Subtotal: ${total}</h4>
           <h2>Shipping & Handling FREE</h2>
@@ -64,6 +64,7 @@ const Checkout = ({ customer, token, allGames, orderItems, orderId, setOrderItem
           >
             Purchase Form
           </button>
+          </div>
         </section>
       </div>
     </>

@@ -7,6 +7,10 @@ const HoverCart = ({ customer, token, allGames, orderId, orderItems }) => {
   
   const navigate = useNavigate();
   
+  const handleCheckout = () => {
+    setShowCart(false);
+    navigate("/checkout");
+  };
   return (
     <div>
       <button
@@ -23,20 +27,14 @@ const HoverCart = ({ customer, token, allGames, orderId, orderItems }) => {
               (game) => game.id === order.productId
             );
             return (
-              <div key={currentGame[0].id}>
+              <div className="hovercart" key={currentGame[0].id}>
                 <h4>Name: {currentGame[0].name}</h4>
                 <h5>Price: {currentGame[0].price}</h5>
                 <p>Quantity: {orderItems[index].quantity}</p>
               </div>
             );
           })}
-          <button
-            onClick={() => {
-              navigate("/checkout");
-            }}
-          >
-            Checkout
-          </button>
+          <button onClick={handleCheckout}>Checkout</button>
         </div>
       ) : (
         ""

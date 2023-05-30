@@ -1,4 +1,4 @@
-const APIURL = "http://localhost:8080/api";
+const APIURL = "api";
 
 export const getAllGames = async () => {
   try {
