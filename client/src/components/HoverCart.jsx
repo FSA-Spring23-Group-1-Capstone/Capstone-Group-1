@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 const HoverCart = ({ customer, token, allGames, orderId, orderItems }) => {
   const [showCart, setShowCart] = useState(false);
-  console.log("before", orderItems)
-  
+  console.log("before", orderItems);
+
   const navigate = useNavigate();
-  
+
   const handleCheckout = () => {
     setShowCart(false);
     navigate("/checkout");
@@ -14,11 +14,12 @@ const HoverCart = ({ customer, token, allGames, orderId, orderItems }) => {
   return (
     <div>
       <button
+        className="nav-button"
         onClick={() => {
           setShowCart(!showCart);
         }}
       >
-        <i className="fa-solid fa-cart-shopping"></i>
+        Cart
       </button>
       {showCart ? (
         <div>

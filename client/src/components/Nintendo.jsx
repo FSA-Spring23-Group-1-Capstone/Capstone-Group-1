@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
 
-
 const Nintendo = ({
   allGames,
   setAllGames,
@@ -14,9 +13,9 @@ const Nintendo = ({
   const nintendoGames = allGames.filter((game) =>
     game.system.includes("Nintendo")
   );
-  
+
   nintendoGames.sort((a, b) => a.name.localeCompare(b.name));
-  
+
   let originalPrice = 0;
 
   const handleSubmit = async (productId) => {
@@ -29,22 +28,19 @@ const Nintendo = ({
       token
     );
     setAddedItem(!addedItem);
-
   };
 
   const [expandedGameId, setExpandedGameId] = useState(null);
 
   const handleGameClick = (gameId) => {
     setExpandedGameId(gameId === expandedGameId ? null : gameId);
-
   };
 
   return (
-    <section>
+    <section className="game-card">
       <img
         id="ngame"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nintendo.svg/1920px-Nintendo.svg.png"
-
         alt="Nintendo Logo"
       />
 
@@ -78,7 +74,6 @@ const Nintendo = ({
             </div>
           </article>
         ))
-
       ) : (
         <h1>No Games to display</h1>
       )}
