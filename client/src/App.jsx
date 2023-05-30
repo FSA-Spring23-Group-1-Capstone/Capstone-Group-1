@@ -47,21 +47,23 @@ function App() {
   }, [token]);
 
   useEffect(() => {
-    const getCustomerOrder = async () => {
-      const customerOrders = await ordersByCustomerEmail(customer.email);
-      const cartNum = customerOrders.filter(
-        (order) => order.orderCompleted === false
-      );
-      setOrderId(cartNum[0].id);
-      const fetchedOrderItems = await getAllOrderItemsByOrderId(
-        cartNum[0].id,
-        token
-      );
-      console.log("JJJJJJJ", fetchedOrderItems);
-      setOrderItems(fetchedOrderItems);
-    };
+    if (customer.length > 1) {
+      const getCustomerOrder = async () => {
+        const customerOrders = await ordersByCustomerEmail(customer.email);
+        const cartNum = customerOrders.filter(
+          (order) => order.orderCompleted === false
+        );
+        setOrderId(cartNum[0].id);
+        const fetchedOrderItems = await getAllOrderItemsByOrderId(
+          cartNum[0].id,
+          token
+        );
+        console.log("JJJJJJJ", fetchedOrderItems);
+        setOrderItems(fetchedOrderItems);
+      };
 
-    getCustomerOrder();
+      getCustomerOrder();
+    }
   }, [addedItem]);
 
   return (
@@ -78,8 +80,9 @@ function App() {
         orderId={orderId}
       />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route
-          path="/"
+          path="/home"
           element={
             <Home
               setCustomer={setCustomer}
@@ -88,7 +91,6 @@ function App() {
             />
           }
         />
-        <Route path="/home" element={<Home />} />
 
         {/*<Route path="/account" element={<Account />} />*/}
 

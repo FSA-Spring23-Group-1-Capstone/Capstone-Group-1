@@ -3,28 +3,30 @@ import { NavLink } from "react-router-dom";
 import { authenticateNewCustomer } from "../api/authentication";
 
 const Home = ({ setCustomer, setIsLoggedIn, setToken }) => {
-  const handleClick = () => {
-    const registerDemo = async () => {
-      const demoUser = {
-        name: "John Doe",
-        email: "john@gmail.com",
-        password: "12345",
-        address: "123 Lane",
-      };
-      const registered = await authenticateNewCustomer(demoUser);
-      console.log(registered);
-      if (registered.token) {
-        setIsLoggedIn(true);
-        setCustomer(registered.customer);
-        setToken(registered.token);
-      }
-    };
-    registerDemo();
-  };
   return (
     <div className="container">
       <div className="demo-container">
-        <button className="demo-button" onClick={handleClick}>
+        <button
+          className="demo-button"
+          onClick={() => {
+            const registerDemo = async () => {
+              const demoUser = {
+                name: "John Doe",
+                email: "john@gmail.com",
+                password: "12345",
+                address: "123 Lane",
+              };
+              const registered = await authenticateNewCustomer(demoUser);
+              console.log(registered);
+              if (registered.token) {
+                setToken(registered.token);
+                setIsLoggedIn(true);
+                setCustomer(registered.customer);
+              }
+            };
+            registerDemo();
+          }}
+        >
           Demo
         </button>
       </div>
