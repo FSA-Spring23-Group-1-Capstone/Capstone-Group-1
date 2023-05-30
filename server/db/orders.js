@@ -5,9 +5,7 @@ const getAllOrdersByCustomer = async (email) => {
   const { id } = await getCustomerByCustomerEmail(email);
 
   try {
-    const {
-      rows
-    } = await client.query(
+    const { rows } = await client.query(
       `
         SELECT * FROM orders
         WHERE "customerId" = $1
@@ -42,32 +40,36 @@ const createOrderItem = async (
   customerId,
   productId,
   quantity,
-  purchasePrice
+  purchasePrice,
+  orderId
 ) => {
-  const orderItemExist = await getOrderItemByProductId(productId);
-  // console.log("this is the order item quantity", orderItemExist.quantity);
+  const allOrderItemsFromCustomer = await getAllOrderItemsByOrderId(orderId);
+  console.log("All items from a customer", allOrderItemsFromCustomer);
   try {
-    if (orderItemExist) {
-      const updatedOrderItem = await updateOrderItemQuantity(
-        orderItemExist.orderItemId,
-        orderItemExist.quantity + 1
-      );
-
-      return updatedOrderItem;
+    let foundMatch = false;
+    for (let i = 0; i < allOrderItemsFromCustomer.length; i++) {
+      if (allOrderItemsFromCustomer[i].productId === productId) {
+        await updateOrderItemQuantity(
+          allOrderItemsFromCustomer[i].orderItemId,
+          allOrderItemsFromCustomer[i].quantity + 1
+        );
+        foundMatch = true;
+        break;
+      }
     }
-    const order = await getOrderIdByCustomerId(customerId);
-    const orderId = order.id;
-    const {
-      rows: [orderItem],
-    } = await client.query(
-      `
-          INSERT INTO order_items("orderId", "productId", quantity, "purchasePrice")
-          VALUES ($1, $2, $3, $4)
-          RETURNING *;
-          `,
-      [orderId, productId, quantity, purchasePrice]
-    );
-    return orderItem;
+    if (!foundMatch) {
+      const {
+        rows: [orderItem],
+      } = await client.query(
+        `
+              INSERT INTO order_items("orderId", "productId", quantity, "purchasePrice")
+              VALUES ($1, $2, $3, $4)
+              RETURNING *;
+              `,
+        [orderId, productId, quantity, purchasePrice]
+      );
+      return orderItem;
+    }
   } catch (error) {
     console.error(error);
     throw error;
@@ -106,7 +108,7 @@ const toggleOrderCompelted = async (orderId) => {
         `,
       [true]
     );
-    return order
+    return order;
   } catch (error) {
     console.error(error);
     throw error;
@@ -150,8 +152,7 @@ const deleteOrdeItem = async (orderItemId) => {
     throw error;
   }
 };
-const getAllOrderItemsByOrderId = async (orderId) => {
-  console.log("YYYYYY", orderId)
+async function getAllOrderItemsByOrderId(orderId) {
   try {
     const { rows } = await client.query(
       `
@@ -160,12 +161,12 @@ const getAllOrderItemsByOrderId = async (orderId) => {
   `,
       [orderId]
     );
-    console.log("@@@@", rows)
+
     return rows;
   } catch (error) {
     throw error;
   }
-};
+}
 
 async function getOrderItemByProductId(productId) {
   try {
@@ -192,5 +193,5 @@ module.exports = {
   deleteOrdeItem,
   getAllOrderItemsByOrderId,
   getOrderIdByCustomerId,
-  toggleOrderCompelted
+  toggleOrderCompelted,
 };

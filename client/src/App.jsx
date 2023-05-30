@@ -28,7 +28,7 @@ function App() {
   const [orderItems, setOrderItems] = useState([]);
   const [addedItem, setAddedItem] = useState(false);
   const [allCustomerOrders, setAllCustomerOrders] = useState([]);
-
+  console.log("OrderID: ", orderId);
   useEffect(() => {
     const getAllProducts = async () => {
       const data = await getAllGames();
@@ -129,6 +129,7 @@ function App() {
               setAllGames={setAllGames}
               addedItem={addedItem}
               setAddedItem={setAddedItem}
+              orderId={orderId}
             />
           }
         />
@@ -142,6 +143,7 @@ function App() {
               customer={customer}
               addedItem={addedItem}
               setAddedItem={setAddedItem}
+              orderId={orderId}
             />
           }
         />
@@ -155,6 +157,7 @@ function App() {
               customer={customer}
               addedItem={addedItem}
               setAddedItem={setAddedItem}
+              orderId={orderId}
             />
           }
         />
@@ -168,6 +171,7 @@ function App() {
               customer={customer}
               addedItem={addedItem}
               setAddedItem={setAddedItem}
+              orderId={orderId}
             />
           }
         />

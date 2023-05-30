@@ -4,7 +4,6 @@ import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
 import UpdateGameForm from "./UpdateGameForm";
 
-
 const All = ({
   allGames,
   token,
@@ -12,17 +11,18 @@ const All = ({
   customer,
   addedItem,
   setAddedItem,
+  orderId,
 }) => {
   const [showCreate, setShowCreate] = useState(false);
   const Games = allGames;
   let originalPrice = 0;
 
   const [expandedGameId, setExpandedGameId] = useState(null);
-  
+
   const handleGameClick = (gameId) => {
     setExpandedGameId(gameId === expandedGameId ? null : gameId);
   };
-    // Sort games alphabetically
+  // Sort games alphabetically
   allGames.sort((a, b) => {
     if (a.name > b.name) {
       return 1;
@@ -38,7 +38,8 @@ const All = ({
       productId,
       quantity,
       originalPrice,
-      token
+      token,
+      orderId
     );
     setAddedItem(!addedItem);
   };
@@ -113,30 +114,36 @@ const All = ({
             Games.map((game) => {
               return (
                 <article
-                className={`game ${expandedGameId === game.id ? "expanded" : ""}`}
-                key={game.id}
-                onClick={() => handleGameClick(game.id)}
-              >
+                  className={`game ${
+                    expandedGameId === game.id ? "expanded" : ""
+                  }`}
+                  key={game.id}
+                  onClick={() => handleGameClick(game.id)}
+                >
                   <div className="game-image">
-              <img className="image" src={game.imageUrl} alt={game.name} />
-            </div>
-            <div className="game-details">
-              <h2>{game.name}</h2>
-              {expandedGameId === game.id && (
-                <>
-                  <p>{game.description}</p>
-                  <p>{game.price}</p>
-                  <button
-                    onClick={() => {
-                      originalPrice = Number(game.price.substring(1));
-                      handleSubmit(game.id);
-                    }}
-                  >
-                    <i className="fa-solid fa-cart-shopping">+</i>
-                  </button>
-                </>
-              )}
-            </div>
+                    <img
+                      className="image"
+                      src={game.imageUrl}
+                      alt={game.name}
+                    />
+                  </div>
+                  <div className="game-details">
+                    <h2>{game.name}</h2>
+                    {expandedGameId === game.id && (
+                      <>
+                        <p>{game.description}</p>
+                        <p>{game.price}</p>
+                        <button
+                          onClick={() => {
+                            originalPrice = Number(game.price.substring(1));
+                            handleSubmit(game.id);
+                          }}
+                        >
+                          <i className="fa-solid fa-cart-shopping">+</i>
+                        </button>
+                      </>
+                    )}
+                  </div>
                 </article>
               );
             })

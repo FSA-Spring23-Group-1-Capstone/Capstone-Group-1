@@ -5,7 +5,8 @@ export const fetchItem = async (
   productId,
   quantity,
   purchasePrice,
-  token
+  token,
+  orderId
 ) => {
   console.log(
     "here are props: ",
@@ -21,7 +22,13 @@ export const fetchItem = async (
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ customerId, productId, quantity, purchasePrice }),
+      body: JSON.stringify({
+        customerId,
+        productId,
+        quantity,
+        purchasePrice,
+        orderId,
+      }),
     });
     const result = await response.json();
     return result;
@@ -31,7 +38,7 @@ export const fetchItem = async (
 };
 
 export const getAllOrderItemsByOrderId = async (orderId, token) => {
-  console.log("^^^^", orderId, token)
+  console.log("^^^^", orderId, token);
   try {
     const response = await fetch(`${APIURL}/orderitems/${orderId}`, {
       headers: {
