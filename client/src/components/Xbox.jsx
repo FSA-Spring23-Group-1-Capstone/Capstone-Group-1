@@ -3,11 +3,16 @@ import { fetchItem } from "../api/orderItems";
 import DeleteGame from "./DeleteGame";
 import ToggleDescription from "./ToggleDescription";
 
-
-const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem }) => {
+const Xbox = ({
+  allGames,
+  customer,
+  token,
+  setAllGames,
+  setAddedItem,
+  addedItem,
+}) => {
   const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
   let originalPrice = 0;
-
 
   // Sort games alphabetically
   xboxGames.sort((a, b) => {
@@ -18,7 +23,6 @@ const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem 
     }
   });
 
-
   const handleSubmit = async (productId, originalPrice) => {
     const quantity = 1;
     const newItem = await fetchItem(
@@ -28,7 +32,7 @@ const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem 
       originalPrice,
       token
     );
-    setAddedItem(!addedItem)
+    setAddedItem(!addedItem);
   };
 
   return (
@@ -55,7 +59,7 @@ const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem 
                   handleSubmit(game.id, originalPrice);
                 }}
               >
-                Add To Cart
+                +<i className="fa-solid fa-cart-shopping"></i>
               </button>
             </article>
           );

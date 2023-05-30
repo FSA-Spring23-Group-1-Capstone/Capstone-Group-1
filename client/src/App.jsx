@@ -11,6 +11,7 @@ import {
   Nintendo,
   All,
   Checkout,
+  Account,
 } from "./components";
 
 import { getMe } from "./api/customers";
@@ -26,14 +27,25 @@ function App() {
   const [orderId, setOrderId] = useState([]);
   const [orderItems, setOrderItems] = useState([]);
   const [addedItem, setAddedItem] = useState(false);
+  const [allCustomerOrders, setAllCustomerOrders] = useState([]);
 
   useEffect(() => {
     const getAllProducts = async () => {
       const data = await getAllGames();
       setAllGames(data);
+      const theOrders = await ordersByCustomerEmail(customer.email);
+      setAllCustomerOrders(theOrders);
     };
     getAllProducts();
   }, []);
+
+  useEffect(() => {
+    const resetOrders = async () => {
+      const theOrders = await ordersByCustomerEmail(customer.email);
+      setAllCustomerOrders(theOrders);
+    };
+    resetOrders();
+  }, [orderId]);
 
   useEffect(() => {
     const getInitialData = async () => {
@@ -48,14 +60,16 @@ function App() {
 
   useEffect(() => {
     const getCustomerOrder = async () => {
-      const customerOrders = await ordersByCustomerEmail(customer.email);
-      const cartNum = customerOrders.filter((order) => order.orderCompleted === false)
-      setOrderId(cartNum[0].id)
+      const theOrders = await ordersByCustomerEmail(customer.email);
+      const cartNum = theOrders.filter(
+        (order) => order.orderCompleted === false
+      );
+      setOrderId(cartNum[0].id);
       const fetchedOrderItems = await getAllOrderItemsByOrderId(
         cartNum[0].id,
         token
-      )
-      console.log("JJJJJJJ", fetchedOrderItems)
+      );
+      console.log("JJJJJJJ", fetchedOrderItems);
       setOrderItems(fetchedOrderItems);
     };
 
@@ -79,20 +93,30 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
 
-        {/*<Route path="/account" element={<Account />} />*/}
+        <Route
+          path="/account"
+          element={
+            <Account
+              customer={customer}
+              allCustomerOrders={allCustomerOrders}
+            />
+          }
+        />
 
-        <Route 
-        path="/checkout" 
-        element={<Checkout 
-          token={token} 
-          customer={customer} 
-          allGames={allGames}
-          orderItems={orderItems}
-          orderId={orderId}
-          setOrderItems={setOrderItems}
-          addedItem={addedItem}
-          setOrderId={setOrderId}
-          />}
+        <Route
+          path="/checkout"
+          element={
+            <Checkout
+              token={token}
+              customer={customer}
+              allGames={allGames}
+              orderItems={orderItems}
+              orderId={orderId}
+              setOrderItems={setOrderItems}
+              addedItem={addedItem}
+              setOrderId={setOrderId}
+            />
+          }
         />
 
         <Route

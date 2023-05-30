@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
-import ToggleDescription from "./ToggleDescription"; 
+import ToggleDescription from "./ToggleDescription";
 
-const Nintendo = ({ allGames, setAllGames, token, customer, addedItem, setAddedItem }) => {
+const Nintendo = ({
+  allGames,
+  setAllGames,
+  token,
+  customer,
+  addedItem,
+  setAddedItem,
+}) => {
   const nintendoGames = allGames.filter((game) =>
     game.system.includes("Nintendo")
   );
@@ -28,12 +35,15 @@ const Nintendo = ({ allGames, setAllGames, token, customer, addedItem, setAddedI
       originalPrice,
       token
     );
-    setAddedItem(!addedItem)
+    setAddedItem(!addedItem);
   };
 
   return (
     <section>
-      <img id="ngame" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nintendo.svg/1920px-Nintendo.svg.png" ></img>
+      <img
+        id="ngame"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nintendo.svg/1920px-Nintendo.svg.png"
+      ></img>
       {nintendoGames.length ? (
         nintendoGames.map((game) => {
           const gameDescription = game.description;
@@ -49,9 +59,8 @@ const Nintendo = ({ allGames, setAllGames, token, customer, addedItem, setAddedI
                   handleSubmit(game.id);
                 }}
               >
-                Add To Cart
+                +<i className="fa-solid fa-cart-shopping"></i>
               </button>
-
             </article>
           );
         })

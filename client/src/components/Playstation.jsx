@@ -3,7 +3,14 @@ import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
 import ToggleDescription from "./ToggleDescription";
 
-const Playstation = ({ allGames, token, setAllGames, customer, addedItem, setAddedItem }) => {
+const Playstation = ({
+  allGames,
+  token,
+  setAllGames,
+  customer,
+  addedItem,
+  setAddedItem,
+}) => {
   const playstationGames = allGames.filter((game) =>
     game.system.includes("Playstation")
   );
@@ -28,12 +35,15 @@ const Playstation = ({ allGames, token, setAllGames, customer, addedItem, setAdd
       originalPrice,
       token
     );
-    setAddedItem(!addedItem)
+    setAddedItem(!addedItem);
   };
 
   return (
     <section>
-      <img id="pgame" src="https://gameoverpnx.files.wordpress.com/2023/03/1626364677_049220_1626364866_noticia_normal.jpg"></img>
+      <img
+        id="pgame"
+        src="https://gameoverpnx.files.wordpress.com/2023/03/1626364677_049220_1626364866_noticia_normal.jpg"
+      ></img>
       {playstationGames.length ? (
         playstationGames.map((game) => {
           const gameDescription = game.description;
@@ -49,9 +59,8 @@ const Playstation = ({ allGames, token, setAllGames, customer, addedItem, setAdd
                   handleSubmit(game.id);
                 }}
               >
-                Add To Cart
+                +<i className="fa-solid fa-cart-shopping"></i>
               </button>
-
             </article>
           );
         })

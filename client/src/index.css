@@ -8,21 +8,13 @@
 
 }
 
-
-
-
 html, body {
   background-color: #242424;
   margin: 0;
   padding: 0;
   width: 100%;
-  
-  
- 
+
 }
-
-
- 
 
 /* Header/Navbar */
 .header-container {
@@ -33,7 +25,7 @@ html, body {
 
 .register-body {
   position: absolute;
-  right: 20rem;
+  right: 16.5rem;
 }
 .register-form {
   margin-top: 1rem;
@@ -57,13 +49,14 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 5px;
   border: 1px solid #ccc;
-  padding: 0.6em 1.2em;
+  padding: 10px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
+  color: white;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -279,7 +272,7 @@ article p {
   border-radius: 5px;
   background-color: #1a1a1a;
   color: #f9f9f9;
-  font-size: 15px;
+  font-size: 1em;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -314,3 +307,42 @@ article p {
 #account:hover {
   border-color: #646cff;
 }
+
+.account {
+  font-size: 2em;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+#orders {
+  background-color: rgb(255, 247, 236);
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#corder {
+  color: green;
+  font-size: 1em;
+  margin-left: 10px;
+  display: inline;
+}
+
+#orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#orders th, #orders td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  
+}
+
+#orders th {
+  background-color:forestgreen;
+  color: white;
+}
+
