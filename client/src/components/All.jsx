@@ -3,7 +3,7 @@ import CreateGameForm from "./CreateGameForm";
 import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
 import UpdateGameForm from "./UpdateGameForm";
-import ToggleDescription from "./ToggleDescription";
+
 
 const All = ({
   allGames,
@@ -17,7 +17,12 @@ const All = ({
   const Games = allGames;
   let originalPrice = 0;
 
-  // Sort games alphabetically
+  const [expandedGameId, setExpandedGameId] = useState(null);
+  
+  const handleGameClick = (gameId) => {
+    setExpandedGameId(gameId === expandedGameId ? null : gameId);
+  };
+    // Sort games alphabetically
   allGames.sort((a, b) => {
     if (a.name > b.name) {
       return 1;
@@ -66,7 +71,7 @@ const All = ({
                 <article key={game.id}>
                   <img src={game.imageUrl} alt={game.name} />
                   <h2>{game.name}</h2>
-                  <ToggleDescription initialDescription={game.description} />
+                  <p>{game.description} </p>
                   <p>{game.price}</p>
                   <button
                     onClick={() => {
@@ -107,10 +112,19 @@ const All = ({
           {Games.length ? (
             Games.map((game) => {
               return (
-                <article key={game.id}>
-                  <img src={game.imageUrl} alt={game.name} />
-                  <h2>{game.name}</h2>
-                  <ToggleDescription initialDescription={game.description} />
+                <article
+                className={`game ${expandedGameId === game.id ? "expanded" : ""}`}
+                key={game.id}
+                onClick={() => handleGameClick(game.id)}
+              >
+                  <div className="game-image">
+              <img className="image" src={game.imageUrl} alt={game.name} />
+            </div>
+            <div className="game-details">
+              <h2>{game.name}</h2>
+              {expandedGameId === game.id && (
+                <>
+                  <p>{game.description}</p>
                   <p>{game.price}</p>
                   <button
                     onClick={() => {
@@ -118,8 +132,11 @@ const All = ({
                       handleSubmit(game.id);
                     }}
                   >
-                    Add To Cart
+                    <i className="fa-solid fa-cart-shopping">+</i>
                   </button>
+                </>
+              )}
+            </div>
                 </article>
               );
             })

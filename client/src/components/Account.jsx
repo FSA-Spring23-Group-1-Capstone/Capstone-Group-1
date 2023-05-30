@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const Account = ({ allCustomerOrders }) => {
   if (allCustomerOrders.length === 1) {
     return (
@@ -44,3 +45,4 @@ const Account = ({ allCustomerOrders }) => {
 };
 
 export default Account;
+

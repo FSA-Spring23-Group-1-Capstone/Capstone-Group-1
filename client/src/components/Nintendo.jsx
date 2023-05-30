@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
-import ToggleDescription from "./ToggleDescription";
+
 
 const Nintendo = ({
   allGames,
@@ -14,16 +14,9 @@ const Nintendo = ({
   const nintendoGames = allGames.filter((game) =>
     game.system.includes("Nintendo")
   );
-  // Sort games alphabetically
-  nintendoGames.sort((a, b) => {
-    if (a.name > b.name) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
-
-  const [currentPrice, setCurrentPrice] = useState("");
+  
+  nintendoGames.sort((a, b) => a.name.localeCompare(b.name));
+  
   let originalPrice = 0;
 
   const handleSubmit = async (productId) => {
@@ -36,6 +29,14 @@ const Nintendo = ({
       token
     );
     setAddedItem(!addedItem);
+
+  };
+
+  const [expandedGameId, setExpandedGameId] = useState(null);
+
+  const handleGameClick = (gameId) => {
+    setExpandedGameId(gameId === expandedGameId ? null : gameId);
+
   };
 
   return (
@@ -43,27 +44,41 @@ const Nintendo = ({
       <img
         id="ngame"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nintendo.svg/1920px-Nintendo.svg.png"
-      ></img>
+
+        alt="Nintendo Logo"
+      />
+
       {nintendoGames.length ? (
-        nintendoGames.map((game) => {
-          const gameDescription = game.description;
-          return (
-            <article key={game.id}>
-              <img src={game.imageUrl} alt={game.name} />
+        nintendoGames.map((game) => (
+          <article
+            className={`game ${expandedGameId === game.id ? "expanded" : ""}`}
+            key={game.id}
+            onClick={() => handleGameClick(game.id)}
+          >
+            <div className="game-image">
+              <img className="image" src={game.imageUrl} alt={game.name} />
+            </div>
+            <div className="game-details">
               <h2>{game.name}</h2>
-              <ToggleDescription initialDescription={gameDescription} />
-              <p>{game.price}</p>
-              <button
-                onClick={() => {
-                  originalPrice = Number(game.price.substring(1));
-                  handleSubmit(game.id);
-                }}
-              >
-                +<i className="fa-solid fa-cart-shopping"></i>
-              </button>
-            </article>
-          );
-        })
+
+              {expandedGameId === game.id && (
+                <>
+                  <p>{game.description}</p>
+                  <p>{game.price}</p>
+                  <button
+                    onClick={() => {
+                      originalPrice = Number(game.price.substring(1));
+                      handleSubmit(game.id);
+                    }}
+                  >
+                    +<i className="fa-solid fa-cart-shopping"></i>
+                  </button>
+                </>
+              )}
+            </div>
+          </article>
+        ))
+
       ) : (
         <h1>No Games to display</h1>
       )}
