@@ -45,31 +45,6 @@ a {
   
 }
 
-/* h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-} */
-
-/* button {
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  color: white;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -85,23 +60,13 @@ button:focus-visible {
   }
 }
 
-/* section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-} */
+
 .game-card {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-/* h1 {
-  color: #333;
-  margin-bottom: 20px;
-  width: 100%;
-  text-align: center;
-} */
 
 .game {
   background-color: rgb(255, 247, 236);
@@ -118,11 +83,7 @@ button:focus-visible {
 
 
 
-/* article p {
-  font-weight: bold;
-  margin-bottom: 2%;
-  color: #000000;
-} */
+
 /* ------------------------------------xbox description toggle */
 .button.seemore{
   background-color: rgb(255, 247, 236);
@@ -309,11 +270,7 @@ width:60%;
 .nav-button:hover {
   border-color: #646cff;
 }
-/* .cart-logo {
-  background-color: #1a1a1a;
-  border-style: none;
-  color: #f9f9f9;
-} */
+
 
 .account {
   font-size: 2em;
