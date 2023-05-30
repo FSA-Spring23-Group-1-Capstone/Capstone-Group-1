@@ -2,9 +2,18 @@ import React, { useEffect, useState } from "react";
 import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
 
-
-const Playstation = ({ allGames, token, setAllGames, customer, addedItem, setAddedItem }) => {
-  const playstationGames = allGames.filter((game) => game.system.includes("Playstation"));
+const Playstation = ({
+  allGames,
+  token,
+  setAllGames,
+  customer,
+  addedItem,
+  setAddedItem,
+  orderId,
+}) => {
+  const playstationGames = allGames.filter((game) =>
+    game.system.includes("Playstation")
+  );
 
   playstationGames.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -18,10 +27,10 @@ const Playstation = ({ allGames, token, setAllGames, customer, addedItem, setAdd
       productId,
       quantity,
       originalPrice,
-      token
+      token,
+      orderId
     );
     setAddedItem(!addedItem);
-
   };
   const [expandedGameId, setExpandedGameId] = useState(null);
 
@@ -32,7 +41,10 @@ const Playstation = ({ allGames, token, setAllGames, customer, addedItem, setAdd
   return (
     <section>
       <img
-        id="pgame" src="https://gameoverpnx.files.wordpress.com/2023/03/1626364677_049220_1626364866_noticia_normal.jpg" alt="Playstation Games"/>
+        id="pgame"
+        src="https://gameoverpnx.files.wordpress.com/2023/03/1626364677_049220_1626364866_noticia_normal.jpg"
+        alt="Playstation Games"
+      />
       {playstationGames.length ? (
         playstationGames.map((game) => (
           <article

@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import { fetchItem } from "../api/orderItems";
 import DeleteGame from "./DeleteGame";
 
-
-const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem }) => {
+const Xbox = ({
+  allGames,
+  customer,
+  token,
+  setAllGames,
+  setAddedItem,
+  addedItem,
+  orderId,
+}) => {
   const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
   let originalPrice = 0;
 
- 
   xboxGames.sort((a, b) => a.name.localeCompare(b.name));
 
   const handleSubmit = async (productId) => {
@@ -17,7 +23,8 @@ const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem 
       productId,
       quantity,
       originalPrice,
-      token
+      token,
+      orderId
     );
     setAddedItem(!addedItem);
   };
@@ -26,12 +33,15 @@ const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem 
 
   const handleGameClick = (gameId) => {
     setExpandedGameId(gameId === expandedGameId ? null : gameId);
-
   };
 
   return (
     <section>
-      <img id="xgame" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/XBOX_logo_2012.svg/1920px-XBOX_logo_2012.svg.png" alt="Xbox Logo"/>
+      <img
+        id="xgame"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/XBOX_logo_2012.svg/1920px-XBOX_logo_2012.svg.png"
+        alt="Xbox Logo"
+      />
       {xboxGames.length ? (
         xboxGames.map((game) => (
           <article
