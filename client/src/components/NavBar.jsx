@@ -4,6 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import HoverCart from "./HoverCart";
 import logo from "../assets/GameGo-1.png";
+import { authenticateNewCustomer } from "../api/authentication";
 
 const NavBar = ({
   isLoggedIn,
@@ -24,13 +25,13 @@ const NavBar = ({
   };
   return (
     <header className="header-container">
-      <div id="logo">
+      <NavLink id="logo" to="/home">
         <img src={logo} alt="Logo" />
-      </div>
+      </NavLink>
       <nav>
-        <NavLink to="/home" id="home">
+        {/* <NavLink to="/home" id="home">
           Home
-        </NavLink>
+        </NavLink> */}
         <select onChange={handleChange} id="drop">
           <option value="/home">System</option>
           <option value="/Xbox">Xbox</option>
@@ -41,6 +42,15 @@ const NavBar = ({
         </select>
         {isLoggedIn ? (
           <>
+            <NavLink to="/account" id="account">
+              Account
+            </NavLink>
+            <HoverCart
+              customer={customer}
+              token={token}
+              allGames={allGames}
+              orderItems={orderItems}
+            />
             <button
               onClick={() => {
                 setIsLoggedIn(false);
@@ -52,15 +62,6 @@ const NavBar = ({
             >
               Logout
             </button>
-            <NavLink to="/account" id="account">
-              Account
-            </NavLink>
-            <HoverCart
-              customer={customer}
-              token={token}
-              allGames={allGames}
-              orderItems={orderItems}
-            />
           </>
         ) : (
           <>
@@ -116,6 +117,27 @@ const NavBar = ({
                 Login
               </button>
             )}
+            <button
+              onClick={() => {
+                const registerDummy = async () => {
+                  const dummy = {
+                    name: "John Doe",
+                    email: "john@gmail.com",
+                    password: "123456789",
+                    address: "123 Lane Street",
+                  };
+                  const dummyData = await authenticateNewCustomer(dummy);
+                  if (dummyData.token) {
+                    setToken(dummyData.token);
+                    setIsLoggedIn(true);
+                    setCustomer(dummyData.customer);
+                  }
+                };
+                registerDummy();
+              }}
+            >
+              Demo
+            </button>
           </>
         )}
       </nav>
