@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { fetchItem } from "../api/orderItems";
 import DeleteGame from "./DeleteGame";
 
+
 const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem }) => {
   const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
   let originalPrice = 0;
 
-  // Sort games alphabetically
+ 
   xboxGames.sort((a, b) => a.name.localeCompare(b.name));
 
   const handleSubmit = async (productId) => {
@@ -25,6 +26,7 @@ const Xbox = ({ allGames, customer, token, setAllGames, setAddedItem, addedItem 
 
   const handleGameClick = (gameId) => {
     setExpandedGameId(gameId === expandedGameId ? null : gameId);
+
   };
 
   return (

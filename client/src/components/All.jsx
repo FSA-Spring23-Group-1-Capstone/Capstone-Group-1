@@ -5,7 +5,14 @@ import { fetchItem } from "../api/orderItems";
 import UpdateGameForm from "./UpdateGameForm";
 
 
-const All = ({ allGames, token, setAllGames, customer, addedItem, setAddedItem }) => {
+const All = ({
+  allGames,
+  token,
+  setAllGames,
+  customer,
+  addedItem,
+  setAddedItem,
+}) => {
   const [showCreate, setShowCreate] = useState(false);
   const Games = allGames;
   let originalPrice = 0;
@@ -33,7 +40,7 @@ const All = ({ allGames, token, setAllGames, customer, addedItem, setAddedItem }
       originalPrice,
       token
     );
-    setAddedItem(!addedItem)
+    setAddedItem(!addedItem);
   };
 
   const toggleCreateForm = () => {
@@ -43,7 +50,7 @@ const All = ({ allGames, token, setAllGames, customer, addedItem, setAddedItem }
       setShowCreate(true);
     }
   };
-console.log("GGGGG", customer)
+  console.log("GGGGG", customer);
   if (customer.admin) {
     return (
       <>
@@ -54,7 +61,10 @@ console.log("GGGGG", customer)
           <></>
         )}
         <section>
-        <img id="agame" src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"></img>
+          <img
+            id="agame"
+            src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"
+          ></img>
           {Games.length ? (
             Games.map((game) => {
               return (
@@ -69,7 +79,7 @@ console.log("GGGGG", customer)
                       handleSubmit(game.id);
                     }}
                   >
-                    Add To Cart
+                    +<i className="fa-solid fa-cart-shopping"></i>
                   </button>
                   <UpdateGameForm
                     token={token}
@@ -95,7 +105,10 @@ console.log("GGGGG", customer)
     return (
       <>
         <section>
-          <img id="agame" src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"></img>
+          <img
+            id="agame"
+            src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"
+          ></img>
           {Games.length ? (
             Games.map((game) => {
               return (

@@ -22,7 +22,7 @@ html, body {
 
 .register-body {
   position: absolute;
-  right: 20rem;
+  right: 16.5rem;
 }
 .register-form {
   margin-top: 1rem;
@@ -49,10 +49,11 @@ button {
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 10px;
-  font-size: 15px;
+  font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
+  color: white;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -105,8 +106,6 @@ article {
  
 }
 
-
-
 .game img {
   width: 90%;
   height: 260px;
@@ -143,8 +142,6 @@ article p {
 }
 
 
-
-
 .expanded {
   position:fixed ;
   top: 30%;
@@ -162,9 +159,6 @@ article p {
   object-fit: cover; 
   border-radius: 8px; 
 }
-
-
-
 
 .expanded .game-details{
 padding-left:2%;
@@ -185,15 +179,6 @@ width:60%;
   margin-top:50px;
 }
 
-
-
-
-
-
-
-
-
-
 #xgame {
   max-width: 50%;
   padding-bottom: 40px;
@@ -210,8 +195,6 @@ width:60%;
     border-radius: 8px;
   }
 
-
-  
 
 #agame {
   width: 80%;
@@ -245,22 +228,22 @@ width:60%;
 }
 
 .xbox-container {
-  background-color: #28c628; /* Lighter Xbox green */
+  background-color: #28c628; 
 }
 
 .playstation-container {
-  background-color: #0051bd; /* Lighter PlayStation blue */
+  background-color: #0051bd; 
 }
 
 .nintendo-container {
-  background-color: #e60012; /* Nintendo red */
+  background-color: #e60012; 
 }
 .nintendo-container img {
   border-radius: 10px;
 }
 
 .all-container {
-  background-color: #f4f4f4; /* generic gray */
+  background-color: #f4f4f4; 
 }
 .all-container img {
   border-radius: 10px;
@@ -281,11 +264,11 @@ width:60%;
 }
 
 .xbox-container:hover {
-  background-color: #179b17; /* Xbox green */
+  background-color: #179b17; 
 }
 
 .playstation-container:hover {
-  background-color: #003087; /* PlayStation blue */
+  background-color: #003087; 
 }
 
 .nintendo-container:hover {
@@ -295,9 +278,6 @@ width:60%;
 .all-container:hover {
   background-color: goldenrod;
 }
-
-
-
 
 #logo img {
   width: 400px;
@@ -321,7 +301,7 @@ width:60%;
   border-radius: 5px;
   background-color: #1a1a1a;
   color: #f9f9f9;
-  font-size: 15px;
+  font-size: 1em;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -355,6 +335,44 @@ width:60%;
 }
 #account:hover {
   border-color: #646cff;
+}
+
+.account {
+  font-size: 2em;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+#orders {
+  background-color: rgb(255, 247, 236);
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#corder {
+  color: green;
+  font-size: 1em;
+  margin-left: 10px;
+  display: inline;
+}
+
+#orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#orders th, #orders td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  
+}
+
+#orders th {
+  background-color:forestgreen;
+  color: white;
 }
 
 .hovercart {
@@ -545,6 +563,4 @@ width:60%;
 }
  
 } 
-
-
 

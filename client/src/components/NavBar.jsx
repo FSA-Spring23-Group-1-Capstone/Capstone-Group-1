@@ -13,10 +13,11 @@ const NavBar = ({
   customer,
   token,
   allGames,
-  orderItems
+  orderItems,
 }) => {
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+
   const navigate = useNavigate();
   const handleChange = (e) => {
     navigate(e.target.value);
@@ -54,7 +55,12 @@ const NavBar = ({
             <NavLink to="/account" id="account">
               Account
             </NavLink>
-            <HoverCart customer={customer} token={token} allGames={allGames} orderItems={orderItems}/>
+            <HoverCart
+              customer={customer}
+              token={token}
+              allGames={allGames}
+              orderItems={orderItems}
+            />
           </>
         ) : (
           <>

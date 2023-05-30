@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import DeleteGame from "./DeleteGame";
 import { fetchItem } from "../api/orderItems";
 
+
 const Playstation = ({ allGames, token, setAllGames, customer, addedItem, setAddedItem }) => {
   const playstationGames = allGames.filter((game) => game.system.includes("Playstation"));
 
-  // Sort games alphabetically
   playstationGames.sort((a, b) => a.name.localeCompare(b.name));
 
   const [currentPrice, setCurrentPrice] = useState("");
@@ -21,8 +21,8 @@ const Playstation = ({ allGames, token, setAllGames, customer, addedItem, setAdd
       token
     );
     setAddedItem(!addedItem);
-  };
 
+  };
   const [expandedGameId, setExpandedGameId] = useState(null);
 
   const handleGameClick = (gameId) => {
