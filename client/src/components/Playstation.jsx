@@ -9,6 +9,7 @@ const Playstation = ({
   customer,
   addedItem,
   setAddedItem,
+  orderId
 }) => {
   const playstationGames = allGames.filter((game) =>
     game.system.includes("Playstation")
@@ -26,7 +27,8 @@ const Playstation = ({
       productId,
       quantity,
       originalPrice,
-      token
+      token,
+      orderId
     );
     setAddedItem(!addedItem);
   };

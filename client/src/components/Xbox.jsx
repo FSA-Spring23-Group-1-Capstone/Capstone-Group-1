@@ -9,6 +9,7 @@ const Xbox = ({
   setAllGames,
   setAddedItem,
   addedItem,
+  orderId
 }) => {
   const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
   let originalPrice = 0;
@@ -22,7 +23,8 @@ const Xbox = ({
       productId,
       quantity,
       originalPrice,
-      token
+      token,
+      orderId
     );
     setAddedItem(!addedItem);
   };

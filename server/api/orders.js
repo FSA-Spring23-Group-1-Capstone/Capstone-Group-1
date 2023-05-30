@@ -48,14 +48,15 @@ ordersRouter.patch("/complete", async (req, res, next) => {
 // need a create route
 
 ordersRouter.post("/addtocart", async (req, res, next) => {
-  const { customerId, productId, quantity, purchasePrice } = req.body;
+  const { customerId, productId, quantity, purchasePrice, orderId } = req.body;
   console.log(customerId, productId, quantity, purchasePrice);
   try {
     const orderItem = await createOrderItem(
       customerId,
       productId,
       quantity,
-      purchasePrice
+      purchasePrice,
+      orderId
     );
     res.send(orderItem);
   } catch (error) {
@@ -76,10 +77,10 @@ ordersRouter.post("/update", async (req, res, next) => {
 
 ordersRouter.post("/create", async (req, res, next) => {
   const { customerId } = req.body;
-  console.log("&&&&", customerId)
+  console.log("&&&&", customerId);
   try {
     const order = await createOrder(customerId);
-    console.log("this is new order", order)
+    console.log("this is new order", order);
     res.send(order);
   } catch (error) {
     next(error);

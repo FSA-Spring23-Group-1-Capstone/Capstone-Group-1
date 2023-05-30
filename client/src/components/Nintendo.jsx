@@ -9,6 +9,7 @@ const Nintendo = ({
   customer,
   addedItem,
   setAddedItem,
+  orderId,
 }) => {
   const nintendoGames = allGames.filter((game) =>
     game.system.includes("Nintendo")
@@ -25,7 +26,8 @@ const Nintendo = ({
       productId,
       quantity,
       originalPrice,
-      token
+      token,
+      orderId
     );
     setAddedItem(!addedItem);
   };

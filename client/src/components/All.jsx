@@ -11,6 +11,7 @@ const All = ({
   customer,
   addedItem,
   setAddedItem,
+  orderId,
 }) => {
   const [showCreate, setShowCreate] = useState(false);
   const Games = allGames;
@@ -37,7 +38,8 @@ const All = ({
       productId,
       quantity,
       originalPrice,
-      token
+      token,
+      orderId
     );
     setAddedItem(!addedItem);
   };
