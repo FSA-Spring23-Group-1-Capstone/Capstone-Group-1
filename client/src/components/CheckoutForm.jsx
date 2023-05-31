@@ -6,23 +6,22 @@ import {
   setOrderCompleted,
 } from "../api/orders";
 
-const navigate = useNavigate();
 const CheckoutForm = ({ customer, orderId, setOrderItems, setOrderId }) => {
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const completedOrder = await setOrderCompleted(orderId);
     setOrderItems([]);
-    console.log("LLLL", completedOrder);
+
     if (completedOrder.orderCompleted) {
       const newCart = await createNewCustomerOrder(customer.id);
       const customerOrders = await ordersByCustomerEmail(customer.email);
       const cartNum = customerOrders.filter(
         (order) => order.orderCompleted === false
       );
-      window.alert("Thank you for your puchase"
-      )
+      window.alert("Thank you for your puchase");
       navigate("/account");
-      console.log("new cart", cartNum);
+
       setOrderId(cartNum[0].id);
       setOrderItems([]);
     }
