@@ -76,16 +76,7 @@ a {
   height: 30px;
   cursor: pointer;
 }
-@media screen and (max-width: 1024px) {
-  .fa {
-    display: contents;
-    position: absolute;
-    color: red;
-  }
-  .button-container {
-    display: none;
-  }
-}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -247,6 +238,9 @@ a {
 
 .all-container a {
   color: black;
+}
+.allImage {
+  width: 80%;
 }
 
 .xbox-container:hover {
@@ -416,20 +410,21 @@ a {
     width: 100%;
   }
 
-  #logo img {
-    width: 250px;
-  }
-
   .container {
     padding: 2%;
   }
 
-  .xbox-container,
-  .playstation-container,
-  .nintendo-container,
-  .all-container {
-    height: 80px;
-    margin: 2% 1%;
+  .container {
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .home-img {
+    height: 125px;
+    margin-top: 10px;
+  }
+  .allImage {
+    height: 120px;
   }
 
   .register-input {

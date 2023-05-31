@@ -160,7 +160,7 @@ const NavBar = ({
           );
         }}
       >
-        <i className="fa fa-bars fa-2xl"></i>
+        <i className="fa fa-bars fa-2xl desktop-hide"></i>
       </button>
     </header>
   );
