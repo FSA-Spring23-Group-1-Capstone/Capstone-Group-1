@@ -13,6 +13,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* Header/Navbar */
@@ -20,14 +21,14 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 200px;
- 
+  height: 100px;
+  background-color: white;
 }
 
 .register-body {
   position: absolute;
-  right: 18.5rem;
-  top: 175px;
+  right: 16.5rem;
+  top: 100px;
 }
 .register-form {
   margin-top: 1rem;
@@ -102,7 +103,7 @@ a {
   justify-content: center;
   margin: 20px 200px 20px 200px;
 }
- article .image {
+article .image {
   transition: transform 0.7s ease;
   height: 275px;
   width: 100%;
@@ -111,7 +112,7 @@ a {
   margin-bottom: 6%;
   margin-top: 10px;
 }
- article {
+article {
   background-color: rgb(255, 247, 236);
   border-radius: 5px;
   padding: 1%;
@@ -156,12 +157,10 @@ a {
   cursor: pointer;
 }
 
-
-
 .expanded {
-  position:fixed ;
+  position: fixed;
   top: 15%;
-  display:flex;
+  display: flex;
   width: auto;
   height: auto;
   flex-direction: row;
@@ -188,8 +187,8 @@ a {
   font-size: 25px;
 }
 
-.expanded .game-details button{
-  margin-top:50px;
+.expanded .game-details button {
+  margin-top: 50px;
   width: 100px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -315,7 +314,8 @@ a {
   border-radius: 10px;
 }
 
-.nav-button, .create-game {
+.nav-button,
+.create-game {
   width: 115px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -325,9 +325,9 @@ a {
   font-size: 15px;
   cursor: pointer;
   transition: border-color 0.25s;
-  
 }
-.nav-button:hover, .create-game:hover {
+.nav-button:hover,
+.create-game:hover {
   border-color: #646cff;
 }
 .cart-button {
@@ -531,18 +531,22 @@ hr {
 @media screen and (max-width: 768px) {
   /* Header/Navbar */
   .header-container {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
+  }
+  .button-container {
+    position: absolute;
+    top: 110px;
   }
 
   .register-body {
-    position: static;
-    margin-top: 1rem;
-    margin-right: 0;
+    position: absolute;
+    top: 50px;
+    right: 60px;
   }
 
   .register-form {
-    width: 100%;
+    width: 200px;
   }
 
   .container {
@@ -604,7 +608,7 @@ hr {
     line-height: 1.2;
     text-align: center;
   }
-  .add-cart{
+  .add-cart {
     width: 115px;
     padding: 14px;
     border: 1px solid #ccc;
@@ -646,10 +650,9 @@ hr {
     border-radius: 8px;
   }
 
-  .expanded .game-details{
-    padding:5%;
-    width:100%;
-  
+  .expanded .game-details {
+    padding: 5%;
+    width: 100%;
   }
 
   .expanded .game-details h2,
@@ -661,4 +664,26 @@ hr {
   .expanded .game-details button {
     margin-top: 10px;
   }
+}
+.footer-container {
+  margin-top: 21px;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 4rem;
+}
+.footer-img {
+  height: 35px;
+}
+.fa-github {
+  font-size: 2.5rem;
+  color: black;
+}
+.footer-img:hover {
+  height: 42px;
+  background-color: rgb(202, 220, 221);
+  border-radius: 50%;
 }

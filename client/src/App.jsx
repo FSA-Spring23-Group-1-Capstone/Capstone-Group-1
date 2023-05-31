@@ -12,6 +12,7 @@ import {
   All,
   Checkout,
   Account,
+  Footer,
 } from "./components";
 
 import { getMe } from "./api/customers";
@@ -176,6 +177,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </div>
   );
 }
