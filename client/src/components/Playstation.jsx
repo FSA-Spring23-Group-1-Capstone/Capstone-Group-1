@@ -9,7 +9,7 @@ const Playstation = ({
   customer,
   addedItem,
   setAddedItem,
-  orderId,
+  orderId
 }) => {
   const playstationGames = allGames.filter((game) =>
     game.system.includes("Playstation")
@@ -39,7 +39,7 @@ const Playstation = ({
   };
 
   return (
-    <section>
+    <section className="game-card">
       <img
         id="pgame"
         src="https://gameoverpnx.files.wordpress.com/2023/03/1626364677_049220_1626364866_noticia_normal.jpg"

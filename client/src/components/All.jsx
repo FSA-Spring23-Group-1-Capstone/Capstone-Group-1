@@ -61,7 +61,7 @@ const All = ({
         ) : (
           <></>
         )}
-        <section>
+        <section className="game-card">
           <img
             id="agame"
             src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"
@@ -70,7 +70,7 @@ const All = ({
             Games.map((game) => {
               return (
                 <article key={game.id}>
-                  <img src={game.imageUrl} alt={game.name} />
+                  <img className="image" src={game.imageUrl} alt={game.name} />
                   <h2>{game.name}</h2>
                   <p>{game.description} </p>
                   <p>{game.price}</p>
@@ -105,7 +105,7 @@ const All = ({
   } else {
     return (
       <>
-        <section>
+        <section className="game-card">
           <img
             id="agame"
             src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"

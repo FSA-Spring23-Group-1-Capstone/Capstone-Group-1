@@ -39,32 +39,12 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.button-container {
+  display:flex;
+  flex-direction: row;
+  
 }
 
-button {
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  color: white;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -80,24 +60,19 @@ button:focus-visible {
   }
 }
 
-section {
+
+.game-card {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 
-h1 {
-  color: #333;
-  margin-bottom: 20px;
-  width: 100%;
-  text-align: center;
-}
 
-article {
+.game {
   background-color: rgb(255, 247, 236);
   border-radius: 5px;
-  padding: 2%;
-  margin-bottom: 4%;
+  padding: 1%;
+  margin: 5px;
   width: calc(25% - 60px);
   display: flex;
   flex-direction: column;
@@ -106,21 +81,9 @@ article {
  
 }
 
-.game img {
-  width: 90%;
-  height: 260px;
-  object-fit: contain;
-  border-radius: 5px;
-  margin-bottom: 6%;
-  margin-top: 10px;
-}
 
 
-article p {
-  font-weight: bold;
-  margin-bottom: 2%;
-  color: #000000;
-}
+
 /* ------------------------------------xbox description toggle */
 .button.seemore{
   background-color: rgb(255, 247, 236);
@@ -135,10 +98,14 @@ article p {
   max-height: 500px;
   width: 100%;
   object-fit: contain;
+  border-radius: 5px;
+  margin-bottom: 6%;
+  margin-top: 10px;
 }
 
 .game img:hover {
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 
@@ -146,8 +113,8 @@ article p {
   position:fixed ;
   top: 30%;
   display:flex;
-  width: 50%;
-  height:60%;
+  width: auto;
+  height:auto;
   flex-direction: row;
   z-index: 999;
   border: 2px#000000 solid;
@@ -186,22 +153,15 @@ width:60%;
   padding-left: 20%;
 }
 
-#pgame, #ngame {
+#pgame, #ngame, #agame {
 
     width:80%;
     height: 250px; 
     object-fit: cover;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
     border-radius: 8px;
   }
 
-
-#agame {
-  width: 80%;
-    height: 250px; 
-    object-fit: cover;
-    padding-bottom: 20px;
-}
 
 .container {
   display: flex;
@@ -294,21 +254,8 @@ width:60%;
   border: 5px rgb(29, 29, 191) solid;
   border-radius: 10px;
 }
-#drop {
-  width: 115px;
-  padding: 9px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #1a1a1a;
-  color: #f9f9f9;
-  font-size: 1em;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-#drop:hover {
-  border-color: #646cff;
-}
-#home {
+
+.nav-button {
   width: 115px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -318,24 +265,12 @@ width:60%;
   font-size: 15px;
   cursor: pointer;
   transition: border-color 0.25s;
+  height: 40px;
 }
-#home:hover {
+.nav-button:hover {
   border-color: #646cff;
 }
-#account {
-  width: 115px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #1a1a1a;
-  color: #f9f9f9;
-  font-size: 15px;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-#account:hover {
-  border-color: #646cff;
-}
+
 
 .account {
   font-size: 2em;
@@ -440,7 +375,7 @@ width:60%;
 
 /* --------------media query---------- */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   /* Header/Navbar */
   .header-container {
     flex-direction: column;
@@ -487,80 +422,75 @@ width:60%;
     width: 80%;
   }
 
-#xgame {
-  max-width: 50%;
-  padding-top: 20px;
-  padding-bottom: 40px;
-  padding-right: 20%;
-  padding-left: 20%;
-}
-
-#pgame, #ngame {
-
-    width:100%;
-    height: 150px; 
-    object-fit: cover;
+  #xgame, #pgame, #ngame, #agame {
+    max-width: 100%;
+    padding-top: 20px;
     padding-bottom: 20px;
+    padding-right: 10%;
+    padding-left: 10%;
+    height: auto; 
+    object-fit: cover;
+    margin-bottom: 20px;
     border-radius: 8px;
   }
 
-#agame {
-  width: 80%;
-    height: 250px; 
-    object-fit: cover;
-    padding-bottom: 20px;
-}
+  .game {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 30px;
+  }
 
-.game .image {
-  transition: transform 0.7s ease;
-  max-height: 150px;
-  width: 100%;
-  object-fit: contain;
-}
+  .game-detail {
+    font-size: 1em;
+    line-height: 1.2;
+    text-align: center;
+  }
 
-.game img:hover {
-  transform: scale(1.1);
-}
+  .game .image {
+    transition: transform 0.7s ease;
+    max-height: 150px;
+    width: 100%;
+    object-fit: contain;
+  }
 
+  .game img:hover {
+    transform: scale(1.1);
+  }
 
-.expanded {
-  position:fixed ;
-  top: 30%;
-  margin-right: 5px;
-  display:flex;
-  width: 80%;
-  height:20%;
-  flex-direction: row;
-  z-index: 999;
-}
+  .expanded {
+    position:absolute;
+    margin-bottom: 3em;
+    margin-right: 5px;
+    width: 90%;
+    height:auto;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+    overflow-y: auto;
+  }
 
-.expanded .image {
-  width: 100%; 
-  height: 400px; 
-  object-fit: cover; 
-  border-radius: 8px; 
-}
+  .expanded .image {
+    width: 100%; 
+    height: auto; 
+    object-fit: cover; 
+    border-radius: 8px; 
+  }
 
-.expanded .game-details{
-padding-left:12%;
-padding-right:12%;
-width:60%;
+  .expanded .game-details{
+    padding:5%;
+    width:100%;
+  }
 
-}
-.expanded .game-details h2{
-  font-size: 15px;
-  line-height: 1;
-}
-.expanded .game-details p{
-  font-size: 12px;
-  line-height: 1;
+  .expanded .game-details h2, .expanded .game-details p {
+    font-size: 1em;
+    line-height: 1.2;
+  }
 
+  .expanded .game-details button{
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
 }
-
-.expanded .game-details button{
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
- 
-} 
 

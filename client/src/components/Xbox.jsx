@@ -9,7 +9,7 @@ const Xbox = ({
   setAllGames,
   setAddedItem,
   addedItem,
-  orderId,
+  orderId
 }) => {
   const xboxGames = allGames.filter((game) => game.system.includes("Xbox"));
   let originalPrice = 0;
@@ -36,7 +36,7 @@ const Xbox = ({
   };
 
   return (
-    <section>
+    <section className="game-card">
       <img
         id="xgame"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/XBOX_logo_2012.svg/1920px-XBOX_logo_2012.svg.png"

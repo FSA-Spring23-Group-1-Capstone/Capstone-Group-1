@@ -39,7 +39,7 @@ const Nintendo = ({
   };
 
   return (
-    <section>
+    <section className="game-card">
       <img
         id="ngame"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nintendo.svg/1920px-Nintendo.svg.png"

@@ -28,11 +28,10 @@ const NavBar = ({
       <NavLink id="logo" to="/home">
         <img src={logo} alt="Logo" />
       </NavLink>
-      <nav>
-        {/* <NavLink to="/home" id="home">
-          Home
-        </NavLink> */}
-        <select onChange={handleChange} id="drop">
+
+      <nav className="button-container">
+        <select onChange={handleChange} className="nav-button">
+
           <option value="/home">System</option>
           <option value="/Xbox">Xbox</option>
           <option value="/Playstation">Playstation</option>
@@ -52,6 +51,7 @@ const NavBar = ({
               orderItems={orderItems}
             />
             <button
+              className="nav-button"
               onClick={() => {
                 setIsLoggedIn(false);
                 setCustomer("");
@@ -62,6 +62,17 @@ const NavBar = ({
             >
               Logout
             </button>
+
+            <NavLink to="/account" className="nav-button">
+              Account
+            </NavLink>
+            <HoverCart
+              customer={customer}
+              token={token}
+              allGames={allGames}
+              orderItems={orderItems}
+            />
+
           </>
         ) : (
           <>
@@ -73,6 +84,7 @@ const NavBar = ({
                   setCustomer={setCustomer}
                 />
                 <button
+                  className="nav-button"
                   onClick={() => {
                     setShowRegister(!showRegister);
                     setShowLogin(false);
@@ -83,6 +95,7 @@ const NavBar = ({
               </>
             ) : (
               <button
+                className="nav-button"
                 onClick={() => {
                   setShowRegister(!showRegister);
                   setShowLogin(false);
@@ -99,6 +112,7 @@ const NavBar = ({
                   setCustomer={setCustomer}
                 />
                 <button
+                  className="nav-button"
                   onClick={() => {
                     setShowLogin(!showLogin);
                     setShowRegister(false);
@@ -109,6 +123,7 @@ const NavBar = ({
               </>
             ) : (
               <button
+                className="nav-button"
                 onClick={() => {
                   setShowLogin(!showLogin);
                   setShowRegister(false);
