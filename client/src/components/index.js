@@ -8,3 +8,4 @@ export { default as All } from "./All";
 export { default as NavBar } from "./NavBar";
 export { default as Checkout } from "./Checkout";
 export { default as Account } from "./Account";
+export { default as Footer } from "./Footer";
