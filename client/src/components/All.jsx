@@ -56,19 +56,21 @@ const All = ({
     return (
       <>
         <div className="all-page-container">
-          <button className="create-game" onClick={toggleCreateForm}>
-            Create Game Form
-          </button>
-          {showCreate ? (
-            <CreateGameForm token={token} setAllGames={setAllGames} />
-          ) : (
-            <></>
-          )}
-          <img
-            id="agame"
-            src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"
-          ></img>
-          <section className="game-card">
+          <div className="all-top">
+            <button className="create-game" onClick={toggleCreateForm}>
+              Create Game Form
+            </button>
+            {showCreate ? (
+              <CreateGameForm token={token} setAllGames={setAllGames} />
+            ) : (
+              <></>
+            )}
+            <img
+              id="agame"
+              src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"
+            ></img>
+          </div>
+          <div className="bottom-container">
             {Games.length ? (
               Games.map((game) => {
                 return (
@@ -106,7 +108,7 @@ const All = ({
             ) : (
               <h1>No Games to display</h1>
             )}
-          </section>
+          </div>
         </div>
       </>
     );

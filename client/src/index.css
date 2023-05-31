@@ -88,11 +88,19 @@ a {
 .all-page-container{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+.all-top {
+  display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 .bottom-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 200px 20px 200px;
 }
  article .image {
   transition: transform 0.7s ease;
@@ -119,7 +127,7 @@ a {
   background-color: rgb(255, 247, 236);
   border-radius: 5px;
   padding: 1%;
-  margin: 5px;
+  margin: 10px;
   width: calc(25% - 60px);
   display: flex;
   flex-direction: column;
@@ -201,13 +209,14 @@ a {
   padding-bottom: 40px;
   padding-right: 20%;
   padding-left: 20%;
+  max-height: 175px;
 }
 
 #pgame,
 #ngame,
 #agame {
-  width: 80%;
-  height: 250px;
+  width: 48%;
+  max-height: 220px;
   object-fit: cover;
   margin-bottom: 20px;
   border-radius: 8px;
