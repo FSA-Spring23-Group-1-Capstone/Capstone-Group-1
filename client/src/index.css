@@ -446,13 +446,12 @@ article {
 @media screen and (max-width: 768px) {
   /* Header/Navbar */
   .header-container {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
   }
   .button-container {
     position: absolute;
     top: 110px;
-    left: 150px;
   }
 
   .register-body {
@@ -597,4 +596,9 @@ article {
 .fa-github {
   font-size: 2.5rem;
   color: black;
+}
+.footer-img:hover {
+  height: 42px;
+  background-color: rgb(202, 220, 221);
+  border-radius: 50%;
 }
