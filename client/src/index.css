@@ -26,8 +26,8 @@ body {
 
 .register-body {
   position: absolute;
-  right: 18.5rem;
-  top: 175px;
+  right: 16.5rem;
+  top: 100px;
 }
 .register-form {
   margin-top: 1rem;
@@ -455,13 +455,13 @@ article {
   }
 
   .register-body {
-    position: static;
-    margin-top: 1rem;
-    margin-right: 0;
+    position: absolute;
+    top: 50px;
+    right: 60px;
   }
 
   .register-form {
-    width: 100%;
+    width: 200px;
   }
 
   .container {
