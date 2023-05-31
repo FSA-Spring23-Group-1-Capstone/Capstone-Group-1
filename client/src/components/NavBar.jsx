@@ -4,7 +4,10 @@ import Login from "./Login";
 import Register from "./Register";
 import HoverCart from "./HoverCart";
 import logo from "../assets/GameGo-1.png";
-import { authenticateNewCustomer } from "../api/authentication";
+import {
+  authenticateCustomer,
+  authenticateNewCustomer,
+} from "../api/authentication";
 
 const NavBar = ({
   isLoggedIn,
@@ -136,7 +139,18 @@ const NavBar = ({
                     address: "123 Lane Street",
                   };
                   const dummyData = await authenticateNewCustomer(dummy);
-                  if (dummyData.token) {
+
+                  if (!dummyData) {
+                    const result = await authenticateCustomer(
+                      dummy.email,
+                      dummy.password
+                    );
+                    if (result.token) {
+                      setToken(result.token);
+                      setIsLoggedIn(true);
+                      setCustomer(result.customer);
+                    }
+                  } else if (dummyData.token) {
                     setToken(dummyData.token);
                     setIsLoggedIn(true);
                     setCustomer(dummyData.customer);
