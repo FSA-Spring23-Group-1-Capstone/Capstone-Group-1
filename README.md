@@ -1,1 +1,1 @@
-## GameGo App designed to purchase modern video games and consoles
+## GameGo App designed to purchase modern video games without the hassle of unwated pop-up ads
