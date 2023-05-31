@@ -59,7 +59,7 @@ const Xbox = ({
                   <p>{game.description}</p>
                   <p>{game.price}</p>
                   <button
-                    className="nav-button"
+                    className="add-cart"
                     onClick={() => {
                       originalPrice = Number(game.price.substring(1));
                       handleSubmit(game.id);

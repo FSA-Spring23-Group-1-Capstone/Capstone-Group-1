@@ -95,6 +95,27 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 5%;
+}
+ article .image {
+  transition: transform 0.7s ease;
+  height: 275px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 6%;
+  margin-top: 10px;
+}
+ article {
+  background-color: rgb(255, 247, 236);
+  border-radius: 5px;
+  padding: 1%;
+  margin: 5px;
+  width: calc(25% - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .game {
@@ -117,9 +138,9 @@ a {
 /* --------game cards----------- */
 .game .image {
   transition: transform 0.7s ease;
-  max-height: 500px;
+  height: 275px;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 5px;
   margin-bottom: 6%;
   margin-top: 10px;
@@ -130,10 +151,12 @@ a {
   cursor: pointer;
 }
 
+
+
 .expanded {
-  position: fixed;
-  top: 30%;
-  display: flex;
+  position:fixed ;
+  top: 15%;
+  display:flex;
   width: auto;
   height: auto;
   flex-direction: row;
@@ -160,8 +183,20 @@ a {
   font-size: 25px;
 }
 
-.expanded .game-details button {
-  margin-top: 50px;
+.expanded .game-details button{
+  margin-top:50px;
+  width: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: #f9f9f9;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.expanded .game-details button:hover {
+  border-color: #646cff;
 }
 
 #xgame {
@@ -274,7 +309,7 @@ a {
   border-radius: 10px;
 }
 
-.nav-button {
+.nav-button, .create-game {
   width: 115px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -284,9 +319,23 @@ a {
   font-size: 15px;
   cursor: pointer;
   transition: border-color 0.25s;
-  height: 40px;
+  
 }
-.nav-button:hover {
+.nav-button:hover, .create-game:hover {
+  border-color: #646cff;
+}
+.cart-button {
+  width: 115px;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: #f9f9f9;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.cart-button:hover {
   border-color: #646cff;
 }
 
@@ -469,6 +518,17 @@ a {
     line-height: 1.2;
     text-align: center;
   }
+  .add-cart{
+    width: 115px;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #1a1a1a;
+    color: #f9f9f9;
+    font-size: 15px;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
 
   .game .image {
     transition: transform 0.7s ease;
@@ -500,9 +560,10 @@ a {
     border-radius: 8px;
   }
 
-  .expanded .game-details {
-    padding: 5%;
-    width: 100%;
+  .expanded .game-details{
+    padding:5%;
+    width:100%;
+  
   }
 
   .expanded .game-details h2,
@@ -513,6 +574,5 @@ a {
 
   .expanded .game-details button {
     margin-top: 10px;
-    margin-bottom: 20px;
   }
 }

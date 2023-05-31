@@ -257,14 +257,23 @@ async function createInitialGames() {
         inventory: 15,
         system: "Nintendo",
       },
-
+      {
+        name: "Super Mario Sunshine",
+        price: 20.0,
+        description:
+          "When Mario, Peach, and an entourage of Peach's loyal Toad friends set out for a tropical vacation on lovely Isle Delfino, they're in store for much more than a relaxing holiday. A mustachioed maniac has mucked up the entire island, and Mario is accused of committing the crime. Armed with a hi-tech water cannon called FLUDD (Flash Liquidizer Ultra Dousing Device), Mario sets out to clean the island, clear his name, and solve the mystery of the villainous vandal.",
+        imageUrl:
+          "https://m.media-amazon.com/images/M/MV5BNDIyMzNhNTEtNjYyNS00MmM0LWIzZTItZmFlNmMyNDRjZmRkXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_QL75_UX190_CR0,2,190,281_.jpg",
+        inventory: 20,
+        system: "Nintendo",
+      },
       {
         name: "Super Mario Odyssey",
         price: 55.0,
         description:
           "Embark on an exhilarating global escapade! Accompany Mario on a grand 3D adventure across diverse landscapes, as he harnesses extraordinary new abilities to gather Moons, empower the majestic Odyssey airship, and thwart Bowser's wedding machinations to rescue Princess Peach. Discover a sandbox-style world brimming with hidden secrets and delightful surprises. With Mario's novel maneuvers like cap throw, cap jump, and capture, prepare for an unprecedented Mario gaming experience. Brace yourself to be transported to wondrous and enigmatic realms that lie far beyond the familiar Mushroom Kingdom!",
         imageUrl:
-          "https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/Super_Mario_Odyssey.jpg/220px-Super_Mario_Odyssey.jpg",
+          "https://images.saymedia-content.com/.image/t_share/MTc0NDU1NjY0NjQxNzEzNTEy/super-mario-odyssey-review-for-nintendo-switch.jpg",
         inventory: 15,
         system: "Nintendo",
       },
@@ -294,7 +303,7 @@ async function createInitialGames() {
         description:
           "Create your dream island paradise in Animal Crossing: New Horizons. Explore, customize, and enjoy real-time experiences as you fish, hunt insects, and decorate. Dive into free updates with swimming, new characters, and mermaid-themed furniture. Discover endless summer adventures on your Nintendo Switch!",
         imageUrl:
-          "https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Animal_Crossing_New_Horizons.jpg/220px-Animal_Crossing_New_Horizons.jpg",
+          "https://m.media-amazon.com/images/I/7141W51gqML._AC_UF894,1000_QL80_.jpg",
         inventory: 12,
         system: "Nintendo",
       },
