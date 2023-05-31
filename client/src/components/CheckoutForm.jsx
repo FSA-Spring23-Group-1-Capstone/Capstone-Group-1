@@ -1,9 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   createNewCustomerOrder,
   ordersByCustomerEmail,
   setOrderCompleted,
 } from "../api/orders";
+
+const navigate = useNavigate();
 const CheckoutForm = ({ customer, orderId, setOrderItems, setOrderId }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,6 +19,9 @@ const CheckoutForm = ({ customer, orderId, setOrderItems, setOrderId }) => {
       const cartNum = customerOrders.filter(
         (order) => order.orderCompleted === false
       );
+      window.alert("Thank you for your puchase"
+      )
+      navigate("/account");
       console.log("new cart", cartNum);
       setOrderId(cartNum[0].id);
       setOrderItems([]);
