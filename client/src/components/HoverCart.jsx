@@ -14,12 +14,12 @@ const HoverCart = ({ customer, token, allGames, orderId, orderItems }) => {
   return (
     <div>
       <button
-        className="nav-button"
+        className="cart-button"
         onClick={() => {
           setShowCart(!showCart);
         }}
       >
-        Cart
+        <i className="fa-solid fa-cart-shopping"></i>
       </button>
       {showCart ? (
         <div>

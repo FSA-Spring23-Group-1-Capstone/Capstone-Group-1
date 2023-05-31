@@ -53,7 +53,9 @@ const All = ({
   if (customer.admin) {
     return (
       <>
-        <button onClick={toggleCreateForm}>Toggle Create Game Form</button>
+        <button className="create-game" onClick={toggleCreateForm}>
+          Create Game Form
+        </button>
         {showCreate ? (
           <CreateGameForm token={token} setAllGames={setAllGames} />
         ) : (

@@ -54,6 +54,7 @@ const NavBar = ({
               Account
             </NavLink>
             <HoverCart
+              className="nav-button"
               customer={customer}
               token={token}
               allGames={allGames}

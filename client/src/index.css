@@ -65,6 +65,27 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 5%;
+}
+ article .image {
+  transition: transform 0.7s ease;
+  height: 275px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 6%;
+  margin-top: 10px;
+}
+ article {
+  background-color: rgb(255, 247, 236);
+  border-radius: 5px;
+  padding: 1%;
+  margin: 5px;
+  width: calc(25% - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 
@@ -95,9 +116,9 @@ a {
 /* --------game cards----------- */
 .game .image {
   transition: transform 0.7s ease;
-  max-height: 500px;
+  height: 275px;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 5px;
   margin-bottom: 6%;
   margin-top: 10px;
@@ -109,9 +130,10 @@ a {
 }
 
 
+
 .expanded {
   position:fixed ;
-  top: 30%;
+  top: 15%;
   display:flex;
   width: auto;
   height:auto;
@@ -144,6 +166,18 @@ width:60%;
 
 .expanded .game-details button{
   margin-top:50px;
+  width: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: #f9f9f9;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.expanded .game-details button:hover {
+  border-color: #646cff;
 }
 
 #xgame {
@@ -243,7 +277,6 @@ width:60%;
   width: 400px;
   height: auto;
   object-fit: cover;
-  
 }
 
 .register-body {
@@ -255,7 +288,7 @@ width:60%;
   border-radius: 10px;
 }
 
-.nav-button {
+.nav-button, .create-game {
   width: 115px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -265,9 +298,23 @@ width:60%;
   font-size: 15px;
   cursor: pointer;
   transition: border-color 0.25s;
-  height: 40px;
+  
 }
-.nav-button:hover {
+.nav-button:hover, .create-game:hover {
+  border-color: #646cff;
+}
+.cart-button {
+  width: 115px;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: #f9f9f9;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.cart-button:hover {
   border-color: #646cff;
 }
 
@@ -392,10 +439,6 @@ width:60%;
     width: 100%;
   }
 
-  #logo img {
-    width: 250px;
-  }
-
   .container {
     padding: 2%;
   }
@@ -447,6 +490,17 @@ width:60%;
     line-height: 1.2;
     text-align: center;
   }
+  .add-cart{
+    width: 115px;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #1a1a1a;
+    color: #f9f9f9;
+    font-size: 15px;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
 
   .game .image {
     transition: transform 0.7s ease;
@@ -481,6 +535,7 @@ width:60%;
   .expanded .game-details{
     padding:5%;
     width:100%;
+  
   }
 
   .expanded .game-details h2, .expanded .game-details p {
@@ -490,7 +545,6 @@ width:60%;
 
   .expanded .game-details button{
     margin-top: 10px;
-    margin-bottom: 20px;
   }
 }
 
