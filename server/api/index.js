@@ -53,6 +53,8 @@ router.get("/health", async (req, res, next) => {
     next(error);
   }
 });
+
+
 const customerRouter = require("./customer");
 router.use("/customer", customerRouter);
 
@@ -64,5 +66,14 @@ router.use("/orders", ordersRouter);
 
 const orderItemsRouter = require("./orderItems");
 router.use("/orderitems", orderItemsRouter);
+
+router.use((req, res, next) => {
+  try {
+    res.status(404).send("Sorry, can't find that! :/");
+  } catch (error) {
+    console.errror(error);
+    throw error;
+  }
+});
 
 module.exports = router;

@@ -6,7 +6,7 @@
   background-color: #242424;
 }
 
-html,
+
 body {
   box-sizing: border-box;
   background-color: #242424;
@@ -14,6 +14,10 @@ body {
   padding: 0;
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100vh;
 }
 
 /* Header/Navbar */
@@ -209,6 +213,7 @@ article {
   padding-right: 20%;
   padding-left: 20%;
   max-height: 175px;
+  margin-top: 20px;
 }
 
 #pgame,
@@ -219,6 +224,7 @@ article {
   object-fit: cover;
   margin-bottom: 20px;
   border-radius: 8px;
+  margin-top: 20px;
 }
 
 .container {
@@ -528,7 +534,7 @@ hr {
   }
 /* --------------media query---------- */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   /* Header/Navbar */
   .header-container {
     display: flex;
@@ -666,7 +672,7 @@ hr {
   }
 }
 .footer-container {
-  margin-top: 21px;
+  margin-top: 200px;
   background-color: white;
   display: flex;
   justify-content: space-around;

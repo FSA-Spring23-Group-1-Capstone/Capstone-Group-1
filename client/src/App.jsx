@@ -131,6 +131,7 @@ function App() {
               addedItem={addedItem}
               setAddedItem={setAddedItem}
               orderId={orderId}
+              isLoggedIn={isLoggedIn}
             />
           }
         />
@@ -145,6 +146,7 @@ function App() {
               addedItem={addedItem}
               setAddedItem={setAddedItem}
               orderId={orderId}
+              isLoggedIn={isLoggedIn}
             />
           }
         />
@@ -159,6 +161,7 @@ function App() {
               addedItem={addedItem}
               setAddedItem={setAddedItem}
               orderId={orderId}
+              isLoggedIn={isLoggedIn}
             />
           }
         />
@@ -173,6 +176,7 @@ function App() {
               addedItem={addedItem}
               setAddedItem={setAddedItem}
               orderId={orderId}
+              isLoggedIn={isLoggedIn}
             />
           }
         />
