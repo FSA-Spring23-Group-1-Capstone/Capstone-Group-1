@@ -12,6 +12,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* Header/Navbar */
@@ -19,7 +20,8 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 200px;
+  height: 100px;
+  background-color: white;
 }
 
 .register-body {
@@ -97,7 +99,7 @@ a {
   justify-content: center;
   margin-bottom: 5%;
 }
- article .image {
+article .image {
   transition: transform 0.7s ease;
   height: 275px;
   width: 100%;
@@ -106,7 +108,7 @@ a {
   margin-bottom: 6%;
   margin-top: 10px;
 }
- article {
+article {
   background-color: rgb(255, 247, 236);
   border-radius: 5px;
   padding: 1%;
@@ -151,12 +153,10 @@ a {
   cursor: pointer;
 }
 
-
-
 .expanded {
-  position:fixed ;
+  position: fixed;
   top: 15%;
-  display:flex;
+  display: flex;
   width: auto;
   height: auto;
   flex-direction: row;
@@ -183,8 +183,8 @@ a {
   font-size: 25px;
 }
 
-.expanded .game-details button{
-  margin-top:50px;
+.expanded .game-details button {
+  margin-top: 50px;
   width: 100px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -309,7 +309,8 @@ a {
   border-radius: 10px;
 }
 
-.nav-button, .create-game {
+.nav-button,
+.create-game {
   width: 115px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -319,9 +320,9 @@ a {
   font-size: 15px;
   cursor: pointer;
   transition: border-color 0.25s;
-  
 }
-.nav-button:hover, .create-game:hover {
+.nav-button:hover,
+.create-game:hover {
   border-color: #646cff;
 }
 .cart-button {
@@ -448,6 +449,11 @@ a {
     flex-direction: column;
     align-items: flex-start;
   }
+  .button-container {
+    position: absolute;
+    top: 110px;
+    left: 150px;
+  }
 
   .register-body {
     position: static;
@@ -518,7 +524,7 @@ a {
     line-height: 1.2;
     text-align: center;
   }
-  .add-cart{
+  .add-cart {
     width: 115px;
     padding: 14px;
     border: 1px solid #ccc;
@@ -560,10 +566,9 @@ a {
     border-radius: 8px;
   }
 
-  .expanded .game-details{
-    padding:5%;
-    width:100%;
-  
+  .expanded .game-details {
+    padding: 5%;
+    width: 100%;
   }
 
   .expanded .game-details h2,
@@ -575,4 +580,20 @@ a {
   .expanded .game-details button {
     margin-top: 10px;
   }
+}
+.footer-container {
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 4.3rem;
+}
+.footer-img {
+  height: 35px;
+}
+.fa-github {
+  font-size: 2.5rem;
+  color: black;
 }
