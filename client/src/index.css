@@ -71,7 +71,6 @@ a {
   background-color: #424141;
 }
 
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -86,7 +85,7 @@ a {
   }
 }
 
-.all-page-container{
+.all-page-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -401,13 +400,12 @@ article {
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  
 }
 .checkout-question {
   font-size: 31px;
 }
 .checkoutTitle {
-  color:#050300 ;
+  color: #050300;
   font-size: 45px;
   font-weight: 800;
   margin-left: 25px;
@@ -418,7 +416,7 @@ article {
   font-weight: 500;
   font-size: 20px;
 }
-.cartItems  {
+.cartItems {
   color: #050300;
   font-size: 40px;
 }
@@ -441,14 +439,14 @@ article {
   width: 80%;
   margin: 4px auto 15px;
   border-radius: 4px;
-  border: 1px solid #DADADA;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, .08);
+  border: 1px solid #dadada;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
 }
 .table-row {
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
-  border-bottom: 1px solid #DADADA;
+  border-bottom: 1px solid #dadada;
 }
 .table-row img {
   height: 110px;
@@ -462,11 +460,11 @@ article {
   align-items: center;
   transition: all 0.15s ease-in-out;
 }
-.orderup  {
-  background-color: rgb(255, 247, 236);;
+.orderup {
+  background-color: rgb(255, 247, 236);
   color: #050300;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: space-evenly;
   border: 1px solid #ccc;
   padding: 10px;
@@ -492,7 +490,7 @@ article {
 }
 .master-container {
   display: flex;
-  margin: 20px
+  margin: 20px;
 }
 .left-contianer {
   width: 75%;
@@ -510,22 +508,22 @@ article {
   text-align: center;
   border: 2px solid grey;
   border-radius: 15px;
-  background-color: #EEECEC;
-  }
-  .checkout-button {
-    background-color: #28C628;
-    border: 2px solid grey;
-    border-radius: 15px;
-    margin-bottom: 6px;
-  }
+  background-color: #eeecec;
+}
+.checkout-button {
+  background-color: #28c628;
+  border: 2px solid grey;
+  border-radius: 15px;
+  margin-bottom: 6px;
+}
 hr {
-   width: 100%;
-   color: black;
-   margin-top: -10px;
-  }
-  .total-price {
-    font-weight: 700;
-  }
+  width: 100%;
+  color: black;
+  margin-top: -10px;
+}
+.total-price {
+  font-weight: 700;
+}
 /* --------------media query---------- */
 
 @media screen and (max-width: 768px) {
@@ -666,7 +664,7 @@ hr {
   }
 }
 .footer-container {
-  margin-top: 21px;
+  margin-top: 200px;
   background-color: white;
   display: flex;
   justify-content: space-around;
