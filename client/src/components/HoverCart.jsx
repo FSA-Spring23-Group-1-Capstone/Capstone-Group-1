@@ -22,7 +22,7 @@ const HoverCart = ({ customer, token, allGames, orderId, orderItems }) => {
         <i className="fa-solid fa-cart-shopping"></i>
       </button>
       {showCart ? (
-        <div>
+        <div className="hover-container">
           {orderItems.map((order, index) => {
             const currentGame = allGames.filter(
               (game) => game.id === order.productId
@@ -35,7 +35,9 @@ const HoverCart = ({ customer, token, allGames, orderId, orderItems }) => {
               </div>
             );
           })}
-          <button onClick={handleCheckout}>Checkout</button>
+          <button className="nav-button" onClick={handleCheckout}>
+            Checkout
+          </button>
         </div>
       ) : (
         ""

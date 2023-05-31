@@ -11,6 +11,7 @@ const All = ({
   customer,
   addedItem,
   setAddedItem,
+  orderId,
 }) => {
   const [showCreate, setShowCreate] = useState(false);
   const Games = allGames;
@@ -37,7 +38,8 @@ const All = ({
       productId,
       quantity,
       originalPrice,
-      token
+      token,
+      orderId
     );
     setAddedItem(!addedItem);
   };
@@ -134,12 +136,13 @@ const All = ({
                         <p>{game.description}</p>
                         <p>{game.price}</p>
                         <button
+                          className="nav-button"
                           onClick={() => {
                             originalPrice = Number(game.price.substring(1));
                             handleSubmit(game.id);
                           }}
                         >
-                          <i className="fa-solid fa-cart-shopping">+</i>
+                          +<i className="fa-solid fa-cart-shopping"></i>
                         </button>
                       </>
                     )}

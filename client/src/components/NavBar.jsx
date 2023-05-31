@@ -4,6 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import HoverCart from "./HoverCart";
 import logo from "../assets/GameGo-1.png";
+import { authenticateNewCustomer } from "../api/authentication";
 
 const NavBar = ({
   isLoggedIn,
@@ -27,6 +28,7 @@ const NavBar = ({
       <NavLink id="logo" to="/home">
         <img src={logo} alt="Logo" />
       </NavLink>
+
       <nav className="button-container">
         <select onChange={handleChange} className="nav-button">
           <option value="/home">System</option>
@@ -39,6 +41,20 @@ const NavBar = ({
         {isLoggedIn ? (
           <>
             <button
+              onClick={() => {
+                navigate("/account");
+              }}
+              className="nav-button"
+            >
+              Account
+            </button>
+            <HoverCart
+              customer={customer}
+              token={token}
+              allGames={allGames}
+              orderItems={orderItems}
+            />
+            <button
               className="nav-button"
               onClick={() => {
                 setIsLoggedIn(false);
@@ -50,16 +66,6 @@ const NavBar = ({
             >
               Logout
             </button>
-            <NavLink to="/account" className="nav-button">
-              Account
-            </NavLink>
-            <HoverCart
-              className="nav-button"
-              customer={customer}
-              token={token}
-              allGames={allGames}
-              orderItems={orderItems}
-            />
           </>
         ) : (
           <>
@@ -119,9 +125,43 @@ const NavBar = ({
                 Login
               </button>
             )}
+            <button
+              className="demo-button"
+              onClick={() => {
+                const registerDummy = async () => {
+                  const dummy = {
+                    name: "John Doe",
+                    email: "john@gmail.com",
+                    password: "123456789",
+                    address: "123 Lane Street",
+                  };
+                  const dummyData = await authenticateNewCustomer(dummy);
+                  if (dummyData.token) {
+                    setToken(dummyData.token);
+                    setIsLoggedIn(true);
+                    setCustomer(dummyData.customer);
+                  }
+                };
+                registerDummy();
+              }}
+            >
+              Demo
+            </button>
           </>
         )}
       </nav>
+      <button
+        className="hamburger"
+        onClick={() => {
+          return (
+            <>
+              <h1>Yooo</h1>
+            </>
+          );
+        }}
+      >
+        <i className="fa fa-bars fa-2xl desktop-hide"></i>
+      </button>
     </header>
   );
 };

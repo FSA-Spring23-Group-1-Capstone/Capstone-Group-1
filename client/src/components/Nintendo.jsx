@@ -9,6 +9,7 @@ const Nintendo = ({
   customer,
   addedItem,
   setAddedItem,
+  orderId,
 }) => {
   const nintendoGames = allGames.filter((game) =>
     game.system.includes("Nintendo")
@@ -25,7 +26,8 @@ const Nintendo = ({
       productId,
       quantity,
       originalPrice,
-      token
+      token,
+      orderId
     );
     setAddedItem(!addedItem);
   };
@@ -62,6 +64,7 @@ const Nintendo = ({
                   <p>{game.description}</p>
                   <p>{game.price}</p>
                   <button
+                    className="nav-button"
                     onClick={() => {
                       originalPrice = Number(game.price.substring(1));
                       handleSubmit(game.id);
