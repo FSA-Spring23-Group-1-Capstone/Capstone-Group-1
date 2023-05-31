@@ -31,7 +31,6 @@ const NavBar = ({
 
       <nav className="button-container">
         <select onChange={handleChange} className="nav-button">
-
           <option value="/home">System</option>
           <option value="/Xbox">Xbox</option>
           <option value="/Playstation">Playstation</option>
@@ -41,9 +40,14 @@ const NavBar = ({
         </select>
         {isLoggedIn ? (
           <>
-            <NavLink to="/account" id="account">
+            <button
+              onClick={() => {
+                navigate("/account");
+              }}
+              className="nav-button"
+            >
               Account
-            </NavLink>
+            </button>
             <HoverCart
               customer={customer}
               token={token}
@@ -62,17 +66,6 @@ const NavBar = ({
             >
               Logout
             </button>
-
-            <NavLink to="/account" className="nav-button">
-              Account
-            </NavLink>
-            <HoverCart
-              customer={customer}
-              token={token}
-              allGames={allGames}
-              orderItems={orderItems}
-            />
-
           </>
         ) : (
           <>
@@ -133,6 +126,7 @@ const NavBar = ({
               </button>
             )}
             <button
+              className="demo-button"
               onClick={() => {
                 const registerDummy = async () => {
                   const dummy = {
@@ -156,6 +150,18 @@ const NavBar = ({
           </>
         )}
       </nav>
+      <button
+        className="hamburger"
+        onClick={() => {
+          return (
+            <>
+              <h1>Yooo</h1>
+            </>
+          );
+        }}
+      >
+        <i className="fa fa-bars fa-2xl desktop-hide"></i>
+      </button>
     </header>
   );
 };

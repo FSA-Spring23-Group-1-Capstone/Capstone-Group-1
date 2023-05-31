@@ -64,6 +64,7 @@ const Nintendo = ({
                   <p>{game.description}</p>
                   <p>{game.price}</p>
                   <button
+                    className="nav-button"
                     onClick={() => {
                       originalPrice = Number(game.price.substring(1));
                       handleSubmit(game.id);

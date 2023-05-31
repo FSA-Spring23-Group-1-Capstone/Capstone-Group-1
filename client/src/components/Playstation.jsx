@@ -9,7 +9,7 @@ const Playstation = ({
   customer,
   addedItem,
   setAddedItem,
-  orderId
+  orderId,
 }) => {
   const playstationGames = allGames.filter((game) =>
     game.system.includes("Playstation")
@@ -62,12 +62,13 @@ const Playstation = ({
                   <p>{game.description}</p>
                   <p>{game.price}</p>
                   <button
+                    className="nav-button"
                     onClick={() => {
                       originalPrice = Number(game.price.substring(1));
                       handleSubmit(game.id);
                     }}
                   >
-                    <i className="fa-solid fa-cart-shopping">+</i>
+                    +<i className="fa-solid fa-cart-shopping"></i>
                   </button>
                 </>
               )}
