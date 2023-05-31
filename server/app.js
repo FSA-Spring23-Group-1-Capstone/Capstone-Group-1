@@ -16,18 +16,9 @@ app.use(express.static(path.join(__dirname, "../client", "dist")));
 
 app.use("/api", require("./api"));
 
-app.get("/", (req, res, next) => {
+app.use("*", (req, res, next) => {
   try {
-    res.sendFile(path.join(__dirname, "../client", "dist"));
-  } catch (error) {
-    console.errror(error);
-    throw error;
-  }
-});
-
-app.use((req, res, next) => {
-  try {
-    res.status(404).send("Sorry, can't find that! :/");
+    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
   } catch (error) {
     console.errror(error);
     throw error;
