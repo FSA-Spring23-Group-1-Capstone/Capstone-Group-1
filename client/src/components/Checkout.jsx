@@ -23,17 +23,16 @@ const Checkout = ({
   let total = sumItems(purchaseArr);
   return (
     <>
-      <div className="checkoutTitle">
-        <h2>Checkout</h2>
-      </div>
+      <div className="checkoutTitle"></div>
       <div className="master-container">
         <div className="left-contianer">
           <section className="user-checkout-info">
+            <p className="checkoutTitle">Checkout</p>
             <h3 className="checkout-question">
               Ready to check out {customer.name}?
             </h3>
-            <p>Username: {customer.email}</p>
-            <p>Address: {customer.address}</p>
+            <p className="details-address">Username: {customer.email}</p>
+            <p className="details-address">Address: {customer.address}</p>
           </section>
           <section className="main-container">
             <h3 className="cartItems">Shopping Cart</h3>

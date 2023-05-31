@@ -150,18 +150,6 @@ const NavBar = ({
           </>
         )}
       </nav>
-      <button
-        className="hamburger"
-        onClick={() => {
-          return (
-            <>
-              <h1>Yooo</h1>
-            </>
-          );
-        }}
-      >
-        <i className="fa fa-bars fa-2xl desktop-hide"></i>
-      </button>
     </header>
   );
 };
