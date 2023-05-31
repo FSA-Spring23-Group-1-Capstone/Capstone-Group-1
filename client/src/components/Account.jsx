@@ -29,7 +29,7 @@ const Account = ({ allCustomerOrders }) => {
                     {" "}
                     {order.orderCompleted ? "Completed" : "Not Completed"}
                     {!order.orderCompleted ? (
-                      <span id="corder">*Current Order*</span>
+                      <span id="corder">*Next Order*</span>
                     ) : (
                       ""
                     )}

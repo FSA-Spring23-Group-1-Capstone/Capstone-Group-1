@@ -34,11 +34,10 @@ const NavBar = ({
 
       <nav className="button-container">
         <select onChange={handleChange} className="nav-button">
-          <option value="/home">System</option>
+          <option value="/home" selected>System</option>
           <option value="/Xbox">Xbox</option>
           <option value="/Playstation">Playstation</option>
           <option value="/Nintendo">Nintendo</option>
-
           <option value="/All">All</option>
         </select>
         {isLoggedIn ? (

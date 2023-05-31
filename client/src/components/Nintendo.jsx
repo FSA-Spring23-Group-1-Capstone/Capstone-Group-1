@@ -10,7 +10,7 @@ const Nintendo = ({
   addedItem,
   setAddedItem,
   orderId,
-  isloggedIn
+  isLoggedIn
 }) => {
   const nintendoGames = allGames.filter((game) =>
     game.system.includes("Nintendo")
@@ -39,7 +39,7 @@ const Nintendo = ({
     setExpandedGameId(gameId === expandedGameId ? null : gameId);
   };
 
-  if(isloggedIn){
+  if(isLoggedIn){
     return (
       <div className="all-page-container">
         <div className="all-top">
@@ -62,7 +62,6 @@ const Nintendo = ({
                 </div>
                 <div className="game-details">
                   <h2>{game.name}</h2>
-  
                   {expandedGameId === game.id && (
                     <>
                       <p>{game.description}</p>
