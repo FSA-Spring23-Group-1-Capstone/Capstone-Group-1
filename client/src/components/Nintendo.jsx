@@ -39,48 +39,51 @@ const Nintendo = ({
   };
 
   return (
-    <section className="game-card">
-      <img
-        id="ngame"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nintendo.svg/1920px-Nintendo.svg.png"
-        alt="Nintendo Logo"
-      />
+    <div className="all-page-container">
+      <div className="all-top">
+        <img
+          id="ngame"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nintendo.svg/1920px-Nintendo.svg.png"
+          alt="Nintendo Logo"
+        />
+      </div>
+      <div className="bottom-container">
+        {nintendoGames.length ? (
+          nintendoGames.map((game) => (
+            <article
+              className={`game ${expandedGameId === game.id ? "expanded" : ""}`}
+              key={game.id}
+              onClick={() => handleGameClick(game.id)}
+            >
+              <div className="game-image">
+                <img className="image" src={game.imageUrl} alt={game.name} />
+              </div>
+              <div className="game-details">
+                <h2>{game.name}</h2>
 
-      {nintendoGames.length ? (
-        nintendoGames.map((game) => (
-          <article
-            className={`game ${expandedGameId === game.id ? "expanded" : ""}`}
-            key={game.id}
-            onClick={() => handleGameClick(game.id)}
-          >
-            <div className="game-image">
-              <img className="image" src={game.imageUrl} alt={game.name} />
-            </div>
-            <div className="game-details">
-              <h2>{game.name}</h2>
-
-              {expandedGameId === game.id && (
-                <>
-                  <p>{game.description}</p>
-                  <p>{game.price}</p>
-                  <button
-                    className="nav-button"
-                    onClick={() => {
-                      originalPrice = Number(game.price.substring(1));
-                      handleSubmit(game.id);
-                    }}
-                  >
-                    +<i className="fa-solid fa-cart-shopping"></i>
-                  </button>
-                </>
-              )}
-            </div>
-          </article>
-        ))
-      ) : (
-        <h1>No Games to display</h1>
-      )}
-    </section>
+                {expandedGameId === game.id && (
+                  <>
+                    <p>{game.description}</p>
+                    <p>{game.price}</p>
+                    <button
+                      className="nav-button"
+                      onClick={() => {
+                        originalPrice = Number(game.price.substring(1));
+                        handleSubmit(game.id);
+                      }}
+                    >
+                      +<i className="fa-solid fa-cart-shopping"></i>
+                    </button>
+                  </>
+                )}
+              </div>
+            </article>
+          ))
+        ) : (
+          <h1>No Games to display</h1>
+        )}
+      </div>
+    </div>
   );
 };
 

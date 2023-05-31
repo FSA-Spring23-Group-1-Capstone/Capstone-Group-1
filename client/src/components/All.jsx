@@ -55,105 +55,118 @@ const All = ({
   if (customer.admin) {
     return (
       <>
-        <button className="create-game" onClick={toggleCreateForm}>
-          Create Game Form
-        </button>
-        {showCreate ? (
-          <CreateGameForm token={token} setAllGames={setAllGames} />
-        ) : (
-          <></>
-        )}
-        <section className="game-card">
-          <img
-            id="agame"
-            src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"
-          ></img>
-          {Games.length ? (
-            Games.map((game) => {
-              return (
-                <article key={game.id}>
-                  <img className="image" src={game.imageUrl} alt={game.name} />
-                  <h2>{game.name}</h2>
-                  <p>{game.description} </p>
-                  <p>{game.price}</p>
-                  <button
-                    onClick={() => {
-                      originalPrice = Number(game.price.substring(1));
-                      handleSubmit(game.id);
-                    }}
-                  >
-                    +<i className="fa-solid fa-cart-shopping"></i>
-                  </button>
-                  <UpdateGameForm
-                    token={token}
-                    setAllGames={setAllGames}
-                    gameId={game.id}
-                  />
-                  <DeleteGame
-                    gameId={game.id}
-                    token={token}
-                    setAllGames={setAllGames}
-                    allGames={allGames}
-                  />
-                </article>
-              );
-            })
-          ) : (
-            <h1>No Games to display</h1>
-          )}
-        </section>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <section className="game-card">
-          <img
-            id="agame"
-            src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"
-          ></img>
-          {Games.length ? (
-            Games.map((game) => {
-              return (
-                <article
-                  className={`game ${
-                    expandedGameId === game.id ? "expanded" : ""
-                  }`}
-                  key={game.id}
-                  onClick={() => handleGameClick(game.id)}
-                >
-                  <div className="game-image">
+        <div className="all-page-container">
+          <div className="all-top">
+            <button className="create-game" onClick={toggleCreateForm}>
+              Create Game Form
+            </button>
+            {showCreate ? (
+              <CreateGameForm token={token} setAllGames={setAllGames} />
+            ) : (
+              <></>
+            )}
+            <img
+              id="agame"
+              src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"
+            ></img>
+          </div>
+          <div className="bottom-container">
+            {Games.length ? (
+              Games.map((game) => {
+                return (
+                  <article key={game.id}>
                     <img
                       className="image"
                       src={game.imageUrl}
                       alt={game.name}
                     />
-                  </div>
-                  <div className="game-details">
                     <h2>{game.name}</h2>
-                    {expandedGameId === game.id && (
-                      <>
-                        <p>{game.description}</p>
-                        <p>{game.price}</p>
-                        <button
-                          className="nav-button"
-                          onClick={() => {
-                            originalPrice = Number(game.price.substring(1));
-                            handleSubmit(game.id);
-                          }}
-                        >
-                          +<i className="fa-solid fa-cart-shopping"></i>
-                        </button>
-                      </>
-                    )}
-                  </div>
-                </article>
-              );
-            })
-          ) : (
-            <h1>No Games to display</h1>
-          )}
-        </section>
+                    <p>{game.description} </p>
+                    <p>{game.price}</p>
+                    <button
+                      onClick={() => {
+                        originalPrice = Number(game.price.substring(1));
+                        handleSubmit(game.id);
+                      }}
+                    >
+                      +<i className="fa-solid fa-cart-shopping"></i>
+                    </button>
+                    <UpdateGameForm
+                      token={token}
+                      setAllGames={setAllGames}
+                      gameId={game.id}
+                    />
+                    <DeleteGame
+                      gameId={game.id}
+                      token={token}
+                      setAllGames={setAllGames}
+                      allGames={allGames}
+                    />
+                  </article>
+                );
+              })
+            ) : (
+              <h1>No Games to display</h1>
+            )}
+          </div>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="all-page-container">
+          <div className="all-top">
+            <img
+              id="agame"
+              src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://gameluster.com/wp-content/uploads/2022/12/Playstation-Nintendo-Xbox-logo.png"
+            ></img>
+          </div>
+          <div className="bottom-container">
+            {Games.length ? (
+              Games.map((game) => {
+                return (
+                  <article
+                    className={`game ${
+                      expandedGameId === game.id ? "expanded" : ""
+                    }`}
+                    key={game.id}
+                    onClick={() => handleGameClick(game.id)}
+                  >
+                    <div className="game-image">
+                      <img
+                        className="image"
+                        src={game.imageUrl}
+                        alt={game.name}
+                      />
+                    </div>
+
+                    <div className="game-details">
+                      <h2>{game.name}</h2>
+                      {expandedGameId === game.id && (
+                        <>
+                          <p>{game.description}</p>
+                          <p>{game.price}</p>
+                          <button
+                            className="nav-button"
+                            onClick={() => {
+                              originalPrice = Number(game.price.substring(1));
+                              handleSubmit(game.id);
+                            }}
+                          >
+                            +<i className="fa-solid fa-cart-shopping"></i>
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </article>
+                );
+              })
+            ) : (
+              <h1>No Games to display</h1>
+            )}
+          </div>
+        </div>
       </>
     );
   }
